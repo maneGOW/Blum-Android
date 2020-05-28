@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/loginFragment">
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.nda.blum.ui.LoginFragment"
+        android:label="login_fragment"
+        tools:layout="@layout/login_fragment" />
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.nda.blum.ui.MainFragment"
+        android:label="main_fragment"
+        tools:layout="@layout/main_fragment" >
+        <action
+            android:id="@+id/action_mainFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/agendarSesionFragment"
+        android:name="com.nda.blum.ui.AgendarSesionFragment"
+        android:label="agendar_sesion_fragment"
+        tools:layout="@layout/agendar_sesion_fragment" />
+    <fragment
+        android:id="@+id/splashScreenFragment"
+        android:name="com.nda.blum.SplashScreenFragment"
+        android:label="splash_screen_fragment"
+        tools:layout="@layout/splash_screen_fragment" >
+        <action
+            android:id="@+id/action_splashScreenFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/slider1Fragment"
+        android:name="com.nda.blum.Slider1Fragment"
+        android:label="slider1_fragment"
+        tools:layout="@layout/slider1_fragment" />
+    <fragment
+        android:id="@+id/slider2Fragment"
+        android:name="com.nda.blum.Slider2Fragment"
+        android:label="slider2_fragment"
+        tools:layout="@layout/slider2_fragment" />
+    <fragment
+        android:id="@+id/findingCoachFragment"
+        android:name="com.nda.blum.FindingCoachFragment"
+        android:label="finding_coach_fragment"
+        tools:layout="@layout/finding_coach_fragment" />
+    <fragment
+        android:id="@+id/coachResultFragment"
+        android:name="com.nda.blum.CoachResultFragment"
+        tools:layout="@layout/coach_result_fragment"
+        android:label="CoachResultFragment" />
+    <fragment
+        android:id="@+id/quizzFragment"
+        android:name="com.nda.blum.ui.QuizzFragment"
+        android:label="quizz_fragment"
+        tools:layout="@layout/quizz_fragment" />
+    <fragment
+        android:id="@+id/coachBioFragment"
+        android:name="com.nda.blum.CoachBioFragment"
+        android:label="coach_bio_fragment"
+        tools:layout="@layout/coach_bio_fragment" />
+    <fragment
+        android:id="@+id/coachProfileFragment"
+        android:name="com.nda.blum.CoachProfileFragment"
+        android:label="coach_profile_fragment"
+        tools:layout="@layout/coach_profile_fragment" />
+</navigation>

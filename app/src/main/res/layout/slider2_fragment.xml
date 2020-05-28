@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgroundColor"
+    tools:context=".Slider2Fragment">
+
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="262dp"
+        android:layout_height="278dp"
+        android:layout_marginTop="64dp"
+        android:src="@drawable/mujer_pensando"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.51"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView22"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="¡Queremos conocerte!"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.478"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView6"
+        style="@style/title_blue_style" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/circle2"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/white_circle"
+        app:layout_constraintStart_toEndOf="@+id/circle1"
+        app:layout_constraintTop_toBottomOf="@+id/button6" />
+
+    <TextView
+        android:id="@+id/textView23"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:lineSpacingExtra="2sp"
+        android:text="Para poder conocerte más y asignarte al Coach Parental ideal para ti es necesario que por favor respondas TODAS las preguntas del siguiente cuestionario. ir al"
+        android:textColor="#FFFFFF"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView22" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/circle1"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        android:layout_marginStart="196dp"
+        android:layout_marginLeft="196dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/white_circle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button6" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button6"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/pink_shape_button"
+        android:text="Ir al cuestionario"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView23" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
