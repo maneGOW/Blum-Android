@@ -8,24 +8,24 @@ import android.view.View
 import android.view.ViewGroup
 
 
-class SplashScreenFragment : Fragment() {
+class HubAlumnoFragment : Fragment() {
 
     companion object {
-        fun newInstance() = SplashScreenFragment()
+        fun newInstance() = HubAlumnoFragment()
     }
 
-    private lateinit var viewModel: SplashScreenViewModel
+    private lateinit var viewModel: HubAlumnoViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.splash_screen_fragment, container, false)
+        return inflater.inflate(R.layout.hub_alumno_fragment, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(SplashScreenViewModel::class.java)
+        viewModel = ViewModelProviders.of(this).get(HubAlumnoViewModel::class.java)
         // TODO: Use the ViewModel
     }
 

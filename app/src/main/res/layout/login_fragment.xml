@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="loginViewModel"
+            type="com.nda.blum.ui.signup.LoginViewModel" />
+    </data>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/backgroundColor"
-    tools:context=".ui.LoginFragment">
+    tools:context=".ui.signup.LoginFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layoutText3"
@@ -30,7 +36,7 @@
             android:ems="10"
             android:hint="Celular"
             android:inputType="phone"
-            android:text=""
+            android:text="@={loginViewModel.celular}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -69,6 +75,7 @@
             android:background="@android:color/transparent"
             android:ems="10"
             android:hint="Nombre"
+            android:text="@={loginViewModel.nombre}"
             android:inputType="textPersonName"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -94,14 +101,13 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
-
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
             android:background="@android:color/transparent"
             android:ems="10"
             android:hint="Correo electrónico"
             android:inputType="textEmailAddress"
-            android:text=""
+            android:text="@={loginViewModel.email}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -132,8 +138,7 @@
             android:ems="10"
             android:hint="Contraseña"
             android:inputType="textPassword"
-            android:text=""
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:text="@={loginViewModel.password}"            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -166,3 +171,4 @@
         app:layout_constraintTop_toBottomOf="@+id/button2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
