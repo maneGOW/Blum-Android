@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/loginFragment">
+    app:startDestination="@id/recorridoChatFragment">
 
     <fragment
         android:id="@+id/loginFragment"
@@ -68,4 +68,19 @@
         android:name="com.nda.blum.CoachProfileFragment"
         android:label="coach_profile_fragment"
         tools:layout="@layout/coach_profile_fragment" />
+    <fragment
+        android:id="@+id/felicidadesCouchFragment"
+        android:name="com.nda.blum.FelicidadesCouchFragment"
+        android:label="felicidades_couch_fragment"
+        tools:layout="@layout/felicidades_couch_fragment" />
+    <fragment
+        android:id="@+id/recorridoCalendarFragment"
+        android:name="com.nda.blum.RecorridoCalendarFragment"
+        android:label="RecorridoCalendarFragment"
+        tools:layout="@layout/recorrido_calendar_fragment"/>
+    <fragment
+        android:id="@+id/recorridoChatFragment"
+        android:name="com.nda.blum.RecorridoChatFragment"
+        android:label="recorrido_chat_fragment"
+        tools:layout="@layout/recorrido_chat_fragment" />
 </navigation>
