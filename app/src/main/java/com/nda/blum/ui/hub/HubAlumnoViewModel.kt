@@ -20,9 +20,13 @@ class HubAlumnoViewModel(private val database: UserDao, application: Application
 
     fun setUserName(){
         coroutineScope.launch {
-            val userdata = getUserData()
-            println(userdata!!.userNombreUsuario)
-            userName.value = userdata.userNombreUsuario
+            try{
+                val userdata = getUserData()
+                println(userdata!!.userNombreUsuario)
+                userName.value = userdata.userNombreUsuario
+            }catch (e:Exception){
+                e.printStackTrace()
+            }
         }
     }
 

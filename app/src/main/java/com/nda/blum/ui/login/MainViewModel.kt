@@ -98,8 +98,10 @@ class MainViewModel(private val database: UserDao, application: Application) : A
         withContext(Dispatchers.IO) {
             val userRegistered = database.getAllUserData()
             if(userRegistered == null){
-                database.insertUser(user)
-                println("Datos de usuario de login agregados")
+                val newUser = User(1,"","","","","","")
+                database.insertUser(newUser)
+                database.updateUser(user)
+                println("Datos de usuario de login agregados y actualizado")
             }else{
                 database.updateUser(user)
                 println("Datos de usuario de login actualzados")
