@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/recorridoChatFragment">
+    app:startDestination="@id/blummersCoachFragment">
 
     <fragment
         android:id="@+id/loginFragment"
@@ -83,4 +83,34 @@
         android:name="com.nda.blum.RecorridoChatFragment"
         android:label="recorrido_chat_fragment"
         tools:layout="@layout/recorrido_chat_fragment" />
+    <fragment
+        android:id="@+id/couchRecurosFragment"
+        android:name="com.nda.blum.CouchRecurosFragment"
+        android:label="couch_recuros_fragment"
+        tools:layout="@layout/couch_recuros_fragment" />
+    <fragment
+        android:id="@+id/couchChatsFragment"
+        android:name="com.nda.blum.CouchChatsFragment"
+        android:label="couch_chats_fragment"
+        tools:layout="@layout/couch_chats_fragment" />
+    <fragment
+        android:id="@+id/coachHorarioFragment"
+        android:name="com.nda.blum.CoachHorarioFragment"
+        android:label="coach_horario_fragment"
+        tools:layout="@layout/coach_horario_fragment" />
+    <fragment
+        android:id="@+id/sesionersCoachFragment"
+        android:name="com.nda.blum.SesionersCoachFragment"
+        android:label="sesioners_coach_fragment"
+        tools:layout="@layout/sesioners_coach_fragment" />
+    <fragment
+        android:id="@+id/recursosCoachFragment"
+        android:name="com.nda.blum.RecursosCoachFragment"
+        android:label="recursos_coach_fragment"
+        tools:layout="@layout/recursos_coach_fragment" />
+    <fragment
+        android:id="@+id/blummersCoachFragment"
+        android:name="com.nda.blum.BlummersCoachFragment"
+        android:label="blummers_coach_fragment"
+        tools:layout="@layout/blummers_coach_fragment" />
 </navigation>
