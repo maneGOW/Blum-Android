@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "853898831911",
+    "firebase_url": "https://blum-messenger.firebaseio.com",
+    "project_id": "blum-messenger",
+    "storage_bucket": "blum-messenger.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:853898831911:android:ca89cc2fb668dc99ef0602",
+        "android_client_info": {
+          "package_name": "com.nda.blum"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "853898831911-unclr8hcnu4cmn98g7n7a0jpi5s9vfi5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBff5xECSnX-k0YM1u3E87KFv6yPs1udLA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "853898831911-unclr8hcnu4cmn98g7n7a0jpi5s9vfi5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
