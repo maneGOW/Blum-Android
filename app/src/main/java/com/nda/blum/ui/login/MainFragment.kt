@@ -12,8 +12,11 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.nda.blum.R
 import com.nda.blum.databinding.MainFragmentBinding
+import com.nda.blum.db.BlumDatabase
+import kotlinx.coroutines.InternalCoroutinesApi
 
 
+@InternalCoroutinesApi
 class MainFragment : Fragment() {
 
     companion object {
@@ -31,7 +34,9 @@ class MainFragment : Fragment() {
         )
 
         val application = requireNotNull(this.activity).application
-        val viewModelFactory = MainViewModelFactory(application)
+
+        val dataSource = BlumDatabase.getInstance(application).userDao()
+        val viewModelFactory = MainViewModelFactory(dataSource, application)
         val mainViewModel = ViewModelProviders.of(this, viewModelFactory).get(MainViewModel::class.java)
 
         binding.lifecycleOwner = this
@@ -44,6 +49,13 @@ class MainFragment : Fragment() {
                 Toast.makeText(this.context, "No debe haber campos vacios", Toast.LENGTH_LONG).show()
             }
         }
+
+        mainViewModel.showErrorMessage.observe(viewLifecycleOwner, Observer {
+            if(it){
+                Toast.makeText(this.context, "Usuario o contraseña incorrectos", Toast.LENGTH_LONG).show()
+                mainViewModel.onMessageShowed()
+            }
+        })
 
         mainViewModel.navigateToHub.observe(viewLifecycleOwner, Observer {
             if(it){

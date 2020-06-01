@@ -9,7 +9,11 @@
         android:id="@+id/loginFragment"
         android:name="com.nda.blum.ui.signup.LoginFragment"
         android:label="login_fragment"
-        tools:layout="@layout/login_fragment" />
+        tools:layout="@layout/login_fragment" >
+        <action
+            android:id="@+id/action_loginFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
     <fragment
         android:id="@+id/mainFragment"
         android:name="com.nda.blum.ui.login.MainFragment"
@@ -21,6 +25,9 @@
         <action
             android:id="@+id/action_mainFragment_to_hubAlumnoFragment"
             app:destination="@id/hubAlumnoFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_quizzFragment"
+            app:destination="@id/quizzFragment" />
     </fragment>
     <fragment
         android:id="@+id/agendarSesionFragment"
@@ -77,7 +84,11 @@
         android:label="SliderHostFragment" />
     <fragment
         android:id="@+id/hubAlumnoFragment"
-        android:name="com.nda.blum.HubAlumnoFragment"
+        android:name="com.nda.blum.ui.hub.HubAlumnoFragment"
         android:label="hub_alumno_fragment"
-        tools:layout="@layout/hub_alumno_fragment" />
+        tools:layout="@layout/hub_alumno_fragment" >
+        <action
+            android:id="@+id/action_hubAlumnoFragment_to_agendarSesionFragment"
+            app:destination="@id/agendarSesionFragment" />
+    </fragment>
 </navigation>

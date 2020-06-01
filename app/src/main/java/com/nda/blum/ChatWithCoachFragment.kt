@@ -8,24 +8,24 @@ import android.view.View
 import android.view.ViewGroup
 
 
-class HubAlumnoFragment : Fragment() {
+class ChatWithCoachFragment : Fragment() {
 
     companion object {
-        fun newInstance() = HubAlumnoFragment()
+        fun newInstance() = ChatWithCoachFragment()
     }
 
-    private lateinit var viewModel: HubAlumnoViewModel
+    private lateinit var viewModel: ChatWithCoachViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.hub_alumno_fragment, container, false)
+        return inflater.inflate(R.layout.chat_with_coach_fragment, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(HubAlumnoViewModel::class.java)
+        viewModel = ViewModelProviders.of(this).get(ChatWithCoachViewModel::class.java)
         // TODO: Use the ViewModel
     }
 
