@@ -3,21 +3,31 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/blummersCoachFragment">
-
+    app:startDestination="@id/splashScreenFragment">
+  
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.nda.blum.ui.LoginFragment"
+        android:name="com.nda.blum.ui.signup.LoginFragment"
         android:label="login_fragment"
-        tools:layout="@layout/login_fragment" />
+        tools:layout="@layout/login_fragment" >
+        <action
+            android:id="@+id/action_loginFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.nda.blum.ui.MainFragment"
+        android:name="com.nda.blum.ui.login.MainFragment"
         android:label="main_fragment"
         tools:layout="@layout/main_fragment" >
         <action
             android:id="@+id/action_mainFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_hubAlumnoFragment"
+            app:destination="@id/hubAlumnoFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_quizzFragment"
+            app:destination="@id/quizzFragment" />
     </fragment>
     <fragment
         android:id="@+id/agendarSesionFragment"
@@ -26,7 +36,7 @@
         tools:layout="@layout/agendar_sesion_fragment" />
     <fragment
         android:id="@+id/splashScreenFragment"
-        android:name="com.nda.blum.SplashScreenFragment"
+        android:name="com.nda.blum.ui.splashscreen.SplashScreenFragment"
         android:label="splash_screen_fragment"
         tools:layout="@layout/splash_screen_fragment" >
         <action
@@ -113,4 +123,17 @@
         android:name="com.nda.blum.BlummersCoachFragment"
         android:label="blummers_coach_fragment"
         tools:layout="@layout/blummers_coach_fragment" />
+  <fragment
+        android:id="@+id/sliderHostFragment"
+        android:name="com.nda.blum.SliderHostFragment"
+        android:label="SliderHostFragment" />
+    <fragment
+        android:id="@+id/hubAlumnoFragment"
+        android:name="com.nda.blum.ui.hub.HubAlumnoFragment"
+        android:label="hub_alumno_fragment"
+        tools:layout="@layout/hub_alumno_fragment" >
+        <action
+            android:id="@+id/action_hubAlumnoFragment_to_agendarSesionFragment"
+            app:destination="@id/agendarSesionFragment" />
+    </fragment>
 </navigation>

@@ -2,6 +2,6 @@ package com.nda.blum
 
 import androidx.lifecycle.ViewModel
 
-class SplashScreenViewModel : ViewModel() {
+class SliderHostViewModel : ViewModel() {
     // TODO: Implement the ViewModel
 }

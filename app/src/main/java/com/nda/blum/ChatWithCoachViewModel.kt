@@ -1,7 +1,7 @@
-package com.nda.blum.ui
+package com.nda.blum
 
 import androidx.lifecycle.ViewModel
 
-class LoginViewModel : ViewModel() {
+class ChatWithCoachViewModel : ViewModel() {
     // TODO: Implement the ViewModel
 }
