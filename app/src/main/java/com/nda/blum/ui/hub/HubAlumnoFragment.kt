@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import androidx.transition.Visibility
 import com.nda.blum.R
 import com.nda.blum.databinding.HubAlumnoFragmentBinding
 import com.nda.blum.db.BlumDatabase
@@ -27,7 +28,7 @@ class HubAlumnoFragment : Fragment() {
 
         val application = requireNotNull(this.activity).application
         val dataSource = BlumDatabase.getInstance(application).userDao()
-        val viewModelFactory = HubAlumnoViewModelFactory(dataSource,application)
+        val viewModelFactory = HubAlumnoViewModelFactory(dataSource, application)
         val hubViewModel =
             ViewModelProviders.of(this, viewModelFactory).get(HubAlumnoViewModel::class.java)
 
@@ -36,11 +37,20 @@ class HubAlumnoFragment : Fragment() {
         hubViewModel.setUserName()
 
         binding.btnAgendarSesion.setOnClickListener {
-            this.findNavController().navigate(HubAlumnoFragmentDirections.actionHubAlumnoFragmentToAgendarSesionFragment())
+            this.findNavController()
+                .navigate(HubAlumnoFragmentDirections.actionHubAlumnoFragmentToAgendarSesionFragment())
         }
 
         hubViewModel.userName.observe(viewLifecycleOwner, Observer {
             binding.txtWelcomeText.text = "Bienvenid@ ${hubViewModel.userName.value}"
+        })
+
+        hubViewModel.userRol.observe(viewLifecycleOwner, Observer {
+            if (it == "coach") {
+                println("coach")
+            } else {
+                binding.btnRecursos.visibility = View.GONE
+            }
         })
 
         return binding.root
