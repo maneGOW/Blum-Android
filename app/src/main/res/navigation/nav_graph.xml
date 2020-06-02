@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/notificacionesCoachFragment">
+    app:startDestination="@id/splashScreenFragment">
   
     <fragment
         android:id="@+id/loginFragment"
@@ -28,6 +28,9 @@
         <action
             android:id="@+id/action_mainFragment_to_quizzFragment"
             app:destination="@id/quizzFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_recuperarPasswordFragment"
+            app:destination="@id/recuperarPasswordFragment" />
     </fragment>
     <fragment
         android:id="@+id/agendarSesionFragment"
