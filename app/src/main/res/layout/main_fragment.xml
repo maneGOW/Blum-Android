@@ -62,9 +62,13 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout3"
-        android:layout_width="300dp"
+        android:layout_width="0dp"
         android:layout_height="60dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
         android:background="@drawable/white_shape"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -72,25 +76,28 @@
 
         <EditText
             android:id="@+id/txtEmail"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
-            android:ems="10"
             android:background="@android:color/transparent"
+            android:ems="10"
             android:hint="CORREO ELECTRONICO"
             android:inputType="textEmailAddress"
             android:text="@={mainViewModel.email}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageView28"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/imageView28"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginLeft="24dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -99,35 +106,38 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout4"
-        android:layout_width="300dp"
+        android:layout_width="0dp"
         android:layout_height="60dp"
         android:layout_marginTop="2dp"
         android:background="@drawable/white_shape_inverted"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/constraintLayout3"
+        app:layout_constraintStart_toStartOf="@+id/constraintLayout3"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout3">
 
         <EditText
             android:id="@+id/editText6"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
+            android:background="@android:color/transparent"
             android:ems="10"
             android:hint="PASSWORD"
             android:inputType="textPassword"
-            android:background="@android:color/transparent"
             android:text="@={mainViewModel.password}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageView29"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/imageView29"
             android:layout_width="25dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginLeft="24dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -138,15 +148,13 @@
         android:id="@+id/checkBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="54dp"
-        android:layout_marginLeft="54dp"
         android:layout_marginTop="16dp"
-        android:shadowColor="#FFFFFF"
         android:buttonTint="#FFFFFF"
+        android:shadowColor="#FFFFFF"
 
         android:text="Recuerdame"
         android:textColor="#FFFFFF"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/constraintLayout4"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout4" />
 
     <TextView
@@ -154,48 +162,42 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="22dp"
-        android:layout_marginEnd="60dp"
-        android:layout_marginRight="60dp"
         android:text="¿Olvidé mi contraseña?"
         android:textColor="@color/highLightColor"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/constraintLayout4"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout4" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnLogin"
-        android:layout_width="200dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:background="@drawable/pink_shape_button"
         android:text="Entrar"
         android:textColor="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/constraintLayout4"
+        app:layout_constraintStart_toStartOf="@+id/constraintLayout4"
         app:layout_constraintTop_toBottomOf="@+id/checkBox" />
 
     <TextView
         android:id="@+id/textView17"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="54dp"
-        android:layout_marginLeft="54dp"
         android:layout_marginTop="32dp"
         android:text="¿No tienes cuenta?"
         android:textColor="#FFFFFF"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/checkBox"
         app:layout_constraintTop_toBottomOf="@+id/btnLogin" />
 
     <TextView
         android:id="@+id/txtCrearCuenta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="60dp"
-        android:layout_marginRight="60dp"
         android:text="Crear una cuenta"
         android:textColor="@color/highLightColor"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/txtRecoverPassword"
         app:layout_constraintTop_toTopOf="@+id/textView17" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,10 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.nda.blum.R
 import com.nda.blum.databinding.LoginFragmentBinding
-
 
 class LoginFragment : Fragment() {
 
@@ -37,6 +37,13 @@ class LoginFragment : Fragment() {
         bindingLogin.imgLoginBack.setOnClickListener {
             this.findNavController().popBackStack()
         }
+
+        loginViewModel.navigateToLogin.observe(viewLifecycleOwner, Observer {
+            if(it){
+                this.findNavController().popBackStack()
+                loginViewModel.onNavigated()
+            }
+        })
 
         bindingLogin.button2.setOnClickListener {
             if(!bindingLogin.editText.text.isNullOrBlank() && !bindingLogin.editText2.text.isNullOrBlank()

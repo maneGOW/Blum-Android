@@ -41,12 +41,16 @@ class HubAlumnoFragment : Fragment() {
                 .navigate(HubAlumnoFragmentDirections.actionHubAlumnoFragmentToAgendarSesionFragment())
         }
 
+        binding.btnChatCoach.setOnClickListener{
+            this.findNavController().navigate(HubAlumnoFragmentDirections.actionHubAlumnoFragmentToChatWithCoachFragment())
+        }
+
         hubViewModel.userName.observe(viewLifecycleOwner, Observer {
             binding.txtWelcomeText.text = "Bienvenid@ ${hubViewModel.userName.value}"
         })
 
         hubViewModel.userRol.observe(viewLifecycleOwner, Observer {
-            if (it == "coach") {
+            if (it == "Coach") {
                 println("coach")
             } else {
                 binding.btnRecursos.visibility = View.GONE
