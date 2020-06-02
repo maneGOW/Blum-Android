@@ -13,6 +13,7 @@ class HubAlumnoViewModel(private val database: UserDao, application: Application
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
     val userName = MutableLiveData<String?>()
+    val userRol = MutableLiveData<String?>()
 
     init {
         userName.value = ""
@@ -24,6 +25,7 @@ class HubAlumnoViewModel(private val database: UserDao, application: Application
                 val userdata = getUserData()
                 println(userdata!!.userNombreUsuario)
                 userName.value = userdata.userNombreUsuario
+                userRol.value = userdata.userRol
             }catch (e:Exception){
                 e.printStackTrace()
             }

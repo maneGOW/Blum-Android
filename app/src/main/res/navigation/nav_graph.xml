@@ -9,11 +9,7 @@
         android:id="@+id/loginFragment"
         android:name="com.nda.blum.ui.signup.LoginFragment"
         android:label="login_fragment"
-        tools:layout="@layout/login_fragment" >
-        <action
-            android:id="@+id/action_loginFragment_to_mainFragment"
-            app:destination="@id/mainFragment" />
-    </fragment>
+        tools:layout="@layout/login_fragment" />
     <fragment
         android:id="@+id/mainFragment"
         android:name="com.nda.blum.ui.login.MainFragment"
@@ -28,6 +24,9 @@
         <action
             android:id="@+id/action_mainFragment_to_quizzFragment"
             app:destination="@id/quizzFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_recuperarPasswordFragment"
+            app:destination="@id/recuperarPasswordFragment" />
     </fragment>
     <fragment
         android:id="@+id/agendarSesionFragment"
@@ -136,4 +135,9 @@
             android:id="@+id/action_hubAlumnoFragment_to_agendarSesionFragment"
             app:destination="@id/agendarSesionFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/recuperarPasswordFragment"
+        android:name="com.nda.blum.ui.recoverpassword.RecuperarPasswordFragment"
+        tools:layout="@layout/recuperar_password_fragment"
+        android:label="RecuperarPasswordFragment" />
 </navigation>

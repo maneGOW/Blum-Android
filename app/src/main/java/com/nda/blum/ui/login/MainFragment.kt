@@ -42,12 +42,20 @@ class MainFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.mainViewModel = mainViewModel
 
-        binding.button.setOnClickListener {
-            if(!binding.editText5.text.isNullOrEmpty() && !binding.editText6.text.isNullOrEmpty()){
+        binding.btnLogin.setOnClickListener {
+            if(!binding.txtEmail.text.isNullOrEmpty() && !binding.editText6.text.isNullOrEmpty()){
                 mainViewModel.callLoginService()
             }else{
                 Toast.makeText(this.context, "No debe haber campos vacios", Toast.LENGTH_LONG).show()
             }
+        }
+
+        binding.txtRecoverPassword.setOnClickListener {
+            this.findNavController().navigate(MainFragmentDirections.actionMainFragmentToRecuperarPasswordFragment())
+        }
+
+        binding.txtCrearCuenta.setOnClickListener {
+            this.findNavController().navigate(MainFragmentDirections.actionMainFragmentToLoginFragment())
         }
 
         mainViewModel.showErrorMessage.observe(viewLifecycleOwner, Observer {

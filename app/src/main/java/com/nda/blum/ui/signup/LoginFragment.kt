@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.fragment.findNavController
 import com.nda.blum.R
 import com.nda.blum.databinding.LoginFragmentBinding
 
@@ -32,6 +33,10 @@ class LoginFragment : Fragment() {
         bindingLogin.lifecycleOwner = this
 
         bindingLogin.loginViewModel = loginViewModel
+
+        bindingLogin.imgLoginBack.setOnClickListener {
+            this.findNavController().popBackStack()
+        }
 
         bindingLogin.button2.setOnClickListener {
             if(!bindingLogin.editText.text.isNullOrBlank() && !bindingLogin.editText2.text.isNullOrBlank()
