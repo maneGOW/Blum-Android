@@ -2,6 +2,7 @@ package com.nda.blum.ui.signup
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.google.gson.Gson
 import com.nda.blum.DAO.GuardarUsuarioResponse
@@ -22,10 +23,22 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
     val password = MutableLiveData<String>()
     val celular = MutableLiveData<String>()
 
+    private val _navigateToLogin = MutableLiveData<Boolean>()
+    val navigateToLogin : LiveData<Boolean>
+            get() = _navigateToLogin
+
+    init {
+        _navigateToLogin.value = false
+    }
+
     fun saveUserData() {
         coroutineScope.launch {
             registrarUsuario()
         }
+    }
+
+    fun onNavigated(){
+        _navigateToLogin.value = false
     }
 
     suspend fun registrarUsuario(){
@@ -42,7 +55,13 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
 
             if(response.code == 200){
                 val parsedResponse = Gson().fromJson(response.body!!.string(), GuardarUsuarioResponse::class.java)
-                println("RESPONSE: $parsedResponse")
+                if(parsedResponse.code == "0"){
+                    println("RESPONSE: $parsedResponse")
+                    println("Usuario registrado en blum")
+                    _navigateToLogin.value = true
+                }else{
+                    println("error al almacenar el usuario")
+                }
             }
         }
     }

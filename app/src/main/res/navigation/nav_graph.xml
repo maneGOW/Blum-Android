@@ -40,7 +40,11 @@
         tools:layout="@layout/splash_screen_fragment" >
         <action
             android:id="@+id/action_splashScreenFragment_to_mainFragment"
-            app:destination="@id/mainFragment" />
+            app:destination="@id/mainFragment"
+            app:enterAnim="@anim/nav_default_pop_enter_anim"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/splashScreenFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/slider1Fragment"
@@ -134,10 +138,21 @@
         <action
             android:id="@+id/action_hubAlumnoFragment_to_agendarSesionFragment"
             app:destination="@id/agendarSesionFragment" />
+        <action
+            android:id="@+id/action_hubAlumnoFragment_to_recursosCoachFragment"
+            app:destination="@id/recursosCoachFragment" />
+        <action
+            android:id="@+id/action_hubAlumnoFragment_to_chatWithCoachFragment"
+            app:destination="@id/chatWithCoachFragment" />
     </fragment>
     <fragment
         android:id="@+id/recuperarPasswordFragment"
         android:name="com.nda.blum.ui.recoverpassword.RecuperarPasswordFragment"
         tools:layout="@layout/recuperar_password_fragment"
         android:label="RecuperarPasswordFragment" />
+    <fragment
+        android:id="@+id/chatWithCoachFragment"
+        android:name="com.nda.blum.ui.chat.ChatWithCoachFragment"
+        tools:layout="@layout/chat_with_coach_fragment"
+        android:label="ChatWithCoachFragment" />
 </navigation>
