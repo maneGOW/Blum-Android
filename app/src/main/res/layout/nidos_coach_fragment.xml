@@ -4,15 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".BlummersCoachFragment">
+    tools:context=".NidosCoachFragment">
 
     <TextView
-        android:id="@+id/textView47"
+        android:id="@+id/textView57"
         android:layout_width="0dp"
         android:layout_height="60dp"
         android:background="@color/backgroundColor"
         android:gravity="center"
-        android:text="Mis blummers"
+        android:text="Mis nidos"
         android:textColor="#FFFFFF"
         android:textSize="20dp"
         android:textStyle="bold"
@@ -21,31 +21,57 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imgAgendarSesionBack"
+        android:id="@+id/imageView39"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:src="@drawable/back_icon"
-        app:layout_constraintBottom_toBottomOf="@+id/textView47"
+        app:layout_constraintBottom_toBottomOf="@+id/textView57"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView47" />
-
+        app:layout_constraintTop_toTopOf="@+id/textView57" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout15"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#8d7dea"
-        app:layout_constraintBottom_toTopOf="@+id/constraintLayout16"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView47">
+        app:layout_constraintTop_toBottomOf="@+id/textView57">
+
+        <TextView
+            android:id="@+id/textView58"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginEnd="64dp"
+            android:layout_marginRight="64dp"
+            android:text="Marisol Gudiño"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/imageView41"
+            app:layout_constraintStart_toEndOf="@+id/imageView40"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/imageView36"
+            android:id="@+id/imageView41"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginRight="24dp"
+            android:src="@android:drawable/ic_menu_add"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView58"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView40"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="24dp"
@@ -56,37 +82,8 @@
             android:layout_marginBottom="8dp"
             android:src="@drawable/user_picture"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/textView52"
+            app:layout_constraintEnd_toStartOf="@+id/textView58"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/textView52"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginEnd="64dp"
-            android:layout_marginRight="64dp"
-            android:text="Marisol Gudiño"
-            android:textColor="@android:color/white"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/imageView37"
-            app:layout_constraintStart_toEndOf="@+id/imageView36"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/imageView37"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginEnd="24dp"
-            android:layout_marginRight="24dp"
-            android:src="@drawable/pdf_coach"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/textView52"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -99,5 +96,4 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
 
-    
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,13 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/splashScreenFragment">
+    app:startDestination="@id/notificacionesCoachFragment">
   
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.nda.blum.ui.signup.LoginFragment"
         android:label="login_fragment"
-        tools:layout="@layout/login_fragment" />
+        tools:layout="@layout/login_fragment" >
+        <action
+            android:id="@+id/action_loginFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
     <fragment
         android:id="@+id/mainFragment"
         android:name="com.nda.blum.ui.login.MainFragment"
@@ -24,9 +28,6 @@
         <action
             android:id="@+id/action_mainFragment_to_quizzFragment"
             app:destination="@id/quizzFragment" />
-        <action
-            android:id="@+id/action_mainFragment_to_recuperarPasswordFragment"
-            app:destination="@id/recuperarPasswordFragment" />
     </fragment>
     <fragment
         android:id="@+id/agendarSesionFragment"
@@ -155,4 +156,14 @@
         android:name="com.nda.blum.ui.chat.ChatWithCoachFragment"
         tools:layout="@layout/chat_with_coach_fragment"
         android:label="ChatWithCoachFragment" />
+  <fragment
+        android:id="@+id/nidosCoachFragment"
+        android:name="com.nda.blum.NidosCoachFragment"
+        android:label="nidos_coach_fragment"
+        tools:layout="@layout/nidos_coach_fragment" />
+    <fragment
+        android:id="@+id/notificacionesCoachFragment"
+        android:name="com.nda.blum.NotificacionesCoachFragment"
+        android:label="notificaciones_coach_fragment"
+        tools:layout="@layout/notificaciones_coach_fragment" />
 </navigation>
