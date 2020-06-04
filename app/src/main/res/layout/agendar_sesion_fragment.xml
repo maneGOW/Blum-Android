@@ -120,8 +120,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:text="Horario disponible"
                         android:fontFamily="@font/octarine"
+                        android:text="Horario disponible"
                         android:textColor="@color/purpleColor"
                         android:textSize="18dp"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -149,21 +149,120 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textSeleccionaHorario" />
 
-                    <TimePicker
-                        android:id="@+id/timePicker"
-                        android:layout_width="wrap_content"
-                        android:layout_height="0dp"
-                        android:numbersBackgroundColor="@color/purpleColor"
-                        android:numbersInnerTextColor="@color/pinkColor"
-                        android:numbersSelectorColor="@color/purpleColor"
-                        android:numbersTextColor="#FFFFFF"
-                        android:outlineAmbientShadowColor="@color/purpleColor"
-                        android:outlineSpotShadowColor="@color/highLightColor"
-                        android:timePickerMode="spinner"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
+                    <TextView
+                        android:id="@+id/textView"
+                        style="@style/TimePickerStyle"
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginLeft="32dp"
+                        android:layout_marginTop="8dp"
+                        android:gravity="center"
+                        android:textSize="13sp"
+                        android:fontFamily="@font/avenir"
+                        android:text="9:00 AM"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textSeleccionaHorario2" />
+
+                    <TextView
+                        android:id="@+id/textView3"
+                        style="@style/TimePickerStyle"
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="32dp"
+                        android:layout_marginRight="32dp"
+                        android:fontFamily="@font/avenir"
+                        android:textSize="13sp"
+                        android:gravity="center"
+                        android:text="11:00 AM"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/textView2" />
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        style="@style/TimePickerStyle"
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:fontFamily="@font/avenir"
+                        android:textSize="13sp"
+                        android:text="10:00 AM"
+                        app:layout_constraintEnd_toStartOf="@+id/textView3"
+                        app:layout_constraintStart_toEndOf="@+id/textView"
+                        app:layout_constraintTop_toTopOf="@+id/textView" />
+
+                    <TextView
+                        android:id="@+id/textView4"
+                        style="@style/TimePickerStyle"
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:fontFamily="@font/avenir"
+                        android:textSize="13sp"
+                        android:text="5:00 PM"
+                        app:layout_constraintStart_toStartOf="@+id/textView62"
+                        app:layout_constraintTop_toTopOf="@+id/textView64" />
+
+                    <TextView
+                        android:id="@+id/textView17"
+                        style="@style/TimePickerStyle"
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:fontFamily="@font/avenir"
+                        android:textSize="13sp"
+                        android:text="12:00 PM"
+                        app:layout_constraintStart_toStartOf="@+id/textView"
+                        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+                    <TextView
+                        android:id="@+id/textView61"
+                        style="@style/TimePickerStyle"
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:fontFamily="@font/avenir"
+                        android:textSize="13sp"
+                        android:text="1:00 PM"
+                        app:layout_constraintStart_toStartOf="@+id/textView2"
+                        app:layout_constraintTop_toTopOf="@+id/textView17" />
+
+                    <TextView
+                        android:id="@+id/textView62"
+                        style="@style/TimePickerStyle"
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:fontFamily="@font/avenir"
+                        android:textSize="13sp"
+                        android:text="2:00 PM"
+                        app:layout_constraintStart_toStartOf="@+id/textView3"
+                        app:layout_constraintTop_toTopOf="@+id/textView61" />
+
+                    <TextView
+                        android:id="@+id/textView63"
+                        style="@style/TimePickerStyle"
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:gravity="center"
+                        android:fontFamily="@font/avenir"
+                        android:textSize="13sp"
+                        android:text="3:00 PM"
+                        app:layout_constraintStart_toStartOf="@+id/textView17"
+                        app:layout_constraintTop_toBottomOf="@+id/textView17" />
+
+                    <TextView
+                        android:id="@+id/textView64"
+                        style="@style/TimePickerStyle"
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:fontFamily="@font/avenir"
+                        android:textSize="13sp"
+                        android:text="4:00 PM"
+                        app:layout_constraintStart_toStartOf="@+id/textView61"
+                        app:layout_constraintTop_toTopOf="@+id/textView63" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -18,9 +18,6 @@ import okhttp3.Response
 
 class SignupViewModel(application: Application) : BaseViewModel(application) {
 
-    private var viewModelJob = Job()
-    private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
-
     val nombre = MutableLiveData<String>()
     val email = MutableLiveData<String>()
     val password = MutableLiveData<String>()

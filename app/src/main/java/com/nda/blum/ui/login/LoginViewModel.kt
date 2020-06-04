@@ -19,9 +19,6 @@ import okhttp3.Response
 class LoginViewModel(private val database: UserDao, application: Application) :
     BaseViewModel(application) {
 
-    private var viewModelJob = Job()
-    private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
-
     val email = MutableLiveData<String>()
     val password = MutableLiveData<String>()
 
@@ -87,7 +84,8 @@ class LoginViewModel(private val database: UserDao, application: Application) :
                             parsedResponse.result.correoUsuario,
                             parsedResponse.result.rollUsuario,
                             parsedResponse.result.telefonoUsuario,
-                            ""
+                            "",
+                            true
                         )
                         saveUser(userData)
                     } else {
@@ -116,7 +114,7 @@ class LoginViewModel(private val database: UserDao, application: Application) :
             try {
                 val userRegistered = database.getAllUserData()
                 if (userRegistered == null) {
-                    val newUser = User(1, "", "", "", "", "", "")
+                    val newUser = User(1, "", "", "", "", "", "", true)
                     database.insertUser(newUser)
                     database.updateUser(user)
                     println("Datos de usuario de login agregados y actualizado")

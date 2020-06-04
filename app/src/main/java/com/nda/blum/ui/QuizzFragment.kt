@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.nda.blum.R
@@ -284,6 +285,10 @@ class QuizzFragment : Fragment() {
                 bindingQuizz.txtQuestion5Answer2.setBackgroundResource(R.drawable.white_rounded_shape_purple_stroke)
                 bindingQuizz.txtQuestion5Answer2.setTextColor( Color.parseColor("#000000") )
             }
+        }
+
+        bindingQuizz.button8.setOnClickListener {
+            this.findNavController().navigate(QuizzFragmentDirections.actionQuizzFragmentToFindingCoachFragment())
         }
 
         return bindingQuizz.root

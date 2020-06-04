@@ -12,5 +12,6 @@ data class User (
     var userCorreoElectronico: String?,
     var userRol: String?,
     var userTelefonoUsuario: String?,
-    var userFotoDePerfil: String?
+    var userFotoDePerfil: String?,
+    var userFirstLaunch: Boolean?
 )

@@ -9,11 +9,7 @@
         android:id="@+id/loginFragment"
         android:name="com.nda.blum.ui.signup.SignupFragment"
         android:label="login_fragment"
-        tools:layout="@layout/signup_fragment" >
-        <action
-            android:id="@+id/action_loginFragment_to_mainFragment"
-            app:destination="@id/mainFragment" />
-    </fragment>
+        tools:layout="@layout/signup_fragment" />
     <fragment
         android:id="@+id/mainFragment"
         android:name="com.nda.blum.ui.login.LoginFragment"
@@ -23,14 +19,14 @@
             android:id="@+id/action_mainFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
         <action
-            android:id="@+id/action_mainFragment_to_hubAlumnoFragment"
-            app:destination="@id/hubAlumnoFragment" />
-        <action
-            android:id="@+id/action_mainFragment_to_quizzFragment"
-            app:destination="@id/quizzFragment" />
-        <action
             android:id="@+id/action_mainFragment_to_recuperarPasswordFragment"
             app:destination="@id/recuperarPasswordFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_sliderHostFragment"
+            app:destination="@id/sliderHostFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_hubAlumnoFragment"
+            app:destination="@id/hubAlumnoFragment" />
     </fragment>
     <fragment
         android:id="@+id/agendarSesionFragment"
@@ -64,17 +60,29 @@
         android:id="@+id/findingCoachFragment"
         android:name="com.nda.blum.FindingCoachFragment"
         android:label="finding_coach_fragment"
-        tools:layout="@layout/finding_coach_fragment" />
+        tools:layout="@layout/finding_coach_fragment" >
+        <action
+            android:id="@+id/action_findingCoachFragment_to_coachResultFragment"
+            app:destination="@id/coachResultFragment" />
+    </fragment>
     <fragment
         android:id="@+id/coachResultFragment"
         android:name="com.nda.blum.CoachResultFragment"
         tools:layout="@layout/coach_result_fragment"
-        android:label="CoachResultFragment" />
+        android:label="CoachResultFragment" >
+        <action
+            android:id="@+id/action_coachResultFragment_to_hubAlumnoFragment"
+            app:destination="@id/hubAlumnoFragment" />
+    </fragment>
     <fragment
         android:id="@+id/quizzFragment"
         android:name="com.nda.blum.ui.QuizzFragment"
         android:label="quizz_fragment"
-        tools:layout="@layout/quizz_fragment" />
+        tools:layout="@layout/quizz_fragment" >
+        <action
+            android:id="@+id/action_quizzFragment_to_findingCoachFragment"
+            app:destination="@id/findingCoachFragment" />
+    </fragment>
     <fragment
         android:id="@+id/coachBioFragment"
         android:name="com.nda.blum.CoachBioFragment"
@@ -132,8 +140,16 @@
         tools:layout="@layout/blummers_coach_fragment" />
   <fragment
         android:id="@+id/sliderHostFragment"
-        android:name="com.nda.blum.SliderHostFragment"
-        android:label="SliderHostFragment" />
+        android:name="com.nda.blum.ui.slider.SliderHostFragment"
+        tools:layout="@layout/slider_host_fragment"
+        android:label="SliderHostFragment" >
+      <action
+          android:id="@+id/action_sliderHostFragment_to_quizzFragment"
+          app:destination="@id/quizzFragment" />
+      <action
+          android:id="@+id/action_sliderHostFragment_to_hubAlumnoFragment"
+          app:destination="@id/hubAlumnoFragment" />
+  </fragment>
     <fragment
         android:id="@+id/hubAlumnoFragment"
         android:name="com.nda.blum.ui.hub.HubAlumnoFragment"

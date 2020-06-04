@@ -77,7 +77,7 @@ class LoginFragment : Fragment() {
 
         loginViewModel.navigateToHub.observe(viewLifecycleOwner, Observer {
             if(it){
-                this.findNavController().navigate(LoginFragmentDirections.actionMainFragmentToHubAlumnoFragment())
+                this.findNavController().navigate(LoginFragmentDirections.actionMainFragmentToSliderHostFragment())
                 loginViewModel.onHubNavigated()
             }
         })
