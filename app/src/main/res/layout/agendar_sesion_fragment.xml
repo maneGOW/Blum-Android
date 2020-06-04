@@ -18,6 +18,7 @@
             android:text="Agenda tu sesión"
             android:textColor="#FFFFFF"
             android:textSize="20dp"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -93,13 +94,13 @@
 
                     <CalendarView
                         android:id="@+id/calendarView"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
+                        android:layout_width="346dp"
+                        android:layout_height="302dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="@+id/constraintLayout9"
+                        app:layout_constraintVertical_bias="0.52" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -169,6 +170,7 @@
                     android:background="@drawable/pink_shape_button"
                     android:text="Agendar"
                     android:textColor="#FFFFFF"
+                    android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="@+id/constraintLayout11"
                     app:layout_constraintStart_toStartOf="@+id/constraintLayout11"
                     app:layout_constraintTop_toBottomOf="@+id/constraintLayout11" />

@@ -15,15 +15,6 @@
     android:background="@color/backgroundColor"
     tools:context=".ui.login.MainFragment">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="201dp"
-        android:layout_height="246dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/splash_screen_image" />
-
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
@@ -34,7 +25,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        tools:layout_editor_absoluteY="262dp" />
 
     <TextView
         android:id="@+id/textView3"
@@ -84,7 +75,7 @@
             android:layout_marginRight="16dp"
             android:background="@android:color/transparent"
             android:ems="10"
-            android:hint="CORREO ELECTRONICO"
+            android:hint="Correo"
             android:inputType="textEmailAddress"
             android:text="@={mainViewModel.email}"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -124,7 +115,7 @@
             android:layout_marginRight="16dp"
             android:background="@android:color/transparent"
             android:ems="10"
-            android:hint="PASSWORD"
+            android:hint="Contraseña"
             android:inputType="textPassword"
             android:text="@={mainViewModel.password}"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -199,6 +190,19 @@
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="@+id/txtRecoverPassword"
         app:layout_constraintTop_toTopOf="@+id/textView17" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="201dp"
+        android:layout_height="246dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/checkBox"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/logo_blum2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
