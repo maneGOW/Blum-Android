@@ -51,6 +51,12 @@
         <item name="android:textColor">#FFFFFF</item>
     </style>
 
+    <style name="title_style">
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:fontFamily">@font/octarine</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
 
 
 </resources>

@@ -3,22 +3,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/findingCoachFragment">
+    app:startDestination="@id/splashScreenFragment">
   
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.nda.blum.ui.signup.LoginFragment"
+        android:name="com.nda.blum.ui.signup.SignupFragment"
         android:label="login_fragment"
-        tools:layout="@layout/login_fragment" >
+        tools:layout="@layout/signup_fragment" >
         <action
             android:id="@+id/action_loginFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
     </fragment>
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.nda.blum.ui.login.MainFragment"
+        android:name="com.nda.blum.ui.login.LoginFragment"
         android:label="main_fragment"
-        tools:layout="@layout/main_fragment" >
+        tools:layout="@layout/login_fragment" >
         <action
             android:id="@+id/action_mainFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
@@ -34,7 +34,7 @@
     </fragment>
     <fragment
         android:id="@+id/agendarSesionFragment"
-        android:name="com.nda.blum.ui.AgendarSesionFragment"
+        android:name="com.nda.blum.ui.agendarsesion.AgendarSesionFragment"
         android:label="agendar_sesion_fragment"
         tools:layout="@layout/agendar_sesion_fragment" />
     <fragment

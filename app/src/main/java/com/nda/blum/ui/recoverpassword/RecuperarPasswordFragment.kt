@@ -1,16 +1,20 @@
 package com.nda.blum.ui.recoverpassword
 
-import androidx.lifecycle.ViewModelProviders
+import android.app.ProgressDialog
+import android.graphics.Bitmap
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.WebView
+import android.webkit.WebViewClient
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import com.nda.blum.R
 import com.nda.blum.databinding.RecuperarPasswordFragmentBinding
-import com.nda.blum.ui.signup.LoginViewModelFactory
+
 
 class RecuperarPasswordFragment : Fragment() {
 
@@ -35,8 +39,25 @@ class RecuperarPasswordFragment : Fragment() {
             this.findNavController().popBackStack()
         }
 
-        bindingRecoverPassword.webView.loadUrl("https://retosalvatucasa.com/ws_app_nda/recuperapw.html")
+        val progressDialog = ProgressDialog.show(this.requireContext(), "", "Cargando...", true)
+
+        bindingRecoverPassword.webView.settings.loadWithOverviewMode = true
+
         bindingRecoverPassword.webView.settings.javaScriptEnabled = true
+
+        bindingRecoverPassword.webView.setWebViewClient(object : WebViewClient() {
+            override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {
+                progressDialog.setCancelable(false)
+                progressDialog.show()
+                view.loadUrl(url)
+                return true
+            }
+            override fun onPageFinished(view: WebView, url: String) {
+                progressDialog.dismiss()
+            }
+        })
+
+        bindingRecoverPassword.webView.loadUrl("https://retosalvatucasa.com/ws_app_nda/recuperapw.html")
 
         return bindingRecoverPassword.root
     }

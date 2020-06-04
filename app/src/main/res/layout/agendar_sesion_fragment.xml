@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/grayColor"
-        tools:context=".ui.AgendarSesionFragment">
+        tools:context=".ui.agendarsesion.AgendarSesionFragment">
 
         <TextView
             android:id="@+id/textView16"
@@ -16,6 +16,7 @@
             android:background="@color/backgroundColor"
             android:gravity="center"
             android:text="Agenda tu sesión"
+            style="@style/title_style"
             android:textColor="#FFFFFF"
             android:textSize="20dp"
             android:textStyle="bold"
@@ -120,6 +121,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:text="Horario disponible"
+                        android:fontFamily="@font/octarine"
                         android:textColor="@color/purpleColor"
                         android:textSize="18dp"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -131,6 +133,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
+                        android:fontFamily="@font/avenir"
                         android:text="Selecciona el horario que"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -140,12 +143,14 @@
                         android:id="@+id/textSeleccionaHorario2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/avenir"
                         android:text="más te convenga"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textSeleccionaHorario" />
 
                     <TimePicker
+                        android:id="@+id/timePicker"
                         android:layout_width="wrap_content"
                         android:layout_height="0dp"
                         android:numbersBackgroundColor="@color/purpleColor"
@@ -163,10 +168,11 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/button5"
+                    android:id="@+id/btnAgendar"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    android:fontFamily="@font/avenir"
                     android:background="@drawable/pink_shape_button"
                     android:text="Agendar"
                     android:textColor="#FFFFFF"

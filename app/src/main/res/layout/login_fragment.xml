@@ -2,85 +2,66 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+
     <data>
         <variable
             name="loginViewModel"
-            type="com.nda.blum.ui.signup.LoginViewModel" />
+            type="com.nda.blum.ui.login.LoginViewModel" />
     </data>
+
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/backgroundColor"
-    tools:context=".ui.signup.LoginFragment">
+    tools:context=".ui.login.LoginFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/layoutText3"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/gray_rounded_shape"
-        app:layout_constraintEnd_toEndOf="@+id/layoutText4"
-        app:layout_constraintStart_toStartOf="@+id/layoutText4"
-        app:layout_constraintTop_toBottomOf="@+id/layoutText4">
-
-        <EditText
-            android:id="@+id/editText3"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
-            android:background="@android:color/transparent"
-            android:ems="10"
-            android:hint="Celular"
-            android:inputType="phone"
-            android:text="@={loginViewModel.celular}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageView33"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/imageView33"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/mobile_icon" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="129dp"
-        android:layout_height="115dp"
-        android:layout_marginTop="76dp"
-        android:src="@drawable/logo_sin_letras"
+    <TextView
+        android:id="@+id/txtTitle1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TU NIDO,"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/imgTitle"
+        style="@style/title_style" />
+
+    <TextView
+        android:id="@+id/txtTitle2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TU ESPACIO,"
+        style="@style/title_style"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtTitle1" />
+
+    <TextView
+        android:id="@+id/txtTitle3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TU LUGAR SEGURO."
+        style="@style/title_style"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtTitle2" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/layoutText"
+        android:id="@+id/layoutEmail"
         android:layout_width="0dp"
-        android:layout_height="50dp"
+        android:layout_height="60dp"
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
-        android:background="@drawable/gray_rounded_shape"
+        android:background="@drawable/white_shape"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView">
+        app:layout_constraintTop_toBottomOf="@+id/txtTitle3">
 
         <EditText
-            android:id="@+id/editText"
+            android:id="@+id/txtEmail"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -89,16 +70,17 @@
             android:layout_marginRight="16dp"
             android:background="@android:color/transparent"
             android:ems="10"
-            android:hint="Nombre"
-            android:inputType="textPersonName"
-            android:text="@={loginViewModel.nombre}"
+            android:fontFamily="@font/avenir"
+            android:hint="Correo"
+            android:inputType="textEmailAddress"
+            android:text="@={loginViewModel.email}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageView30"
+            app:layout_constraintStart_toEndOf="@+id/imageView28"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/imageView30"
+            android:id="@+id/imageView28"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_marginStart="8dp"
@@ -107,65 +89,22 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/user_icon" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/layoutText2"
+        android:id="@+id/layoutPassword"
         android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/gray_rounded_shape"
-        app:layout_constraintEnd_toEndOf="@+id/layoutText"
-        app:layout_constraintStart_toStartOf="@+id/layoutText"
-        app:layout_constraintTop_toBottomOf="@+id/layoutText">
+        android:layout_height="60dp"
+        android:layout_marginTop="2dp"
+        android:background="@drawable/white_shape_inverted"
+        app:layout_constraintEnd_toEndOf="@+id/layoutEmail"
+        app:layout_constraintStart_toStartOf="@+id/layoutEmail"
+        app:layout_constraintTop_toBottomOf="@+id/layoutEmail">
 
         <EditText
-            android:id="@+id/editText2"
+            android:id="@+id/editText6"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
-            android:background="@android:color/transparent"
-            android:ems="10"
-            android:hint="Correo electrónico"
-            android:inputType="textEmailAddress"
-            android:text="@={loginViewModel.email}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageView31"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/imageView31"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/email_icon" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/layoutText4"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/gray_rounded_shape"
-        app:layout_constraintEnd_toEndOf="@+id/layoutText2"
-        app:layout_constraintStart_toStartOf="@+id/layoutText2"
-        app:layout_constraintTop_toBottomOf="@+id/layoutText2">
-
-        <EditText
-            android:id="@+id/editText4"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginEnd="16dp"
@@ -174,14 +113,15 @@
             android:ems="10"
             android:hint="Contraseña"
             android:inputType="textPassword"
+            android:fontFamily="@font/avenir"
             android:text="@={loginViewModel.password}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageView32"
+            app:layout_constraintStart_toEndOf="@+id/imageView29"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/imageView32"
+            android:id="@+id/imageView29"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_marginStart="8dp"
@@ -190,58 +130,80 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/password_icon" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <CheckBox
+        android:id="@+id/cbRememberMe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:buttonTint="#FFFFFF"
+        android:shadowColor="#FFFFFF"
+        android:fontFamily="@font/avenir"
+        android:text="Recuerdame"
+        android:textColor="#FFFFFF"
+        app:layout_constraintStart_toStartOf="@+id/layoutPassword"
+        app:layout_constraintTop_toBottomOf="@+id/layoutPassword" />
+
+    <TextView
+        android:id="@+id/txtRecoverPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="22dp"
+        android:fontFamily="@font/avenir"
+        android:text="¿Olvidé mi contraseña?"
+        android:textColor="@color/highLightColor"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/layoutPassword"
+        app:layout_constraintTop_toBottomOf="@+id/layoutPassword" />
+
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button2"
+        android:id="@+id/btnLogin"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:background="@drawable/pink_shape_button"
-        android:text="Crear cuenta"
+        android:text="Entrar"
+        android:fontFamily="@font/avenir"
         android:textColor="#FFFFFF"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/layoutText3"
-        app:layout_constraintStart_toStartOf="@+id/layoutText3"
-        app:layout_constraintTop_toBottomOf="@+id/layoutText3" />
+        app:layout_constraintEnd_toEndOf="@+id/layoutPassword"
+        app:layout_constraintStart_toStartOf="@+id/layoutPassword"
+        app:layout_constraintTop_toBottomOf="@+id/cbRememberMe" />
 
-    <CheckBox
-        android:id="@+id/checkBox2"
+    <TextView
+        android:id="@+id/txtAccountQuestion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:buttonTint="#FFFFFF"
-        android:text="Acepto términos y condiciones"
+        android:text="¿No tienes cuenta?"
+        android:fontFamily="@font/avenir"
         android:textColor="#FFFFFF"
-        android:textColorHint="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="@+id/button2"
-        app:layout_constraintStart_toStartOf="@+id/button2"
-        app:layout_constraintTop_toBottomOf="@+id/button2" />
-
-    <ImageView
-        android:id="@+id/imgLoginBack"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/back_icon" />
+        app:layout_constraintStart_toStartOf="@+id/cbRememberMe"
+        app:layout_constraintTop_toBottomOf="@+id/btnLogin" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/txtCrearCuenta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="Crear una cuenta"
+        android:fontFamily="@font/avenir"
+        android:textColor="@color/highLightColor"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/txtRecoverPassword"
+        app:layout_constraintTop_toTopOf="@+id/txtAccountQuestion" />
+
+    <ImageView
+        android:id="@+id/imgTitle"
+        android:layout_width="201dp"
+        android:layout_height="246dp"
         android:layout_marginTop="16dp"
-        android:text="Crea una cuenta en BLUM"
-        android:textColor="#FFFFFF"
-        android:textSize="24sp"
-        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/cbRememberMe"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/logo_blum2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

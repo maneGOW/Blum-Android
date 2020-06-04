@@ -46,7 +46,7 @@ class HubAlumnoFragment : Fragment() {
         }
 
         hubViewModel.userName.observe(viewLifecycleOwner, Observer {
-            binding.txtWelcomeText.text = "Bienvenid@ ${hubViewModel.userName.value}"
+            binding.txtWelcomeText.text = "Bienvenido(a) ${hubViewModel.userName.value}"
         })
 
         hubViewModel.userRol.observe(viewLifecycleOwner, Observer {
