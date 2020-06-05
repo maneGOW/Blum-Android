@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.nda.blum.R
 import com.nda.blum.databinding.SplashScreenFragmentBinding
 
@@ -23,6 +24,9 @@ class SplashScreenFragment : Fragment() {
         val application = requireNotNull(this.activity).application
         val viewModelFactory = SplashScreenViewModelFactory(application)
         val splashScreenViewModel = ViewModelProviders.of(this, viewModelFactory).get(SplashScreenViewModel::class.java)
+
+        val navView: BottomNavigationView = this.activity!!.findViewById(R.id.bttm_nav)
+        navView.visibility = View.GONE
 
         bindingSplashScreen.lifecycleOwner = this
 

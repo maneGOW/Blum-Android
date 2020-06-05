@@ -79,7 +79,7 @@
     </fragment>
     <fragment
         android:id="@+id/quizzFragment"
-        android:name="com.nda.blum.ui.QuizzFragment"
+        android:name="com.nda.blum.ui.quizz.QuizzFragment"
         android:label="quizz_fragment"
         tools:layout="@layout/quizz_fragment" >
         <action
@@ -168,6 +168,15 @@
         <action
             android:id="@+id/action_hubAlumnoFragment_to_notificacionesCoachFragment"
             app:destination="@id/notificacionesCoachFragment" />
+        <action
+            android:id="@+id/action_hubAlumnoFragment_to_sesionersCoachFragment"
+            app:destination="@id/sesionersCoachFragment" />
+        <action
+            android:id="@+id/action_hubAlumnoFragment_to_nidosCoachFragment"
+            app:destination="@id/nidosCoachFragment" />
+        <action
+            android:id="@+id/action_hubAlumnoFragment_to_blummersCoachFragment"
+            app:destination="@id/blummersCoachFragment" />
     </fragment>
     <fragment
         android:id="@+id/recuperarPasswordFragment"

@@ -10,6 +10,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.transition.Visibility
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.nda.blum.R
 import com.nda.blum.databinding.HubAlumnoFragmentBinding
 import com.nda.blum.db.BlumDatabase
@@ -37,26 +38,8 @@ class HubAlumnoFragment : Fragment() {
 
         hubViewModel.setUserName()
 
-        binding.btnAgendarSesion.setOnClickListener {
-            this.findNavController()
-                .navigate(HubAlumnoFragmentDirections.actionHubAlumnoFragmentToAgendarSesionFragment())
-        }
-
-        binding.btnRecursos.setOnClickListener {
-            this.findNavController().navigate(HubAlumnoFragmentDirections.actionHubAlumnoFragmentToRecursosCoachFragment())
-        }
-
-        binding.btnChatCoach.setOnClickListener{
-            this.findNavController().navigate(HubAlumnoFragmentDirections.actionHubAlumnoFragmentToChatWithCoachFragment())
-        }
-
-        binding.btnNotificaciones.setOnClickListener {
-            this.findNavController().navigate(HubAlumnoFragmentDirections.actionHubAlumnoFragmentToNotificacionesCoachFragment())
-        }
-
-        binding.btnChatNido.setOnClickListener {
-            this.findNavController().navigate(HubAlumnoFragmentDirections.actionHubAlumnoFragmentToChatWithCoachFragment())
-        }
+        val navView: BottomNavigationView = this.activity!!.findViewById(R.id.bttm_nav)
+        navView.visibility = View.GONE
 
         hubViewModel.userName.observe(viewLifecycleOwner, Observer {
             binding.txtWelcomeText.text = "Bienvenido(a) ${hubViewModel.userName.value}"
@@ -64,10 +47,51 @@ class HubAlumnoFragment : Fragment() {
 
         hubViewModel.userRol.observe(viewLifecycleOwner, Observer {
             if (it == "Coach") {
+                binding.txtSesion.text = "MIS SESIONES"
                 binding.txtTitleCoach.text = "MIS BLUMMERS"
                 binding.txtDescriptionCoach.text = "MIS NIDOS"
-            } else {
+                binding.btnAgendarSesion.setOnClickListener {
+                    this.findNavController()
+                        .navigate(HubAlumnoFragmentDirections.actionHubAlumnoFragmentToSesionersCoachFragment())
+                }
 
+                binding.btnRecursos.setOnClickListener {
+                    this.findNavController().navigate(HubAlumnoFragmentDirections.actionHubAlumnoFragmentToRecursosCoachFragment())
+                }
+
+                binding.btnChatCoach.setOnClickListener{
+                    this.findNavController().navigate(HubAlumnoFragmentDirections.actionHubAlumnoFragmentToBlummersCoachFragment())
+                }
+
+                binding.btnNotificaciones.setOnClickListener {
+                    this.findNavController().navigate(HubAlumnoFragmentDirections.actionHubAlumnoFragmentToNotificacionesCoachFragment())
+                }
+
+                binding.btnChatNido.setOnClickListener {
+                    this.findNavController().navigate(HubAlumnoFragmentDirections.actionHubAlumnoFragmentToNidosCoachFragment())
+                }
+
+            } else {
+                binding.btnAgendarSesion.setOnClickListener {
+                    this.findNavController()
+                        .navigate(HubAlumnoFragmentDirections.actionHubAlumnoFragmentToAgendarSesionFragment())
+                }
+
+                binding.btnRecursos.setOnClickListener {
+                    this.findNavController().navigate(HubAlumnoFragmentDirections.actionHubAlumnoFragmentToRecursosCoachFragment())
+                }
+
+                binding.btnChatCoach.setOnClickListener{
+                    this.findNavController().navigate(HubAlumnoFragmentDirections.actionHubAlumnoFragmentToChatWithCoachFragment())
+                }
+
+                binding.btnNotificaciones.setOnClickListener {
+                    this.findNavController().navigate(HubAlumnoFragmentDirections.actionHubAlumnoFragmentToNotificacionesCoachFragment())
+                }
+
+                binding.btnChatNido.setOnClickListener {
+                    this.findNavController().navigate(HubAlumnoFragmentDirections.actionHubAlumnoFragmentToChatWithCoachFragment())
+                }
             }
         })
 

@@ -30,35 +30,52 @@ class AgendarSesionViewModel(val database: UserDao, application: Application) : 
     val fechasDisponibles = MutableLiveData<CitasDisponiblesResponse?>()
     val idFecha = MutableLiveData<String>()
 
+    private val _citasDisponibles = MutableLiveData<Boolean>()
+    val citasDisponibles : LiveData<Boolean>
+    get() = _citasDisponibles
+
     private val _sesionAgendadaSuccess = MutableLiveData<Boolean>()
     val sesionAgendadaSuccess : LiveData<Boolean>
     get() = _sesionAgendadaSuccess
 
     fun citasDisponibles() {
         coroutineScope.launch {
-            val citasDisponiblesResult: CitasDisponiblesResponse? = getCitasDisponibles()
-            if (citasDisponiblesResult != null) {
-                if (citasDisponiblesResult.code == "0") {
-                    fechasDisponibles.value = citasDisponiblesResult
+            try{
+                val citasDisponiblesResult: CitasDisponiblesResponse? = getCitasDisponibles()
+                if (citasDisponiblesResult != null) {
+                    if (citasDisponiblesResult.code == "0") {
+                        fechasDisponibles.value = citasDisponiblesResult
+                        _citasDisponibles.value = true
+                    } else {
+                        print(citasDisponiblesResult.message)
+                        _citasDisponibles.value = false
+                    }
                 } else {
-                    print(citasDisponiblesResult.message)
+                    println("Ocurrio un erro al obtener las citas")
+                    _citasDisponibles.value = false
                 }
-            } else {
-                println("Ocurrio un erro al obtener las citas")
+            }catch (e:Exception){
+                e.printStackTrace()
             }
+
         }
     }
 
     fun agendarSesion(){
         coroutineScope.launch {
-            val guardarCitaResult = susAgendarSesion()
-            if(guardarCitaResult.code == "0"){
-                println("Se agendó la sesión")
-                _sesionAgendadaSuccess.value = true
-                citasDisponibles()
-            }else{
-                println("Ocurrió un error al agendar la sesión")
-                _sesionAgendadaSuccess.value = false
+            try{
+                val guardarCitaResult = susAgendarSesion()
+                if(guardarCitaResult.code == "0"){
+                    println("Se agendó la sesión")
+                    _sesionAgendadaSuccess.value = true
+                    citasDisponibles()
+                }else{
+                    println("Ocurrió un error al agendar la sesión")
+                    _sesionAgendadaSuccess.value = false
+                }
+            }
+            catch (e:Exception){
+                e.printStackTrace()
             }
         }
     }

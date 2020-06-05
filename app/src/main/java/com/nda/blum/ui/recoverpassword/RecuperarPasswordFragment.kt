@@ -12,6 +12,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.nda.blum.R
 import com.nda.blum.databinding.RecuperarPasswordFragmentBinding
 
@@ -38,6 +39,9 @@ class RecuperarPasswordFragment : Fragment() {
         bindingRecoverPassword.btnRecoverPwdBack.setOnClickListener {
             this.findNavController().popBackStack()
         }
+
+        val navView: BottomNavigationView = this.activity!!.findViewById(R.id.bttm_nav)
+        navView.visibility = View.GONE
 
         val progressDialog = ProgressDialog.show(this.requireContext(), "", "Cargando...", true)
 

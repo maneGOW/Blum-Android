@@ -10,6 +10,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.nda.blum.databinding.CoachResultFragmentBinding
 
 
@@ -29,6 +30,9 @@ class CoachResultFragment : Fragment() {
             inflater, R.layout.coach_result_fragment, container, false)
 
         val imageViewTarget = bindingCoachResult.profilePic
+
+        val navView: BottomNavigationView = this.activity!!.findViewById(R.id.bttm_nav)
+        navView.visibility = View.GONE
 
         Glide.with(this)
             .load(R.drawable.profilepic_sample)
