@@ -6,10 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.NavController
 import androidx.navigation.NavDirections
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.nda.blum.R
-import com.nda.blum.ui.slider.SliderHostFragmentDirections
 import kotlinx.android.synthetic.main.slider1_fragment.view.*
 
 class UserSliderAdapter(val navController: NavController, val directions:  NavDirections) : RecyclerView.Adapter<PagerVH>() {
@@ -37,7 +35,6 @@ class UserSliderAdapter(val navController: NavController, val directions:  NavDi
             circle1.setTint(Color.parseColor("#8a93ad"))
             val circle2 = layoutCircle2!!.background
             circle2.setTint(Color.parseColor("#FFFFFF"))
-
         }
         if(position == 1) {
             txtWelcome.visibility = View.INVISIBLE

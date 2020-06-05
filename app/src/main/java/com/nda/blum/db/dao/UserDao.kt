@@ -5,6 +5,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
+import com.nda.blum.db.entity.FirstLaunch
 import com.nda.blum.db.entity.User
 
 @Dao
@@ -23,4 +24,13 @@ interface UserDao {
 
     @Query("Select * FROM user_table")
     fun getAllUserData(): User?
+
+    @Insert
+    fun insertFirstLaunch (launch:FirstLaunch)
+
+    @Update
+    fun updateFirstLaunch (launch: FirstLaunch)
+
+    @Query("SELECT * FROM first_launch")
+    fun getFristLaunchValue(): FirstLaunch?
 }

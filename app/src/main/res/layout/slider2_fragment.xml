@@ -4,84 +4,246 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/backgroundColor"
-    tools:context=".Slider2Fragment">
-
+    android:id="@+id/coachContainer"
+    android:background="#8D7DEA"
+    app:layout_constraintStart_toStartOf="parent">
 
     <ImageView
-        android:id="@+id/imageView6"
-        android:layout_width="262dp"
-        android:layout_height="278dp"
-        android:layout_marginTop="64dp"
-        android:src="@drawable/mujer_pensando"
+        android:id="@+id/imgFlecha4"
+        android:layout_width="119dp"
+        android:layout_height="225dp"
+        android:src="@drawable/flecha_recursos"
+        app:layout_constraintBottom_toTopOf="@+id/blumBar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.51"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/imgFlecha3"
+        android:layout_width="117dp"
+        android:layout_height="0dp"
+        android:src="@drawable/flecha_mischats"
+        app:layout_constraintBottom_toTopOf="@+id/blumBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtDescriptionCoach" />
+
+    <ImageView
+        android:id="@+id/imgFlecha2"
+        android:layout_width="108dp"
+        android:layout_height="0dp"
+        android:src="@drawable/flecha_chatnidos"
+        app:layout_constraintBottom_toTopOf="@+id/blumBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtDescriptionCoach" />
+
+    <ImageView
+        android:id="@+id/imgTitleCoach"
+        android:layout_width="280dp"
+        android:layout_height="280dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginBottom="431dp"
+        android:src="@drawable/icono_calendario"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView22"
+        android:id="@+id/txtTitleCoach"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:text="¡Queremos conocerte!"
+        android:layout_marginBottom="24dp"
+        android:gravity="center"
+        android:fontFamily="@font/octarine"
+        android:text="CALENDARIO"
+        android:textColor="#00CEC2"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/txtDescriptionCoach"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.478"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView6"
-        style="@style/title_blue_style" />
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/circle2"
-        android:layout_width="10dp"
-        android:layout_height="10dp"
-        android:layout_marginStart="2dp"
-        android:layout_marginLeft="2dp"
-        android:layout_marginTop="24dp"
-        android:background="@drawable/white_circle"
-        app:layout_constraintStart_toEndOf="@+id/circle1"
-        app:layout_constraintTop_toBottomOf="@+id/button6" />
+        app:layout_constraintTop_toBottomOf="@+id/imgTitleCoach" />
 
     <TextView
-        android:id="@+id/textView23"
+        android:id="@+id/txtDescriptionCoach"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
+        android:layout_marginStart="60dp"
         android:layout_marginTop="24dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:lineSpacingExtra="2sp"
-        android:text="Para poder conocerte más y asignarte al Coach Parental ideal para ti es necesario que por favor respondas TODAS las preguntas del siguiente cuestionario. ir al"
-        android:textColor="#FFFFFF"
-        android:textSize="16dp"
-        android:textStyle="bold"
+        android:layout_marginEnd="60dp"
+        android:fontFamily="@font/avenir"
+        android:gravity="center"
+        android:text="Aquí podras ver todas las citas que tienes asignadas."
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView22" />
+        app:layout_constraintTop_toBottomOf="@+id/txtTitleCoach" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/circle1"
-        android:layout_width="10dp"
-        android:layout_height="10dp"
-        android:layout_marginStart="196dp"
-        android:layout_marginLeft="196dp"
-        android:layout_marginTop="24dp"
-        android:background="@drawable/white_circle"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button6" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button6"
-        android:layout_width="350dp"
+        android:id="@+id/constraintLayout3"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:background="@drawable/pink_shape_button"
-        android:text="Ir al cuestionario"
-        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/blumBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView23" />
+        app:layout_constraintTop_toBottomOf="@+id/txtDescriptionCoach"
+        app:layout_constraintVertical_bias="0.79">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/circle1"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:background="@drawable/white_circle"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/circle2"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_marginStart="4dp"
+            android:background="@drawable/white_circle"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/circle1"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/circle3"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_marginStart="4dp"
+            android:background="@drawable/white_circle"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/circle2"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/circle4"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_marginStart="4dp"
+            android:background="@drawable/white_circle"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/circle3"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageView
+        android:id="@+id/imgFlecha1"
+        android:layout_width="108dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/flecha_calendario"
+        app:layout_constraintBottom_toTopOf="@+id/blumBar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtDescriptionCoach" />
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/blumBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageView
+            android:id="@+id/imgBarCalendar"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/imgNestChat"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/purple_calendar_icon" />
+
+        <ImageView
+            android:id="@+id/imgNestChat"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            app:layout_constraintBottom_toBottomOf="@+id/imgBarCalendar"
+            app:layout_constraintEnd_toStartOf="@+id/imgChat"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/imgBarCalendar"
+            app:layout_constraintTop_toTopOf="@+id/imgBarCalendar"
+            app:srcCompat="@drawable/purple_nest_icon" />
+
+        <ImageView
+            android:id="@+id/imgChat"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            app:layout_constraintBottom_toBottomOf="@+id/imgNestChat"
+            app:layout_constraintEnd_toStartOf="@+id/imgNotifications"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/imgNestChat"
+            app:layout_constraintTop_toTopOf="@+id/imgNestChat"
+            app:srcCompat="@drawable/purple_chat_coach_icon" />
+
+        <ImageView
+            android:id="@+id/imgNotifications"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            app:layout_constraintBottom_toBottomOf="@+id/imgChat"
+            app:layout_constraintEnd_toStartOf="@+id/imgChest"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/imgChat"
+            app:layout_constraintTop_toTopOf="@+id/imgChat"
+            app:layout_constraintVertical_bias="0.0"
+            app:srcCompat="@drawable/purple_bell_icon" />
+
+        <ImageView
+            android:id="@+id/imgChest"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            app:layout_constraintBottom_toBottomOf="@+id/imgNotifications"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/imgNotifications"
+            app:layout_constraintTop_toTopOf="@+id/imgNotifications"
+            app:srcCompat="@drawable/purple_chest_icon" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="9dp"
+            android:layout_marginEnd="8dp"
+            android:text="1"
+            android:fontFamily="@font/avenir"
+            android:textColor="#FFFFFF"
+            android:textSize="6dp"
+            app:layout_constraintEnd_toEndOf="@+id/imgNotifications"
+            app:layout_constraintTop_toTopOf="@+id/imgNotifications" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnGoToHome"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/pink_shape_button"
+        android:text="Ir a inicio"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout3"
+        app:layout_constraintEnd_toEndOf="@+id/txtDescriptionCoach"
+        app:layout_constraintStart_toStartOf="@+id/txtDescriptionCoach" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

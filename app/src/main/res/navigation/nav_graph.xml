@@ -27,6 +27,9 @@
         <action
             android:id="@+id/action_mainFragment_to_hubAlumnoFragment"
             app:destination="@id/hubAlumnoFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_felicidadesCouchFragment"
+            app:destination="@id/felicidadesCouchFragment" />
     </fragment>
     <fragment
         android:id="@+id/agendarSesionFragment"
@@ -97,27 +100,11 @@
         android:id="@+id/felicidadesCouchFragment"
         android:name="com.nda.blum.FelicidadesCouchFragment"
         android:label="felicidades_couch_fragment"
-        tools:layout="@layout/felicidades_couch_fragment" />
-    <fragment
-        android:id="@+id/recorridoCalendarFragment"
-        android:name="com.nda.blum.RecorridoCalendarFragment"
-        android:label="RecorridoCalendarFragment"
-        tools:layout="@layout/recorrido_calendar_fragment"/>
-    <fragment
-        android:id="@+id/recorridoChatFragment"
-        android:name="com.nda.blum.RecorridoChatFragment"
-        android:label="recorrido_chat_fragment"
-        tools:layout="@layout/recorrido_chat_fragment" />
-    <fragment
-        android:id="@+id/couchRecurosFragment"
-        android:name="com.nda.blum.CouchRecurosFragment"
-        android:label="couch_recuros_fragment"
-        tools:layout="@layout/couch_recuros_fragment" />
-    <fragment
-        android:id="@+id/couchChatsFragment"
-        android:name="com.nda.blum.CouchChatsFragment"
-        android:label="couch_chats_fragment"
-        tools:layout="@layout/couch_chats_fragment" />
+        tools:layout="@layout/felicidades_couch_fragment" >
+        <action
+            android:id="@+id/action_felicidadesCouchFragment_to_sliderHostFragment"
+            app:destination="@id/sliderHostFragment" />
+    </fragment>
     <fragment
         android:id="@+id/coachHorarioFragment"
         android:name="com.nda.blum.CoachHorarioFragment"
@@ -149,6 +136,9 @@
       <action
           android:id="@+id/action_sliderHostFragment_to_hubAlumnoFragment"
           app:destination="@id/hubAlumnoFragment" />
+      <argument
+          android:name="fromFragment"
+          app:argType="string" />
   </fragment>
     <fragment
         android:id="@+id/hubAlumnoFragment"
@@ -164,6 +154,9 @@
         <action
             android:id="@+id/action_hubAlumnoFragment_to_chatWithCoachFragment"
             app:destination="@id/chatWithCoachFragment" />
+        <action
+            android:id="@+id/action_hubAlumnoFragment_to_notificacionesCoachFragment"
+            app:destination="@id/notificacionesCoachFragment" />
     </fragment>
     <fragment
         android:id="@+id/recuperarPasswordFragment"

@@ -6,6 +6,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.navigation.fragment.findNavController
+import com.nda.blum.databinding.FelicidadesCouchFragmentBinding
 
 
 class FelicidadesCouchFragment : Fragment() {
@@ -20,7 +23,15 @@ class FelicidadesCouchFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.felicidades_couch_fragment, container, false)
+        val bindingFelicidadesCoach : FelicidadesCouchFragmentBinding = DataBindingUtil.inflate(
+            inflater, R.layout.felicidades_couch_fragment, container, false
+        )
+
+        bindingFelicidadesCoach.button9.setOnClickListener {
+            this.findNavController().navigate(FelicidadesCouchFragmentDirections.actionFelicidadesCouchFragmentToSliderHostFragment("FelicidadesCoachFragment"))
+        }
+
+        return bindingFelicidadesCoach.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

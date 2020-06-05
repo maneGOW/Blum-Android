@@ -52,6 +52,23 @@ class LoginFragment : Fragment() {
             }
         }
 
+        loginViewModel.userRol.observe(viewLifecycleOwner, Observer {
+            if(it == "Coach"){
+                if(loginViewModel.firstLaunch.value == true){
+                    this.findNavController().navigate(LoginFragmentDirections.actionMainFragmentToFelicidadesCouchFragment())
+                }else{
+                    this.findNavController().navigate(LoginFragmentDirections.actionMainFragmentToHubAlumnoFragment())
+                }
+            }else{
+                if(loginViewModel.firstLaunch.value == true){
+                    this.findNavController().navigate(LoginFragmentDirections.actionMainFragmentToSliderHostFragment("loginFragment"))
+                }else{
+                    this.findNavController().navigate(LoginFragmentDirections.actionMainFragmentToHubAlumnoFragment())
+                }
+
+            }
+        })
+
         loginViewModel.showProgressDialog.observe(viewLifecycleOwner, Observer {
             if(it){
                 progressDialog.show()
@@ -75,12 +92,6 @@ class LoginFragment : Fragment() {
             }
         })
 
-        loginViewModel.navigateToHub.observe(viewLifecycleOwner, Observer {
-            if(it){
-                this.findNavController().navigate(LoginFragmentDirections.actionMainFragmentToSliderHostFragment())
-                loginViewModel.onHubNavigated()
-            }
-        })
         return binding.root
     }
 

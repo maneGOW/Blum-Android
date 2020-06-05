@@ -8,6 +8,7 @@ import com.google.gson.Gson
 import com.nda.blum.BaseViewModel
 import com.nda.blum.DAO.LoginResponse
 import com.nda.blum.db.dao.UserDao
+import com.nda.blum.db.entity.FirstLaunch
 import com.nda.blum.db.entity.User
 import kotlinx.coroutines.*
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -22,16 +23,14 @@ class LoginViewModel(private val database: UserDao, application: Application) :
     val email = MutableLiveData<String>()
     val password = MutableLiveData<String>()
 
+    val firstLaunch = MutableLiveData<Boolean>()
+    val userRol = MutableLiveData<String>()
+
     private val _showErrorMessage = MutableLiveData<Boolean>()
     val showErrorMessage: LiveData<Boolean>
         get() = _showErrorMessage
 
-    private val _navigateToHub = MutableLiveData<Boolean>()
-    val navigateToHub: LiveData<Boolean>
-        get() = _navigateToHub
-
     init {
-        _navigateToHub.value = false
         _showErrorMessage.value = false
         _showProgressDialog.value = false
     }
@@ -40,7 +39,6 @@ class LoginViewModel(private val database: UserDao, application: Application) :
         coroutineScope.launch {
             _showProgressDialog.value = true
             if (login()) {
-                _navigateToHub.value = true
                 _showProgressDialog.value = false
             } else {
                 _showErrorMessage.value = true
@@ -51,10 +49,6 @@ class LoginViewModel(private val database: UserDao, application: Application) :
 
     fun onMessageShowed() {
         _showErrorMessage.value = false
-    }
-
-    fun onHubNavigated() {
-        _navigateToHub.value = false
     }
 
     private suspend fun login(): Boolean {
@@ -84,10 +78,10 @@ class LoginViewModel(private val database: UserDao, application: Application) :
                             parsedResponse.result.correoUsuario,
                             parsedResponse.result.rollUsuario,
                             parsedResponse.result.telefonoUsuario,
-                            "",
-                            true
+                            ""
                         )
                         saveUser(userData)
+                        checkFristLaunch()
                     } else {
                         success = false
                     }
@@ -109,27 +103,56 @@ class LoginViewModel(private val database: UserDao, application: Application) :
         }
     }
 
-    private suspend fun saveUserData(user: User) {
-        withContext(Dispatchers.IO) {
-            try {
-                val userRegistered = database.getAllUserData()
-                if (userRegistered == null) {
-                    val newUser = User(1, "", "", "", "", "", "", true)
-                    database.insertUser(newUser)
-                    database.updateUser(user)
-                    println("Datos de usuario de login agregados y actualizado")
-                } else {
-                    database.updateUser(user)
-                    println("Datos de usuario de login actualzados")
-                }
-            } catch (e: Exception) {
-                e.printStackTrace()
+    private fun checkFristLaunch() {
+        coroutineScope.launch {
+            val getFirstLaunchValue = susFirstLaunch()
+            if (getFirstLaunchValue != null) {
+                val getUserData = susGetUserData()
+                if (getUserData != null) {
+                    firstLaunch.value = getFirstLaunchValue.firstLaunch
+                    userRol.value = getUserData.userRol
+            } else {
+                println("DATOS NULOS DEL USUARIO")
             }
+        } else {
+            println("DATOS NULOS DEL FIRST LAUNCH")
         }
     }
+}
 
-    override fun onCleared() {
-        super.onCleared()
-        viewModelJob.cancel()
+private suspend fun susGetUserData(): User? {
+    return withContext(Dispatchers.IO) {
+        database.getAllUserData()
     }
+}
+
+private suspend fun susFirstLaunch(): FirstLaunch? {
+    return withContext(Dispatchers.IO) {
+        database.getFristLaunchValue()
+    }
+}
+
+private suspend fun saveUserData(user: User) {
+    withContext(Dispatchers.IO) {
+        try {
+            val userRegistered = database.getAllUserData()
+            if (userRegistered == null) {
+                val newUser = User(1, "", "", "", "", "", "")
+                database.insertUser(newUser)
+                database.updateUser(user)
+                println("Datos de usuario de login agregados y actualizado")
+            } else {
+                database.updateUser(user)
+                println("Datos de usuario de login actualzados")
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+}
+
+override fun onCleared() {
+    super.onCleared()
+    viewModelJob.cancel()
+}
 }

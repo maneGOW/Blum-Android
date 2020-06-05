@@ -56,7 +56,7 @@
                     app:layout_constraintVertical_bias="0.35" />
 
                 <TextView
-                    android:id="@+id/textView35"
+                    android:id="@+id/txtTitleCoach"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/avenir"
@@ -83,7 +83,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
-                    android:id="@+id/imageView24"
+                    android:id="@+id/imgFlecha1"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:src="@drawable/blue_bell_icon"
@@ -109,7 +109,7 @@
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView24" />
+                    app:layout_constraintTop_toBottomOf="@+id/imgFlecha1" />
 
                 <TextView
                     android:id="@+id/textView38"
@@ -121,11 +121,11 @@
                     android:text="9+"
                     android:textColor="#FFFFFF"
                     android:textSize="10dp"
-                    app:layout_constraintBottom_toBottomOf="@+id/imageView24"
-                    app:layout_constraintEnd_toEndOf="@+id/imageView24"
+                    app:layout_constraintBottom_toBottomOf="@+id/imgFlecha1"
+                    app:layout_constraintEnd_toEndOf="@+id/imgFlecha1"
                     app:layout_constraintHorizontal_bias="0.8"
-                    app:layout_constraintStart_toStartOf="@+id/imageView24"
-                    app:layout_constraintTop_toTopOf="@+id/imageView24"
+                    app:layout_constraintStart_toStartOf="@+id/imgFlecha1"
+                    app:layout_constraintTop_toTopOf="@+id/imgFlecha1"
                     app:layout_constraintVertical_bias="0.24000001" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -198,7 +198,7 @@
                     app:layout_constraintVertical_bias="0.35" />
 
                 <TextView
-                    android:id="@+id/textView36"
+                    android:id="@+id/txtDescriptionCoach"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/avenir"

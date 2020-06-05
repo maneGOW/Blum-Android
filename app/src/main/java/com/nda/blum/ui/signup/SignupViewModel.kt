@@ -8,6 +8,9 @@ import androidx.lifecycle.MutableLiveData
 import com.google.gson.Gson
 import com.nda.blum.BaseViewModel
 import com.nda.blum.DAO.GuardarUsuarioResponse
+import com.nda.blum.db.dao.UserDao
+import com.nda.blum.db.entity.FirstLaunch
+import com.nda.blum.db.entity.User
 import kotlinx.coroutines.*
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.OkHttpClient
@@ -16,7 +19,7 @@ import okhttp3.RequestBody
 import okhttp3.Response
 
 
-class SignupViewModel(application: Application) : BaseViewModel(application) {
+class SignupViewModel(private val database: UserDao, application: Application) : BaseViewModel(application) {
 
     val nombre = MutableLiveData<String>()
     val email = MutableLiveData<String>()
@@ -71,12 +74,37 @@ class SignupViewModel(application: Application) : BaseViewModel(application) {
                 val response: Response = client.newCall(request).execute()
                 if(response.code == 200){
                     parsedResponse = Gson().fromJson(response.body!!.string(), GuardarUsuarioResponse::class.java)
+                    insertFirtsLaunch()
                 }
             }catch (e:Exception){
                 e.printStackTrace()
             }
         }
         return parsedResponse!!
+    }
+
+    private fun insertFirtsLaunch(){
+        coroutineScope.launch {
+            susInsertFirstLaunch()
+        }
+    }
+
+    private suspend fun susInsertFirstLaunch(){
+         withContext(Dispatchers.IO) {
+             try{
+                 val getFirstLaunch = database.getFristLaunchValue()
+                 val insertFirstLaunch = FirstLaunch(1,true)
+                 if (getFirstLaunch == null) {
+                     database.insertFirstLaunch(insertFirstLaunch)
+                     println("first launch insertado")
+                 } else {
+                     database.updateFirstLaunch(insertFirstLaunch)
+                     println("first launch actualizado")
+                 }
+             }catch (e:Exception){
+                 e.printStackTrace()
+             }
+        }
     }
 
     override fun onCleared() {
