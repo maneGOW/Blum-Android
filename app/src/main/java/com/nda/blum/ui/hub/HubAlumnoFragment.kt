@@ -13,6 +13,7 @@ import androidx.transition.Visibility
 import com.nda.blum.R
 import com.nda.blum.databinding.HubAlumnoFragmentBinding
 import com.nda.blum.db.BlumDatabase
+import kotlinx.android.synthetic.main.hub_alumno_fragment.view.*
 import kotlinx.coroutines.InternalCoroutinesApi
 
 @InternalCoroutinesApi
@@ -41,7 +42,19 @@ class HubAlumnoFragment : Fragment() {
                 .navigate(HubAlumnoFragmentDirections.actionHubAlumnoFragmentToAgendarSesionFragment())
         }
 
+        binding.btnRecursos.setOnClickListener {
+            this.findNavController().navigate(HubAlumnoFragmentDirections.actionHubAlumnoFragmentToRecursosCoachFragment())
+        }
+
         binding.btnChatCoach.setOnClickListener{
+            this.findNavController().navigate(HubAlumnoFragmentDirections.actionHubAlumnoFragmentToChatWithCoachFragment())
+        }
+
+        binding.btnNotificaciones.setOnClickListener {
+            this.findNavController().navigate(HubAlumnoFragmentDirections.actionHubAlumnoFragmentToNotificacionesCoachFragment())
+        }
+
+        binding.btnChatNido.setOnClickListener {
             this.findNavController().navigate(HubAlumnoFragmentDirections.actionHubAlumnoFragmentToChatWithCoachFragment())
         }
 
@@ -51,9 +64,10 @@ class HubAlumnoFragment : Fragment() {
 
         hubViewModel.userRol.observe(viewLifecycleOwner, Observer {
             if (it == "Coach") {
-                println("coach")
+                binding.txtTitleCoach.text = "MIS BLUMMERS"
+                binding.txtDescriptionCoach.text = "MIS NIDOS"
             } else {
-                binding.btnRecursos.visibility = View.GONE
+
             }
         })
 

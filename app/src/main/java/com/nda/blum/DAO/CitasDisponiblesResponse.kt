@@ -8,7 +8,7 @@ data class CitasDisponiblesResponse (
     @SerializedName("Message")
     val message: String,
     @SerializedName("Result")
-    val result: ResultCita
+    val result: List<ResultCita>
 )
 
 data class ResultCita(

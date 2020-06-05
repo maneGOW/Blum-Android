@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/splashScreenFragment">
+    app:startDestination="@id/findingCoachFragment">
   
     <fragment
         android:id="@+id/loginFragment"
@@ -74,8 +74,8 @@
         tools:layout="@layout/coach_result_fragment"
         android:label="CoachResultFragment" >
         <action
-            android:id="@+id/action_coachResultFragment_to_hubAlumnoFragment"
-            app:destination="@id/hubAlumnoFragment" />
+            android:id="@+id/action_coachResultFragment_to_coachProfileFragment"
+            app:destination="@id/coachProfileFragment" />
     </fragment>
     <fragment
         android:id="@+id/quizzFragment"
@@ -90,12 +90,23 @@
         android:id="@+id/coachBioFragment"
         android:name="com.nda.blum.CoachBioFragment"
         android:label="coach_bio_fragment"
-        tools:layout="@layout/coach_bio_fragment" />
+        tools:layout="@layout/coach_bio_fragment" >
+        <action
+            android:id="@+id/action_coachBioFragment_to_hubAlumnoFragment"
+            app:destination="@id/hubAlumnoFragment" />
+    </fragment>
     <fragment
         android:id="@+id/coachProfileFragment"
         android:name="com.nda.blum.CoachProfileFragment"
         android:label="coach_profile_fragment"
-        tools:layout="@layout/coach_profile_fragment" />
+        tools:layout="@layout/coach_profile_fragment" >
+        <action
+            android:id="@+id/action_coachProfileFragment_to_coachBioFragment"
+            app:destination="@id/coachBioFragment" />
+        <action
+            android:id="@+id/action_coachProfileFragment_to_hubAlumnoFragment"
+            app:destination="@id/hubAlumnoFragment" />
+    </fragment>
     <fragment
         android:id="@+id/felicidadesCouchFragment"
         android:name="com.nda.blum.FelicidadesCouchFragment"

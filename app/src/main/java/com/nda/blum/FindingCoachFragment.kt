@@ -30,7 +30,7 @@ class FindingCoachFragment : Fragment() {
 
         val imageViewTarget = bindingCoachFragment.imgLoadingGif
 
-        Glide.with(this).load(R.drawable.loading_nda)
+        Glide.with(this).load(R.drawable.loading_blum)
             .into(imageViewTarget)
 
         return bindingCoachFragment.root
@@ -48,7 +48,7 @@ class FindingCoachFragment : Fragment() {
             context?.let{
                 this.findNavController().navigate(FindingCoachFragmentDirections.actionFindingCoachFragmentToCoachResultFragment())
             }
-        }, 2500)
+        }, 10000)
     }
 
 }

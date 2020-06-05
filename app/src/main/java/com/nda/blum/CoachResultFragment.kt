@@ -36,7 +36,7 @@ class CoachResultFragment : Fragment() {
             .into(imageViewTarget)
 
         bindingCoachResult.button7.setOnClickListener {
-            this.findNavController().navigate(CoachResultFragmentDirections.actionCoachResultFragmentToHubAlumnoFragment())
+            this.findNavController().navigate(CoachResultFragmentDirections.actionCoachResultFragmentToCoachProfileFragment())
         }
         return bindingCoachResult.root
     }

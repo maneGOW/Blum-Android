@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.nda.blum.databinding.CoachBioFragmentBinding
@@ -31,6 +32,10 @@ class CoachBioFragment : Fragment() {
             .load(R.drawable.profilepic_sample)
             .apply(RequestOptions.circleCropTransform())
             .into(bindingCoachResult.imgCoachPic)
+
+        bindingCoachResult.btnSetDate.setOnClickListener {
+            this.findNavController().navigate(CoachBioFragmentDirections.actionCoachBioFragmentToHubAlumnoFragment())
+        }
         return bindingCoachResult.root
     }
 
