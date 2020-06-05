@@ -12,6 +12,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.nda.blum.R
 import com.nda.blum.databinding.AgendarSesionFragmentBinding
 import com.nda.blum.db.BlumDatabase
@@ -31,6 +32,9 @@ class AgendarSesionFragment : Fragment() {
             inflater, R.layout.agendar_sesion_fragment, container, false
         )
 
+        val navView: BottomNavigationView = this.activity!!.findViewById(R.id.bttm_nav)
+        navView.visibility = View.VISIBLE
+
         val application = requireNotNull(this.activity).application
         val dataSource = BlumDatabase.getInstance(application).userDao()
         val viewModelFactory = AgendarSesionViewModelFactory(dataSource, application)
@@ -48,82 +52,87 @@ class AgendarSesionFragment : Fragment() {
         agendarSesionViewModel!!.citasDisponibles()
 
         agendarSesionViewModel!!.fechasDisponibles.observe(viewLifecycleOwner, Observer { it ->
-            it?.result?.forEach {
-                when (it.horaDisponible) {
-                    "09" -> {
-                        if (it.disponible == "1") {
-                            bindingAgendarSesion.txt9.background =
-                                resources.getDrawable(R.drawable.hinglight_rounded_shape)
-                            bindingAgendarSesion.txt9.setTextColor(Color.parseColor("#FFFFFF"))
-                            bindingAgendarSesion.txt9.isEnabled = false
+            if (it!!.code == "0") {
+                it.result.forEach {
+                    when (it.horaDisponible) {
+                        "09" -> {
+                            if (it.disponible == "1") {
+                                bindingAgendarSesion.txt9.background =
+                                    resources.getDrawable(R.drawable.hinglight_rounded_shape)
+                                bindingAgendarSesion.txt9.setTextColor(Color.parseColor("#FFFFFF"))
+                                bindingAgendarSesion.txt9.isEnabled = false
+                            }
                         }
-                    }
-                    "10" -> {
-                        if (it.disponible == "1") {
-                            bindingAgendarSesion.txt10.background =
-                                resources.getDrawable(R.drawable.hinglight_rounded_shape)
-                            bindingAgendarSesion.txt10.setTextColor(Color.parseColor("#FFFFFF"))
-                            bindingAgendarSesion.txt10.isEnabled = false
+                        "10" -> {
+                            if (it.disponible == "1") {
+                                bindingAgendarSesion.txt10.background =
+                                    resources.getDrawable(R.drawable.hinglight_rounded_shape)
+                                bindingAgendarSesion.txt10.setTextColor(Color.parseColor("#FFFFFF"))
+                                bindingAgendarSesion.txt10.isEnabled = false
+                            }
                         }
-                    }
-                    "11" -> {
-                        if (it.disponible == "1") {
-                            bindingAgendarSesion.txt11.background =
-                                resources.getDrawable(R.drawable.hinglight_rounded_shape)
-                            bindingAgendarSesion.txt11.setTextColor(Color.parseColor("#FFFFFF"))
-                            bindingAgendarSesion.txt11.isEnabled = false
+                        "11" -> {
+                            if (it.disponible == "1") {
+                                bindingAgendarSesion.txt11.background =
+                                    resources.getDrawable(R.drawable.hinglight_rounded_shape)
+                                bindingAgendarSesion.txt11.setTextColor(Color.parseColor("#FFFFFF"))
+                                bindingAgendarSesion.txt11.isEnabled = false
+                            }
                         }
-                    }
-                    "12" -> {
-                        if (it.disponible == "1") {
-                            bindingAgendarSesion.txt12.background =
-                                resources.getDrawable(R.drawable.hinglight_rounded_shape)
-                            bindingAgendarSesion.txt12.setTextColor(Color.parseColor("#FFFFFF"))
-                            bindingAgendarSesion.txt12.isEnabled = false
+                        "12" -> {
+                            if (it.disponible == "1") {
+                                bindingAgendarSesion.txt12.background =
+                                    resources.getDrawable(R.drawable.hinglight_rounded_shape)
+                                bindingAgendarSesion.txt12.setTextColor(Color.parseColor("#FFFFFF"))
+                                bindingAgendarSesion.txt12.isEnabled = false
+                            }
                         }
-                    }
-                    "13" -> {
-                        if (it.disponible == "1") {
-                            bindingAgendarSesion.txt13.background =
-                                resources.getDrawable(R.drawable.hinglight_rounded_shape)
-                            bindingAgendarSesion.txt13.setTextColor(Color.parseColor("#FFFFFF"))
-                            bindingAgendarSesion.txt13.isEnabled = false
+                        "13" -> {
+                            if (it.disponible == "1") {
+                                bindingAgendarSesion.txt13.background =
+                                    resources.getDrawable(R.drawable.hinglight_rounded_shape)
+                                bindingAgendarSesion.txt13.setTextColor(Color.parseColor("#FFFFFF"))
+                                bindingAgendarSesion.txt13.isEnabled = false
+                            }
                         }
-                    }
-                    "14" -> {
-                        if (it.disponible == "1") {
-                            bindingAgendarSesion.txt14.background =
-                                resources.getDrawable(R.drawable.hinglight_rounded_shape)
-                            bindingAgendarSesion.txt14.setTextColor(Color.parseColor("#FFFFFF"))
-                            bindingAgendarSesion.txt14.isEnabled = false
+                        "14" -> {
+                            if (it.disponible == "1") {
+                                bindingAgendarSesion.txt14.background =
+                                    resources.getDrawable(R.drawable.hinglight_rounded_shape)
+                                bindingAgendarSesion.txt14.setTextColor(Color.parseColor("#FFFFFF"))
+                                bindingAgendarSesion.txt14.isEnabled = false
 
+                            }
                         }
-                    }
-                    "15" -> {
-                        if (it.disponible == "1") {
-                            bindingAgendarSesion.txt15.background =
-                                resources.getDrawable(R.drawable.hinglight_rounded_shape)
-                            bindingAgendarSesion.txt15.setTextColor(Color.parseColor("#FFFFFF"))
-                            bindingAgendarSesion.txt15.isEnabled = false
+                        "15" -> {
+                            if (it.disponible == "1") {
+                                bindingAgendarSesion.txt15.background =
+                                    resources.getDrawable(R.drawable.hinglight_rounded_shape)
+                                bindingAgendarSesion.txt15.setTextColor(Color.parseColor("#FFFFFF"))
+                                bindingAgendarSesion.txt15.isEnabled = false
+                            }
                         }
-                    }
-                    "16" -> {
-                        if (it.disponible == "1") {
-                            bindingAgendarSesion.txt16.background =
-                                resources.getDrawable(R.drawable.hinglight_rounded_shape)
-                            bindingAgendarSesion.txt16.setTextColor(Color.parseColor("#FFFFFF"))
-                            bindingAgendarSesion.txt16.isEnabled = false
+                        "16" -> {
+                            if (it.disponible == "1") {
+                                bindingAgendarSesion.txt16.background =
+                                    resources.getDrawable(R.drawable.hinglight_rounded_shape)
+                                bindingAgendarSesion.txt16.setTextColor(Color.parseColor("#FFFFFF"))
+                                bindingAgendarSesion.txt16.isEnabled = false
+                            }
                         }
-                    }
-                    "17" -> {
-                        if (it.disponible == "1") {
-                            bindingAgendarSesion.txt17.background =
-                                resources.getDrawable(R.drawable.hinglight_rounded_shape)
-                            bindingAgendarSesion.txt17.setTextColor(Color.parseColor("#FFFFFF"))
-                            bindingAgendarSesion.txt17.isEnabled = false
+                        "17" -> {
+                            if (it.disponible == "1") {
+                                bindingAgendarSesion.txt17.background =
+                                    resources.getDrawable(R.drawable.hinglight_rounded_shape)
+                                bindingAgendarSesion.txt17.setTextColor(Color.parseColor("#FFFFFF"))
+                                bindingAgendarSesion.txt17.isEnabled = false
+                            }
                         }
                     }
                 }
+            }else if(it.code != "1"){
+                Toast.makeText(this.context, "No hay citas disponibles", Toast.LENGTH_LONG).show()
+                resetHoursDefault(bindingAgendarSesion)
             }
         })
 
@@ -132,10 +141,14 @@ class AgendarSesionFragment : Fragment() {
         var anio = ""
 
         agendarSesionViewModel!!.sesionAgendadaSuccess.observe(viewLifecycleOwner, Observer {
-            if(it){
+            if (it) {
                 Toast.makeText(this.context, "Sesión agendada con éxito", Toast.LENGTH_LONG).show()
-            }else{
-                Toast.makeText(this.context, "Ocurrió un error al agendar la sesión", Toast.LENGTH_LONG).show()
+            } else {
+                Toast.makeText(
+                    this.context,
+                    "Ocurrió un error al agendar la sesión",
+                    Toast.LENGTH_LONG
+                ).show()
             }
         })
 
@@ -170,23 +183,51 @@ class AgendarSesionFragment : Fragment() {
 
                     } else {
                         println("el dia es anterior")
+                        Toast.makeText(
+                            this.context,
+                            "El día no es válido",
+                            Toast.LENGTH_LONG
+                        ).show()
+                        resetHoursDefault(bindingAgendarSesion)
                     }
                 } else {
                     println("el mes es anterior")
+                    Toast.makeText(
+                        this.context,
+                        "La fecha no es válida",
+                        Toast.LENGTH_LONG
+                    ).show()
+                    resetHoursDefault(bindingAgendarSesion)
                 }
             } else {
                 println("el año es anterior")
+                Toast.makeText(
+                    this.context,
+                    "La fecha no es válida",
+                    Toast.LENGTH_LONG
+                ).show()
+                resetHoursDefault(bindingAgendarSesion)
             }
         }
 
         bindingAgendarSesion.btnAgendar.setOnClickListener {
-            println(agendarSesionViewModel!!.hora.value)
-            if(agendarSesionViewModel!!.hora.value != "00"){
-                val sesionID = agendarSesionViewModel!!.fechasDisponibles.value!!.result.last { it.horaDisponible == agendarSesionViewModel!!.hora.value  }
-                agendarSesionViewModel!!.idFecha.value = sesionID.idfecha
-                agendarSesionViewModel!!.agendarSesion()
-            }else{
-                println("selecciona una fecha valida")
+            try {
+                println(agendarSesionViewModel!!.hora.value)
+                if (agendarSesionViewModel!!.hora.value != "00") {
+                    val sesionID =
+                        agendarSesionViewModel!!.fechasDisponibles.value!!.result.last { it.horaDisponible == agendarSesionViewModel!!.hora.value }
+                    agendarSesionViewModel!!.idFecha.value = sesionID.idfecha
+                    agendarSesionViewModel!!.agendarSesion()
+                } else {
+                    println("selecciona una fecha valida")
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+                Toast.makeText(
+                    this.context,
+                    "La hora no está registrada en el servidor",
+                    Toast.LENGTH_LONG
+                ).show()
             }
         }
 
@@ -195,8 +236,60 @@ class AgendarSesionFragment : Fragment() {
         bindingAgendarSesion.imgAgendarSesionBack.setOnClickListener {
             this.findNavController().popBackStack()
         }
-        
+
+        agendarSesionViewModel!!.citasDisponibles.observe(viewLifecycleOwner, Observer {
+            if(!it){
+                resetHoursDefault(bindingAgendarSesion)
+                Toast.makeText(
+                    this.context,
+                    "No hay citas disponibles",
+                    Toast.LENGTH_LONG
+                ).show()
+            }
+        })
+
         return bindingAgendarSesion.root
+    }
+
+    private fun resetHoursDefault(binding: AgendarSesionFragmentBinding) {
+        binding.txt9.background =
+            resources.getDrawable(R.drawable.white_rounded_shape_purple_stroke)
+        binding.txt9.setTextColor(Color.parseColor("#000000"))
+        binding.txt9.isEnabled = true
+        binding.txt9.background =
+            resources.getDrawable(R.drawable.white_rounded_shape_purple_stroke)
+        binding.txt10.setTextColor(Color.parseColor("#000000"))
+        binding.txt10.background =
+            resources.getDrawable(R.drawable.white_rounded_shape_purple_stroke)
+        binding.txt10.isEnabled = true
+        binding.txt11.setTextColor(Color.parseColor("#000000"))
+        binding.txt11.background =
+            resources.getDrawable(R.drawable.white_rounded_shape_purple_stroke)
+        binding.txt11.isEnabled = true
+        binding.txt12.setTextColor(Color.parseColor("#000000"))
+        binding.txt12.background =
+            resources.getDrawable(R.drawable.white_rounded_shape_purple_stroke)
+        binding.txt12.isEnabled = true
+        binding.txt13.setTextColor(Color.parseColor("#000000"))
+        binding.txt13.background =
+            resources.getDrawable(R.drawable.white_rounded_shape_purple_stroke)
+        binding.txt13.isEnabled = true
+        binding.txt14.setTextColor(Color.parseColor("#000000"))
+        binding.txt14.background =
+            resources.getDrawable(R.drawable.white_rounded_shape_purple_stroke)
+        binding.txt14.isEnabled = true
+        binding.txt15.setTextColor(Color.parseColor("#000000"))
+        binding.txt15.background =
+            resources.getDrawable(R.drawable.white_rounded_shape_purple_stroke)
+        binding.txt15.isEnabled = true
+        binding.txt16.setTextColor(Color.parseColor("#000000"))
+        binding.txt16.background =
+            resources.getDrawable(R.drawable.white_rounded_shape_purple_stroke)
+        binding.txt16.isEnabled = true
+        binding.txt17.setTextColor(Color.parseColor("#000000"))
+        binding.txt17.background =
+            resources.getDrawable(R.drawable.white_rounded_shape_purple_stroke)
+        binding.txt17.isEnabled = true
     }
 
     private fun setTextClickable(binding: AgendarSesionFragmentBinding) {

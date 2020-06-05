@@ -13,11 +13,11 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.nda.blum.R
 import com.nda.blum.databinding.LoginFragmentBinding
 import com.nda.blum.db.BlumDatabase
 import kotlinx.coroutines.InternalCoroutinesApi
-
 
 @InternalCoroutinesApi
 class LoginFragment : Fragment() {
@@ -29,15 +29,19 @@ class LoginFragment : Fragment() {
 
         val progressDialog = ProgressDialog.show(this.requireContext(), "", "Cargando...", true)
 
-        val binding : LoginFragmentBinding = DataBindingUtil.inflate(
+        val binding: LoginFragmentBinding = DataBindingUtil.inflate(
             inflater, R.layout.login_fragment, container, false
         )
+
+        val navView: BottomNavigationView = this.activity!!.findViewById(R.id.bttm_nav)
+        navView.visibility = View.GONE
 
         val application = requireNotNull(this.activity).application
 
         val dataSource = BlumDatabase.getInstance(application).userDao()
         val viewModelFactory = LoginViewModelFactory(dataSource, application)
-        val loginViewModel = ViewModelProviders.of(this, viewModelFactory).get(LoginViewModel::class.java)
+        val loginViewModel =
+            ViewModelProviders.of(this, viewModelFactory).get(LoginViewModel::class.java)
 
         initAnimations(binding)
 
@@ -45,49 +49,57 @@ class LoginFragment : Fragment() {
         binding.loginViewModel = loginViewModel
 
         binding.btnLogin.setOnClickListener {
-            if(!binding.txtEmail.text.isNullOrEmpty() && !binding.editText6.text.isNullOrEmpty()){
+            if (!binding.txtEmail.text.isNullOrEmpty() && !binding.editText6.text.isNullOrEmpty()) {
                 loginViewModel.callLoginService()
-            }else{
-                Toast.makeText(this.context, "No debe haber campos vacios", Toast.LENGTH_LONG).show()
+            } else {
+                Toast.makeText(this.context, "No debe haber campos vacios", Toast.LENGTH_LONG)
+                    .show()
             }
         }
 
         loginViewModel.userRol.observe(viewLifecycleOwner, Observer {
-            if(it == "Coach"){
-                if(loginViewModel.firstLaunch.value == true){
-                    this.findNavController().navigate(LoginFragmentDirections.actionMainFragmentToFelicidadesCouchFragment())
-                }else{
-                    this.findNavController().navigate(LoginFragmentDirections.actionMainFragmentToHubAlumnoFragment())
+            if (it == "Coach") {
+                if (loginViewModel.firstLaunch.value == true) {
+                    this.findNavController()
+                        .navigate(LoginFragmentDirections.actionMainFragmentToFelicidadesCouchFragment())
+                } else {
+                    this.findNavController()
+                        .navigate(LoginFragmentDirections.actionMainFragmentToHubAlumnoFragment())
                 }
-            }else{
-                if(loginViewModel.firstLaunch.value == true){
-                    this.findNavController().navigate(LoginFragmentDirections.actionMainFragmentToSliderHostFragment("loginFragment"))
-                }else{
-                    this.findNavController().navigate(LoginFragmentDirections.actionMainFragmentToHubAlumnoFragment())
+            } else {
+                if (loginViewModel.firstLaunch.value == true) {
+                    this.findNavController()
+                        .navigate(LoginFragmentDirections.actionMainFragmentToSliderHostFragment("loginFragment"))
+                } else {
+                    this.findNavController()
+                        .navigate(LoginFragmentDirections.actionMainFragmentToHubAlumnoFragment())
                 }
 
             }
         })
 
         loginViewModel.showProgressDialog.observe(viewLifecycleOwner, Observer {
-            if(it){
+            if (it) {
                 progressDialog.show()
-            }else{
+            } else {
                 progressDialog.dismiss()
             }
         })
 
         binding.txtRecoverPassword.setOnClickListener {
-            this.findNavController().navigate(LoginFragmentDirections.actionMainFragmentToRecuperarPasswordFragment())
+            this.findNavController()
+                .navigate(LoginFragmentDirections.actionMainFragmentToRecuperarPasswordFragment())
         }
 
         binding.txtCrearCuenta.setOnClickListener {
-            this.findNavController().navigate(LoginFragmentDirections.actionMainFragmentToLoginFragment())
+            this.findNavController()
+                .navigate(LoginFragmentDirections.actionMainFragmentToLoginFragment())
         }
 
         loginViewModel.showErrorMessage.observe(viewLifecycleOwner, Observer {
-            if(it){
-                Toast.makeText(this.context, "Usuario o contraseña incorrectos", Toast.LENGTH_LONG).show()
+            if (it) {
+                Toast.makeText(this.context, "Usuario o contraseña incorrectos", Toast.LENGTH_LONG)
+                    .show()
                 loginViewModel.onMessageShowed()
             }
         })
@@ -95,7 +107,7 @@ class LoginFragment : Fragment() {
         return binding.root
     }
 
-    private fun initAnimations(binding: LoginFragmentBinding){
+    private fun initAnimations(binding: LoginFragmentBinding) {
         val animationRightToLeft: Animation =
             AnimationUtils.loadAnimation(this.context, R.anim.blum_animation_righttoleft)
         val animationLeftToRight: Animation =

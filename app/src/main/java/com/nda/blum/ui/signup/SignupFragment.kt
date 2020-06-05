@@ -13,6 +13,7 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.nda.blum.R
 import com.nda.blum.databinding.SignupFragmentBinding
 import com.nda.blum.db.BlumDatabase
@@ -44,6 +45,9 @@ class SignupFragment : Fragment() {
         bindingLogin.lifecycleOwner = this
 
         bindingLogin.signupViewModel = signupViewModel
+
+        val navView: BottomNavigationView = this.activity!!.findViewById(R.id.bttm_nav)
+        navView.visibility = View.GONE
 
         initAnimations(bindingLogin)
 

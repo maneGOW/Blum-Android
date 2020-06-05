@@ -111,48 +111,56 @@ class LoginViewModel(private val database: UserDao, application: Application) :
                 if (getUserData != null) {
                     firstLaunch.value = getFirstLaunchValue.firstLaunch
                     userRol.value = getUserData.userRol
+                } else {
+                    println("DATOS NULOS DEL USUARIO")
+                }
             } else {
-                println("DATOS NULOS DEL USUARIO")
+                println("DATOS NULOS DEL FIRST LAUNCH")
+                val getUserData = susGetUserData()
+                if (getUserData != null) {
+                    firstLaunch.value = false
+                    userRol.value = getUserData.userRol
+                } else {
+                    println("DATOS NULOS DEL USUARIO")
+                }
+
             }
-        } else {
-            println("DATOS NULOS DEL FIRST LAUNCH")
         }
     }
-}
 
-private suspend fun susGetUserData(): User? {
-    return withContext(Dispatchers.IO) {
-        database.getAllUserData()
-    }
-}
-
-private suspend fun susFirstLaunch(): FirstLaunch? {
-    return withContext(Dispatchers.IO) {
-        database.getFristLaunchValue()
-    }
-}
-
-private suspend fun saveUserData(user: User) {
-    withContext(Dispatchers.IO) {
-        try {
-            val userRegistered = database.getAllUserData()
-            if (userRegistered == null) {
-                val newUser = User(1, "", "", "", "", "", "")
-                database.insertUser(newUser)
-                database.updateUser(user)
-                println("Datos de usuario de login agregados y actualizado")
-            } else {
-                database.updateUser(user)
-                println("Datos de usuario de login actualzados")
-            }
-        } catch (e: Exception) {
-            e.printStackTrace()
+    private suspend fun susGetUserData(): User? {
+        return withContext(Dispatchers.IO) {
+            database.getAllUserData()
         }
     }
-}
 
-override fun onCleared() {
-    super.onCleared()
-    viewModelJob.cancel()
-}
+    private suspend fun susFirstLaunch(): FirstLaunch? {
+        return withContext(Dispatchers.IO) {
+            database.getFristLaunchValue()
+        }
+    }
+
+    private suspend fun saveUserData(user: User) {
+        withContext(Dispatchers.IO) {
+            try {
+                val userRegistered = database.getAllUserData()
+                if (userRegistered == null) {
+                    val newUser = User(1, "", "", "", "", "", "")
+                    database.insertUser(newUser)
+                    database.updateUser(user)
+                    println("Datos de usuario de login agregados y actualizado")
+                } else {
+                    database.updateUser(user)
+                    println("Datos de usuario de login actualzados")
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        viewModelJob.cancel()
+    }
 }

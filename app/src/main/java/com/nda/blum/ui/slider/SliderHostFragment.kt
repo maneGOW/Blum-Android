@@ -9,6 +9,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.nda.blum.R
 import com.nda.blum.adapters.CoachSliderAdapter
 import com.nda.blum.adapters.UserSliderAdapter
@@ -31,6 +32,8 @@ class SliderHostFragment : Fragment() {
         val sliderHostViewModel = ViewModelProviders.of(this, viewModelFactory).get(SliderHostViewModel::class.java)
 
         bindingSliderHost.lifecycleOwner = this
+        val navView: BottomNavigationView = this.activity!!.findViewById(R.id.bttm_nav)
+        navView.visibility = View.GONE
 
         if(args.fromFragment == "FelicidadesCoachFragment"){
             bindingSliderHost.viewPager2.adapter = CoachSliderAdapter(this.findNavController(), SliderHostFragmentDirections.actionSliderHostFragmentToHubAlumnoFragment())

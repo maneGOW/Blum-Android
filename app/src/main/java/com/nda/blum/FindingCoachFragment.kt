@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.nda.blum.databinding.FindingCoachFragmentBinding
 
 
@@ -29,6 +30,9 @@ class FindingCoachFragment : Fragment() {
             inflater, R.layout.finding_coach_fragment, container, false)
 
         val imageViewTarget = bindingCoachFragment.imgLoadingGif
+
+        val navView: BottomNavigationView = this.activity!!.findViewById(R.id.bttm_nav)
+        navView.visibility = View.GONE
 
         Glide.with(this).load(R.drawable.loading_blum)
             .into(imageViewTarget)
