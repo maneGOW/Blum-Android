@@ -11,6 +11,8 @@
     <color name="purpleColor">#8d7dea</color>
     <color name="pinkColor">#ff8090</color>
     <color name="grayColor">#f1f6ff</color>
+    <color name="whiteColor">#ffffff</color>
+
     <color name="lilaColor">#8a93ad</color>
 
 </resources>

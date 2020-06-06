@@ -1,6 +1,7 @@
 package com.nda.blum.ui.signup
 
 import android.app.ProgressDialog
+import android.graphics.Color
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -50,6 +51,19 @@ class SignupFragment : Fragment() {
         navView.visibility = View.GONE
 
         initAnimations(bindingLogin)
+
+
+        bindingLogin.cbAcceptTermnAndCond.setOnCheckedChangeListener { _, isChecked ->
+            if(isChecked){
+                bindingLogin.btnCreateAccount.isEnabled = true
+                bindingLogin.btnCreateAccount.background = resources.getDrawable(R.drawable.pink_shape_button)
+                bindingLogin.btnCreateAccount.setTextColor(Color.parseColor("#FFFFFF"))
+            }else{
+               bindingLogin.btnCreateAccount.isEnabled = false
+                bindingLogin.btnCreateAccount.background = resources.getDrawable(R.drawable.gray_shape_button)
+                bindingLogin.btnCreateAccount.setTextColor(Color.parseColor("#000000"))
+            }
+        }
 
         signupViewModel._showProgressDialog.observe(viewLifecycleOwner, Observer {
             if(it){
