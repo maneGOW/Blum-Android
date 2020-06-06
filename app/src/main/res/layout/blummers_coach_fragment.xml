@@ -45,7 +45,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView47">
 
         <ImageView
-            android:id="@+id/imageView36"
+            android:id="@+id/imgSendIcon"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="24dp"
@@ -74,7 +74,7 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/imageView37"
-            app:layout_constraintStart_toEndOf="@+id/imageView36"
+            app:layout_constraintStart_toEndOf="@+id/imgSendIcon"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView

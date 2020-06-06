@@ -6,11 +6,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.nda.blum.R
+import com.nda.blum.adapters.ChatIndividualAdapter
 import com.nda.blum.databinding.ChatWithCoachFragmentBinding
+import com.nda.blum.db.BlumDatabase
+import com.nda.blum.ui.login.LoginViewModel
+import com.nda.blum.ui.login.LoginViewModelFactory
+import kotlinx.coroutines.InternalCoroutinesApi
 
+@InternalCoroutinesApi
 class ChatWithCoachFragment : Fragment() {
 
     override fun onCreateView(
@@ -21,6 +30,30 @@ class ChatWithCoachFragment : Fragment() {
             inflater, R.layout.chat_with_coach_fragment, container, false
         )
 
+        val application = requireNotNull(this.activity).application
+
+        val dataSource = BlumDatabase.getInstance(application).userDao()
+        val viewModelFactory = ChatWithCoachViewModelFactory(dataSource, application)
+        val chatWithCoachViewmodel =
+            ViewModelProviders.of(this, viewModelFactory).get(ChatWithCoachViewModel::class.java)
+
+        chatWithCoachViewmodel.getMessagesFromServer()
+
+        chatWithCoachViewmodel.filledMessageList.observe(viewLifecycleOwner, Observer {
+            if(it){
+                bindingChatWithCoach.rvChat.layoutManager = LinearLayoutManager(this.context)
+                bindingChatWithCoach.rvChat.adapter = ChatIndividualAdapter(this.context!!, chatWithCoachViewmodel.messages.value!!, "44")
+            }
+        })
+
+        bindingChatWithCoach.imgSendIcon.setOnClickListener {
+            if(bindingChatWithCoach.txtUserMessage.text.isNotEmpty() && bindingChatWithCoach.txtUserMessage.text.isNotBlank() ){
+                chatWithCoachViewmodel.userMessage.value = bindingChatWithCoach.txtUserMessage.text.toString()
+                chatWithCoachViewmodel.sendMessageToServer()
+                bindingChatWithCoach.txtUserMessage.setText("")
+            }
+        }
+
         val navView: BottomNavigationView = this.activity!!.findViewById(R.id.bttm_nav)
         navView.visibility = View.VISIBLE
 
@@ -29,5 +62,4 @@ class ChatWithCoachFragment : Fragment() {
         }
         return bindingChatWithCoach.root
     }
-
 }
