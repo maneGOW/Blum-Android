@@ -23,6 +23,8 @@ class LoginViewModel(private val database: UserDao, application: Application) :
     val email = MutableLiveData<String>()
     val password = MutableLiveData<String>()
 
+    val rememberMe = MutableLiveData<Boolean?>()
+
     val firstLaunch = MutableLiveData<Boolean>()
     val userRol = MutableLiveData<String>()
 
@@ -33,6 +35,12 @@ class LoginViewModel(private val database: UserDao, application: Application) :
     init {
         _showErrorMessage.value = false
         _showProgressDialog.value = false
+        if(rememberMe.value != null){
+            if(rememberMe.value!!){
+                getRememberme()
+            }
+        }
+
     }
 
     fun callLoginService() {
@@ -78,7 +86,9 @@ class LoginViewModel(private val database: UserDao, application: Application) :
                             parsedResponse.result.correoUsuario,
                             parsedResponse.result.rollUsuario,
                             parsedResponse.result.telefonoUsuario,
-                            ""
+                            "",
+                            false,
+                            password.value
                         )
                         saveUser(userData)
                         checkFristLaunch()
@@ -102,6 +112,34 @@ class LoginViewModel(private val database: UserDao, application: Application) :
             e.printStackTrace()
         }
     }
+
+    fun updateRememberme(bandera: Boolean){
+        coroutineScope.launch {
+            updateRemembermeVal(bandera)
+        }
+    }
+
+    private suspend fun updateRemembermeVal(bandera: Boolean){
+        withContext(Dispatchers.IO) {
+            database.updateRemembermeValue(bandera)
+            println("DATOS DE REMEMBERME ACTUALIZADOS")
+        }
+    }
+
+    fun getRememberme(){
+        coroutineScope.launch {
+            val getuserData = susGetUserData()
+            if(getuserData != null){
+                if(getuserData.rememberme!!){
+                    email.value = getuserData.userCorreoElectronico
+                    password.value = getuserData.password
+                }
+            }else{
+                println("no hay usuario")
+            }
+        }
+    }
+
 
     private fun checkFristLaunch() {
         coroutineScope.launch {
@@ -145,7 +183,7 @@ class LoginViewModel(private val database: UserDao, application: Application) :
             try {
                 val userRegistered = database.getAllUserData()
                 if (userRegistered == null) {
-                    val newUser = User(1, "", "", "", "", "", "")
+                    val newUser = User(1, "", "", "", "", "", "",false, "")
                     database.insertUser(newUser)
                     database.updateUser(user)
                     println("Datos de usuario de login agregados y actualizado")

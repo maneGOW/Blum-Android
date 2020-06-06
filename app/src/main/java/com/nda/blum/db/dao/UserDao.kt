@@ -25,6 +25,9 @@ interface UserDao {
     @Query("Select * FROM user_table")
     fun getAllUserData(): User?
 
+    @Query("UPDATE user_table SET rememberme = :value1 WHERE userId = 1")
+    fun updateRemembermeValue(value1:Boolean)
+
     @Insert
     fun insertFirstLaunch (launch:FirstLaunch)
 
