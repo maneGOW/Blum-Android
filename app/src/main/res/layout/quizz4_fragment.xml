@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".Quizz4Fragment">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="#FFFFFF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/userProfilePic"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginLeft="32dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:paddingEnd="16dp"
+                android:paddingRight="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@tools:sample/avatars" />
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:text="Marisol"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/userProfilePic"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ProgressBar
+            android:id="@+id/customProgress"
+            style="@style/CustomProgressBar"
+            android:layout_width="match_parent"
+            android:layout_height="15dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginRight="32dp"
+            android:max="100"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/customProgress">
+
+            <TextView
+                android:id="@+id/txtQuestionTwo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="32dp"
+                android:background="@drawable/white_rounded_shape"
+                android:paddingStart="15dp"
+                android:paddingLeft="15dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:text="¿Cuáles son los retos que tienes frente a ti en este momento?  (Selecciona todas las que apliquen) "
+                android:textSize="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/txtQuestion2Answer2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/white_rounded_shape_purple_stroke"
+                android:gravity="center"
+                android:text="Mi hijo tiene pesadillas."
+                android:textSize="16dp"
+                app:layout_constraintEnd_toEndOf="@+id/txtQuestion2Answer"
+                app:layout_constraintStart_toStartOf="@+id/txtQuestion2Answer"
+                app:layout_constraintTop_toBottomOf="@+id/txtQuestion2Answer" />
+
+            <TextView
+                android:id="@+id/txtQuestion2Answer"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/white_rounded_shape_purple_stroke"
+                android:gravity="center"
+                android:text="Mi hijo hace berrinche por todo."
+                android:textSize="16dp"
+                app:layout_constraintEnd_toEndOf="@+id/txtQuestion2Answer6"
+                app:layout_constraintStart_toStartOf="@+id/txtQuestion2Answer6"
+                app:layout_constraintTop_toBottomOf="@+id/txtQuestion2Answer6" />
+
+            <TextView
+                android:id="@+id/txtQuestion2Answer9"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/white_rounded_shape_purple_stroke"
+                android:gravity="center"
+                android:text="Mi hijo se hace pipi/popo."
+                android:textSize="16dp"
+                app:layout_constraintEnd_toEndOf="@+id/txtQuestion2Answer2"
+                app:layout_constraintStart_toStartOf="@+id/txtQuestion2Answer2"
+                app:layout_constraintTop_toBottomOf="@+id/txtQuestion2Answer2" />
+
+            <TextView
+                android:id="@+id/txtQuestion2Answer7"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/white_rounded_shape_purple_stroke"
+                android:gravity="center"
+                android:text="Mi hijo no quiere dejar de dormir conmigo."
+                android:textSize="16dp"
+                app:layout_constraintEnd_toEndOf="@+id/txtQuestion2Answer2"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/txtQuestion2Answer2"
+                app:layout_constraintTop_toBottomOf="@+id/txtQuestion2Answer9" />
+
+            <TextView
+                android:id="@+id/txtQuestion2Answer8"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/white_rounded_shape_purple_stroke"
+                android:gravity="center"
+                android:text="Mi hijo no quiere hacer tareas."
+                android:textSize="16dp"
+                app:layout_constraintEnd_toEndOf="@+id/txtQuestion2Answer2"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/txtQuestion2Answer2"
+                app:layout_constraintTop_toBottomOf="@+id/txtQuestion2Answer7" />
+
+            <TextView
+                android:id="@+id/txtQuestion2Answer10"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/white_rounded_shape_purple_stroke"
+                android:gravity="center"
+                android:text="Mi esposo y yo implementamos diferentes tipo de crianza."
+                android:textSize="16dp"
+                app:layout_constraintEnd_toEndOf="@+id/txtQuestion2Answer2"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/txtQuestion2Answer2"
+                app:layout_constraintTop_toBottomOf="@+id/txtQuestion2Answer8" />
+
+            <TextView
+                android:id="@+id/txtQuestion2Answer11"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/white_rounded_shape_purple_stroke"
+                android:gravity="center"
+                android:text="Mi esposo y yo implementamos diferentes tipo de crianza."
+                android:textSize="16dp"
+                app:layout_constraintEnd_toEndOf="@+id/txtQuestion2Answer2"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/txtQuestion2Answer2"
+                app:layout_constraintTop_toBottomOf="@+id/txtQuestion2Answer10" />
+
+            <TextView
+                android:id="@+id/txtQuestion2Answer12"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/white_rounded_shape_purple_stroke"
+                android:gravity="center"
+                android:text="Mi esposo y yo implementamos diferentes tipo de crianza."
+                android:textSize="16dp"
+                app:layout_constraintEnd_toEndOf="@+id/txtQuestion2Answer2"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/txtQuestion2Answer2"
+                app:layout_constraintTop_toBottomOf="@+id/txtQuestion2Answer11" />
+
+            <TextView
+                android:id="@+id/txtQuestion2Answer6"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/white_rounded_shape_purple_stroke"
+                android:gravity="center"
+                android:text="Mi hijo no duerme."
+                android:textSize="16dp"
+                app:layout_constraintEnd_toEndOf="@+id/txtQuestionTwo"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtQuestionTwo" />
+
+            <Button
+                android:id="@+id/button8"
+                android:layout_width="200dp"
+                android:layout_height="30dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/pink_shape_button"
+                android:text="siguiente"
+                android:textColor="#FFFFFF"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

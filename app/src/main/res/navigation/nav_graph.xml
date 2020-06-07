@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/chatWithCoachFragment">
+    app:startDestination="@id/sesionersCoachFragment">
   
     <fragment
         android:id="@+id/loginFragment"
@@ -83,8 +83,8 @@
         android:label="quizz_fragment"
         tools:layout="@layout/quizz_fragment" >
         <action
-            android:id="@+id/action_quizzFragment_to_findingCoachFragment"
-            app:destination="@id/findingCoachFragment" />
+            android:id="@+id/action_quizzFragment_to_quizz2Fragment"
+            app:destination="@id/quizz2Fragment" />
     </fragment>
     <fragment
         android:id="@+id/coachBioFragment"
@@ -123,7 +123,7 @@
         tools:layout="@layout/coach_horario_fragment" />
     <fragment
         android:id="@+id/sesionersCoachFragment"
-        android:name="com.nda.blum.SesionersCoachFragment"
+        android:name="com.nda.blum.ui.sesionescoach.SesionersCoachFragment"
         android:label="sesioners_coach_fragment"
         tools:layout="@layout/sesioners_coach_fragment" />
     <fragment
@@ -198,4 +198,58 @@
         android:name="com.nda.blum.NotificacionesCoachFragment"
         android:label="notificaciones_coach_fragment"
         tools:layout="@layout/notificaciones_coach_fragment" />
+    <fragment
+        android:id="@+id/quizz2Fragment"
+        android:name="com.nda.blum.Quizz2Fragment"
+        tools:layout="@layout/quizz2__fragment"
+        android:label="Quizz2Fragment" >
+        <action
+            android:id="@+id/action_quizz2Fragment_to_quizz3Fragment"
+            app:destination="@id/quizz3Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/quizz3Fragment"
+        android:name="com.nda.blum.Quizz3Fragment"
+        tools:layout="@layout/quizz3_fragment"
+        android:label="Quizz3Fragment" >
+        <action
+            android:id="@+id/action_quizz3Fragment_to_quizz4Fragment"
+            app:destination="@id/quizz4Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/quizz4Fragment"
+        android:name="com.nda.blum.Quizz4Fragment"
+        tools:layout="@layout/quizz4_fragment"
+        android:label="Quizz4Fragment" >
+        <action
+            android:id="@+id/action_quizz4Fragment_to_quizz5Fragment"
+            app:destination="@id/quizz5Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/quizz5Fragment"
+        android:name="com.nda.blum.Quizz5Fragment"
+        tools:layout="@layout/quizz5_fragment"
+        android:label="Quizz5Fragment" >
+        <action
+            android:id="@+id/action_quizz5Fragment_to_quizz6Fragment"
+            app:destination="@id/quizz6Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/quizz6Fragment"
+        android:name="com.nda.blum.Quizz6Fragment"
+        tools:layout="@layout/quizz6_fragment"
+        android:label="Quizz6Fragment" >
+        <action
+            android:id="@+id/action_quizz6Fragment_to_quizz7Fragment"
+            app:destination="@id/quizz7Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/quizz7Fragment"
+        android:name="com.nda.blum.Quizz7Fragment"
+        tools:layout="@layout/quizz7_fragment"
+        android:label="Quizz7Fragment" >
+        <action
+            android:id="@+id/action_quizz7Fragment_to_findingCoachFragment"
+            app:destination="@id/findingCoachFragment" />
+    </fragment>
 </navigation>
