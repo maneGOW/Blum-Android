@@ -61,17 +61,14 @@ class QuizzFragment : Fragment() {
             } else {
                 bindingQuizz.txtQuestion1Answer1.setBackgroundResource(R.drawable.purple_rounded_shape)
                 bindingQuizz.txtQuestion1Answer1.setTextColor(Color.parseColor("#FFFFFF"))
-                if (bindingQuizz.txtQuestion1Answer2.currentTextColor == Color.parseColor("#FFFFFF") || bindingQuizz.txtQuestion1Answer3.currentTextColor == Color.parseColor(
-                        "#FFFFFF"
-                    )
+                if (bindingQuizz.txtQuestion1Answer2.currentTextColor == Color.parseColor("#FFFFFF")
                 ) {
                     minusProgress(bindingQuizz)
                 }
                 addProgress(bindingQuizz)
                 bindingQuizz.txtQuestion1Answer2.setBackgroundResource(R.drawable.white_rounded_shape_purple_stroke)
                 bindingQuizz.txtQuestion1Answer2.setTextColor(Color.parseColor("#000000"))
-                bindingQuizz.txtQuestion1Answer3.setBackgroundResource(R.drawable.white_rounded_shape_purple_stroke)
-                bindingQuizz.txtQuestion1Answer3.setTextColor(Color.parseColor("#000000"))
+
             }
         }
 
@@ -92,30 +89,6 @@ class QuizzFragment : Fragment() {
                 addProgress(bindingQuizz)
                 bindingQuizz.txtQuestion1Answer1.setBackgroundResource(R.drawable.white_rounded_shape_purple_stroke)
                 bindingQuizz.txtQuestion1Answer1.setTextColor(Color.parseColor("#000000"))
-                bindingQuizz.txtQuestion1Answer3.setBackgroundResource(R.drawable.white_rounded_shape_purple_stroke)
-                bindingQuizz.txtQuestion1Answer3.setTextColor(Color.parseColor("#000000"))
-            }
-        }
-
-        bindingQuizz.txtQuestion1Answer3.setOnClickListener {
-            if (bindingQuizz.txtQuestion1Answer3.currentTextColor == Color.parseColor("#FFFFFF")) {
-                bindingQuizz.txtQuestion1Answer3.setBackgroundResource(R.drawable.white_rounded_shape_purple_stroke)
-                bindingQuizz.txtQuestion1Answer3.setTextColor(Color.parseColor("#000000"))
-                minusProgress(bindingQuizz)
-            } else {
-                bindingQuizz.txtQuestion1Answer3.setBackgroundResource(R.drawable.purple_rounded_shape)
-                bindingQuizz.txtQuestion1Answer3.setTextColor(Color.parseColor("#FFFFFF"))
-                if (bindingQuizz.txtQuestion1Answer2.currentTextColor == Color.parseColor("#FFFFFF") || bindingQuizz.txtQuestion1Answer1.currentTextColor == Color.parseColor(
-                        "#FFFFFF"
-                    )
-                ) {
-                    minusProgress(bindingQuizz)
-                }
-                addProgress(bindingQuizz)
-                bindingQuizz.txtQuestion1Answer1.setBackgroundResource(R.drawable.white_rounded_shape_purple_stroke)
-                bindingQuizz.txtQuestion1Answer1.setTextColor(Color.parseColor("#000000"))
-                bindingQuizz.txtQuestion1Answer2.setBackgroundResource(R.drawable.white_rounded_shape_purple_stroke)
-                bindingQuizz.txtQuestion1Answer2.setTextColor(Color.parseColor("#000000"))
             }
         }
 
@@ -179,8 +152,6 @@ class QuizzFragment : Fragment() {
                 addProgress(bindingQuizz)
                 bindingQuizz.txtQuestion3Answer2.setBackgroundResource(R.drawable.white_rounded_shape_purple_stroke)
                 bindingQuizz.txtQuestion3Answer2.setTextColor(Color.parseColor("#000000"))
-                bindingQuizz.txtQuestion3Answer3.setBackgroundResource(R.drawable.white_rounded_shape_purple_stroke)
-                bindingQuizz.txtQuestion3Answer3.setTextColor(Color.parseColor("#000000"))
             }
         }
 
@@ -193,24 +164,6 @@ class QuizzFragment : Fragment() {
                 bindingQuizz.txtQuestion3Answer2.setBackgroundResource(R.drawable.purple_rounded_shape)
                 bindingQuizz.txtQuestion3Answer2.setTextColor(Color.parseColor("#FFFFFF"))
                 addProgress(bindingQuizz)
-                bindingQuizz.txtQuestion3Answer1.setBackgroundResource(R.drawable.white_rounded_shape_purple_stroke)
-                bindingQuizz.txtQuestion3Answer1.setTextColor(Color.parseColor("#000000"))
-                bindingQuizz.txtQuestion3Answer3.setBackgroundResource(R.drawable.white_rounded_shape_purple_stroke)
-                bindingQuizz.txtQuestion3Answer3.setTextColor(Color.parseColor("#000000"))
-            }
-        }
-
-        bindingQuizz.txtQuestion3Answer3.setOnClickListener {
-            if (bindingQuizz.txtQuestion3Answer3.currentTextColor == Color.parseColor("#FFFFFF")) {
-                bindingQuizz.txtQuestion3Answer3.setBackgroundResource(R.drawable.white_rounded_shape_purple_stroke)
-                bindingQuizz.txtQuestion3Answer3.setTextColor(Color.parseColor("#000000"))
-                minusProgress(bindingQuizz)
-            } else {
-                bindingQuizz.txtQuestion3Answer3.setBackgroundResource(R.drawable.purple_rounded_shape)
-                bindingQuizz.txtQuestion3Answer3.setTextColor(Color.parseColor("#FFFFFF"))
-                addProgress(bindingQuizz)
-                bindingQuizz.txtQuestion3Answer2.setBackgroundResource(R.drawable.white_rounded_shape_purple_stroke)
-                bindingQuizz.txtQuestion3Answer2.setTextColor(Color.parseColor("#000000"))
                 bindingQuizz.txtQuestion3Answer1.setBackgroundResource(R.drawable.white_rounded_shape_purple_stroke)
                 bindingQuizz.txtQuestion3Answer1.setTextColor(Color.parseColor("#000000"))
             }
@@ -265,8 +218,8 @@ class QuizzFragment : Fragment() {
         }
 
         bindingQuizz.button8.setOnClickListener {
-            this.findNavController()
-                .navigate(QuizzFragmentDirections.actionQuizzFragmentToFindingCoachFragment())
+          /*  this.findNavController()
+                .navigate(QuizzFragmentDirections.actionQuizzFragmentToFindingCoachFragment())*/
         }
 
         return bindingQuizz.root

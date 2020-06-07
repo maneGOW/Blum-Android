@@ -20,7 +20,7 @@ class Quizz2Fragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.quizz2_fragment, container, false)
+        return inflater.inflate(R.layout.quizz2__fragment, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
