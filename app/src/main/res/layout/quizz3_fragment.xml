@@ -87,19 +87,20 @@
 
         <TextView
             android:id="@+id/txtQuestion1Answer1"
-            android:layout_width="100dp"
+            android:layout_width="0dp"
             android:layout_height="30dp"
-            android:layout_marginStart="32dp"
             android:background="@drawable/white_rounded_shape_purple_stroke"
             android:gravity="center"
             android:text="Sí"
             android:textSize="16dp"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/txtQuestion1Answer2"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/txtQuestionOne"
             app:layout_constraintTop_toTopOf="@+id/txtQuestion1Answer2" />
 
         <TextView
             android:id="@+id/txtQuestion1Answer2"
-            android:layout_width="100dp"
+            android:layout_width="0dp"
             android:layout_height="30dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
@@ -107,6 +108,8 @@
             android:gravity="center"
             android:text="No"
             android:textSize="16dp"
+            app:layout_constraintEnd_toEndOf="@+id/txtQuestionOne"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/txtQuestion1Answer1"
             app:layout_constraintTop_toBottomOf="@+id/txtQuestionOne" />
 
@@ -131,56 +134,64 @@
 
         <TextView
             android:id="@+id/txtQuestion2Answer2"
-            android:layout_width="100dp"
+            android:layout_width="0dp"
             android:layout_height="30dp"
+            android:layout_marginStart="8dp"
             android:background="@drawable/white_rounded_shape_purple_stroke"
             android:gravity="center"
             android:text="8 - 14 años"
             android:textSize="16dp"
             app:layout_constraintEnd_toStartOf="@+id/txtQuestion2Answer"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/txtQuestion2Answer6"
-            tools:layout_editor_absoluteY="202dp" />
+            app:layout_constraintTop_toTopOf="@+id/txtQuestion2Answer6" />
 
         <TextView
             android:id="@+id/txtQuestion2Answer"
-            android:layout_width="100dp"
+            android:layout_width="0dp"
             android:layout_height="30dp"
+            android:layout_marginStart="8dp"
             android:background="@drawable/white_rounded_shape_purple_stroke"
             android:gravity="center"
             android:text="15 - 21 años"
             android:textSize="16dp"
             app:layout_constraintEnd_toEndOf="@+id/txtQuestionTwo"
-            tools:layout_editor_absoluteY="202dp" />
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/txtQuestion2Answer2"
+            app:layout_constraintTop_toTopOf="@+id/txtQuestion2Answer2" />
 
         <TextView
             android:id="@+id/txtQuestion2Answer9"
-            android:layout_width="130dp"
+            android:layout_width="0dp"
             android:layout_height="30dp"
             android:layout_marginTop="16dp"
             android:background="@drawable/white_rounded_shape_purple_stroke"
             android:gravity="center"
             android:text="Más de 21 años"
             android:textSize="16dp"
+            app:layout_constraintEnd_toEndOf="@+id/txtQuestionTwo"
             app:layout_constraintStart_toStartOf="@+id/txtQuestionTwo"
             app:layout_constraintTop_toBottomOf="@+id/txtQuestion2Answer6" />
 
         <TextView
             android:id="@+id/txtQuestion2Answer6"
-            android:layout_width="100dp"
+            android:layout_width="0dp"
             android:layout_height="30dp"
             android:layout_marginTop="16dp"
             android:background="@drawable/white_rounded_shape_purple_stroke"
             android:gravity="center"
             android:text="0 - 7 años"
             android:textSize="16dp"
-            app:layout_constraintStart_toStartOf="@+id/txtQuestion2Answer9"
+            app:layout_constraintEnd_toStartOf="@+id/txtQuestion2Answer2"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/txtQuestionTwo"
             app:layout_constraintTop_toBottomOf="@+id/txtQuestionTwo" />
 
         <Button
             android:id="@+id/button8"
             android:layout_width="200dp"
             android:layout_height="30dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="8dp"
             android:background="@drawable/pink_shape_button"
             android:text="siguiente"
             android:textColor="#FFFFFF"

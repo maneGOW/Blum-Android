@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/findingCoachFragment">
+    app:startDestination="@id/quizzFragment">
   
     <fragment
         android:id="@+id/loginFragment"
@@ -61,7 +61,7 @@
         tools:layout="@layout/slider2_fragment" />
     <fragment
         android:id="@+id/findingCoachFragment"
-        android:name="com.nda.blum.FindingCoachFragment"
+        android:name="com.nda.blum.ui.findingcoach.FindingCoachFragment"
         android:label="finding_coach_fragment"
         tools:layout="@layout/finding_coach_fragment" >
         <action

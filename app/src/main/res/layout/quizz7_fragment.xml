@@ -71,7 +71,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="32dp"
             android:background="@drawable/white_rounded_shape"
             android:gravity="center_vertical"
@@ -89,8 +89,7 @@
             android:id="@+id/txtQuestion1Answer1"
             android:layout_width="0dp"
             android:layout_height="30dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginTop="8dp"
             android:background="@drawable/white_rounded_shape_purple_stroke"
             android:gravity="center"
             android:text="Sí"
@@ -119,7 +118,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="32dp"
             android:background="@drawable/white_rounded_shape"
             android:paddingStart="15dp"
@@ -138,7 +137,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="32dp"
             android:background="@drawable/white_rounded_shape"
             android:paddingStart="15dp"
@@ -157,7 +156,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="32dp"
             android:background="@drawable/white_rounded_shape"
             android:paddingStart="15dp"
@@ -188,17 +187,19 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/spinner" />
+            app:layout_constraintTop_toBottomOf="@+id/spinnerDays" />
 
         <TextView
             android:id="@+id/txtQuestion2Answer2"
-            android:layout_width="166dp"
+            android:layout_width="0dp"
             android:layout_height="30dp"
             android:background="@drawable/white_rounded_shape_purple_stroke"
             android:gravity="center"
             android:text="No"
             android:textSize="16dp"
             app:layout_constraintEnd_toEndOf="@+id/txtQuestionTwo2"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/txtQuestion2Answer22"
             app:layout_constraintTop_toTopOf="@+id/txtQuestion2Answer22" />
 
         <TextView
@@ -219,7 +220,7 @@
             android:id="@+id/txtQuestion2Answer1"
             android:layout_width="0dp"
             android:layout_height="30dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:background="@drawable/white_rounded_shape_purple_stroke"
             android:gravity="center"
@@ -235,7 +236,7 @@
             android:id="@+id/txtQuestion2Answer22"
             android:layout_width="0dp"
             android:layout_height="30dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:background="@drawable/white_rounded_shape_purple_stroke"
             android:gravity="center"
@@ -250,7 +251,7 @@
             android:id="@+id/button8"
             android:layout_width="200dp"
             android:layout_height="30dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="8dp"
             android:background="@drawable/pink_shape_button"
             android:text="siguiente"
             android:textColor="#FFFFFF"
@@ -259,19 +260,21 @@
             app:layout_constraintStart_toStartOf="parent" />
 
         <Spinner
-            android:id="@+id/spinner"
+            android:id="@+id/spinnerDays"
             android:layout_width="0dp"
             android:layout_height="24dp"
             android:layout_marginTop="16dp"
+            android:spinnerMode="dialog"
             app:layout_constraintEnd_toEndOf="@+id/txtQuestionTwo3"
             app:layout_constraintStart_toStartOf="@+id/txtQuestionTwo3"
             app:layout_constraintTop_toBottomOf="@+id/txtQuestionTwo3" />
 
         <Spinner
-            android:id="@+id/spinner2"
+            android:id="@+id/spinnerHours"
             android:layout_width="0dp"
             android:layout_height="24dp"
             android:layout_marginTop="16dp"
+            android:spinnerMode="dialog"
             app:layout_constraintEnd_toEndOf="@+id/txtQuestionTwo3"
             app:layout_constraintStart_toStartOf="@+id/txtQuestionTwo3"
             app:layout_constraintTop_toBottomOf="@+id/txtQuestionTwo4" />

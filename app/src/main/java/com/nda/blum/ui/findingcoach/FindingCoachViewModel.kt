@@ -1,7 +1,10 @@
-package com.nda.blum
+package com.nda.blum.ui.findingcoach
 
 import android.app.Application
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.google.gson.Gson
+import com.nda.blum.BaseViewModel
 import com.nda.blum.DAO.AsignarCoachResponse
 import com.nda.blum.db.dao.UserDao
 import kotlinx.coroutines.Dispatchers
@@ -16,7 +19,12 @@ import okhttp3.Response
 class FindingCoachViewModel(private val dataSource: UserDao, application: Application) :
     BaseViewModel(application) {
 
+    private val _onCoachFinded = MutableLiveData<Boolean>()
+    val onCoachFinded : LiveData<Boolean>
+    get() = _onCoachFinded
+
     init {
+        _onCoachFinded.value = false
         sendUserToAsignarCoachService()
     }
 
@@ -25,6 +33,9 @@ class FindingCoachViewModel(private val dataSource: UserDao, application: Applic
             val resultAsignarCoach = asignarCoachServive()
             if(resultAsignarCoach!!.code == "0"){
                 println("el usuario se asignó al coach ${resultAsignarCoach.result.idCoach} y al nido ${resultAsignarCoach.result.idNido}")
+                _onCoachFinded.value = true
+            }else{
+                _onCoachFinded.value = false
             }
         }
     }

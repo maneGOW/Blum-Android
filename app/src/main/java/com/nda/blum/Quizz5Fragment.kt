@@ -6,6 +6,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
+import com.nda.blum.databinding.Quizz5FragmentBinding
 
 
 class Quizz5Fragment : Fragment() {
@@ -20,7 +25,22 @@ class Quizz5Fragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.quizz5_fragment, container, false)
+        val bindingQuizz5: Quizz5FragmentBinding = DataBindingUtil.inflate(
+            inflater, R.layout.quizz5_fragment, container, false
+        )
+
+        bindingQuizz5.customProgress.progress = 68
+
+        Glide.with(this)
+            .load(R.drawable.user_picture)
+            .apply(RequestOptions.circleCropTransform())
+            .into(bindingQuizz5.userProfilePic)
+
+        bindingQuizz5.button8.setOnClickListener {
+            this.findNavController().navigate(Quizz5FragmentDirections.actionQuizz5FragmentToQuizz6Fragment())
+        }
+
+        return bindingQuizz5.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
