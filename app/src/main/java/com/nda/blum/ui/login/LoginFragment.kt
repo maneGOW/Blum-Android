@@ -57,6 +57,27 @@ class LoginFragment : Fragment() {
             }
         }
 
+        loginViewModel.rememberMe.observe(viewLifecycleOwner, Observer {
+            if(it!!){
+                loginViewModel.getRememberme()
+            }else{
+                loginViewModel.email.value = ""
+                loginViewModel.password.value = ""
+            }
+        })
+
+        binding.cbRememberMe.setOnCheckedChangeListener { _, isChecked ->
+            if(isChecked){
+                loginViewModel.rememberMe.value = true
+                loginViewModel.updateRememberme(isChecked)
+                println("checked")
+            }else{
+                loginViewModel.rememberMe.value = false
+                loginViewModel.updateRememberme(isChecked)
+                println("NOT CHECKED")
+            }
+        }
+
         loginViewModel.userRol.observe(viewLifecycleOwner, Observer {
             if (it == "Coach") {
                 if (loginViewModel.firstLaunch.value == true) {
