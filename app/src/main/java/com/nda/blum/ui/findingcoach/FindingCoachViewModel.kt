@@ -18,6 +18,8 @@ import okhttp3.Response
 
 class FindingCoachViewModel(private val dataSource: UserDao, application: Application) :
     BaseViewModel(application) {
+    val Respuesta = MutableLiveData<String>()
+    val idCoach = MutableLiveData<String>()
 
     private val _onCoachFinded = MutableLiveData<Boolean>()
     val onCoachFinded : LiveData<Boolean>
@@ -41,13 +43,15 @@ class FindingCoachViewModel(private val dataSource: UserDao, application: Applic
     }
 
     private suspend fun asignarCoachServive(): AsignarCoachResponse? {
+
+
         var asignarCoachResponse: AsignarCoachResponse? = null
         withContext(Dispatchers.IO) {
             val client = OkHttpClient().newBuilder().build()
             val mediaType = "text/plain".toMediaTypeOrNull()
             val body: RequestBody = RequestBody.create(mediaType, "")
             val request = Request.Builder()
-                .url("https://retosalvatucasa.com/ws_app_nda/asignacoach.php?idusuario=39&respuesta=1")
+                .url("https://retosalvatucasa.com/ws_app_nda/asignacoach.php?idusuario=${idCoach.value}&respuesta=${Respuesta.value}")
                 .method("POST", body)
                 .build()
 

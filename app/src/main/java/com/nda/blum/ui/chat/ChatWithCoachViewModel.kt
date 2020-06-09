@@ -19,6 +19,11 @@ import okhttp3.Response
 
 class ChatWithCoachViewModel(private val dataSource: UserDao, application: Application) : BaseViewModel(application) {
 
+    val idRoom = MutableLiveData<String>()
+    val idSent = MutableLiveData<String>()
+    val idRecibe = MutableLiveData<String>()
+
+
     val messages = MutableLiveData<RecuperarChatResponse>()
     private val _filledMessageList = MutableLiveData<Boolean>()
     val filledMessageList : LiveData<Boolean>
@@ -64,7 +69,7 @@ class ChatWithCoachViewModel(private val dataSource: UserDao, application: Appli
             val mediaType = "text/plain".toMediaTypeOrNull()
             val body: RequestBody = RequestBody.create(mediaType, "")
             val request = Request.Builder()
-                .url("https://retosalvatucasa.com/ws_app_nda/chatindividual.php?idchatroom=1&sender=44&receiver=45&chatmessage=${userMessage.value}&timestamp=${System.currentTimeMillis()}")
+                .url("https://retosalvatucasa.com/ws_app_nda/chatindividual.php?idchatroom=${idRoom.value}&sender=${idSent.value}&receiver=${idRecibe.value}&chatmessage=${userMessage.value}&timestamp=${System.currentTimeMillis()}")
                 .method("POST", body)
                 .build()
 
@@ -90,7 +95,7 @@ class ChatWithCoachViewModel(private val dataSource: UserDao, application: Appli
             val mediaType = "text/plain".toMediaTypeOrNull()
             val body: RequestBody = RequestBody.create(mediaType, "")
             val request = Request.Builder()
-                .url("https://www.retosalvatucasa.com/ws_app_nda/recuperarchat.php?idchatroom=1")
+                .url("https://www.retosalvatucasa.com/ws_app_nda/recuperarchat.php?idchatroom=${idRoom.value}")
                 .method("POST", body)
                 .build()
 

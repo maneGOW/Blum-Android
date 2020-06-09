@@ -23,6 +23,8 @@ import okhttp3.Response
 // https://retosalvatucasa.com/ws_app_nda/guardarcita.php?idcoach=23&idusuario=35&fecha=12/12/2020&hora=12hr&idfecha=1
 class AgendarSesionViewModel(val database: UserDao, application: Application) : BaseViewModel(application) {
 
+
+
     val idCoach = MutableLiveData<String>()
     val fecha = MutableLiveData<String>()
     val hora = MutableLiveData<String>()
@@ -88,7 +90,7 @@ class AgendarSesionViewModel(val database: UserDao, application: Application) : 
             val body: RequestBody = RequestBody.create(mediaType, "")
             val userData = susGetUserData()
             val request = Request.Builder()
-                .url("https://retosalvatucasa.com/ws_app_nda/guardarcita.php?idcoach=1&idusuario=${userData!!.userServerId}&fecha=${fecha.value}&hora=${hora.value}&idfecha=${idFecha.value}")
+                .url("https://retosalvatucasa.com/ws_app_nda/guardarcita.php?idcoach=${idCoach.value}&idusuario=${userData!!.userServerId}&fecha=${fecha.value}&hora=${hora.value}&idfecha=${idFecha.value}")
                 .method("POST", body)
                 .build()
 
@@ -123,7 +125,7 @@ class AgendarSesionViewModel(val database: UserDao, application: Application) : 
             val mediaType = "text/plain".toMediaTypeOrNull()
             val body: RequestBody = RequestBody.create(mediaType, "")
             val request = Request.Builder()
-                .url("https://retosalvatucasa.com/ws_app_nda/buscardisponibles.php?idcoach=1&fecha=${fecha.value}")
+                .url("https://retosalvatucasa.com/ws_app_nda/buscardisponibles.php?idcoach=${idCoach.value}&fecha=${fecha.value}")
                 .method("POST", body)
                 .build()
 

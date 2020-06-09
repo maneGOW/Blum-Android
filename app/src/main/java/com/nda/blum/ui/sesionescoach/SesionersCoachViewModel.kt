@@ -18,7 +18,8 @@ import okhttp3.Response
 
 class SesionersCoachViewModel(private val database: UserDao, application: Application) :
     BaseViewModel(application) {
-
+    val idCoach = MutableLiveData<String>()
+    val diaCita = MutableLiveData<String>() //dd/mm/aaaa
     val citasDelServer = MutableLiveData<BuscarCitasResponse>()
 
     private val _filledCitasDelServer = MutableLiveData<Boolean>()
@@ -52,7 +53,7 @@ class SesionersCoachViewModel(private val database: UserDao, application: Applic
             val mediaType = "text/plain".toMediaTypeOrNull()
             val body: RequestBody = RequestBody.create(mediaType, "")
             val request = Request.Builder()
-                .url("https://retosalvatucasa.com/ws_app_nda/buscarcitas.php?idcoach=1&diacita=05/06/2020")
+                .url("https://retosalvatucasa.com/ws_app_nda/buscarcitas.php?idcoach=${idCoach.value}&diacita=${diaCita.value}")
                 .method("POST", body)
                 .build()
 
