@@ -16,12 +16,6 @@ import com.nda.blum.databinding.FindingCoachFragmentBinding
 
 class FindingCoachFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = FindingCoachFragment()
-    }
-
-    private lateinit var viewModel: FindingCoachViewModel
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -38,12 +32,6 @@ class FindingCoachFragment : Fragment() {
             .into(imageViewTarget)
 
         return bindingCoachFragment.root
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(FindingCoachViewModel::class.java)
-        // TODO: Use the ViewModel
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
