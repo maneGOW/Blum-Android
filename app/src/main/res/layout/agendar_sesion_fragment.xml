@@ -37,22 +37,10 @@
             app:layout_constraintStart_toStartOf="@+id/textView16"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/imageView20"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
-            android:tint="#FFFFFF"
-            app:layout_constraintBottom_toBottomOf="@+id/textView16"
-            app:layout_constraintEnd_toEndOf="@+id/textView16"
-            app:layout_constraintTop_toTopOf="@+id/textView16"
-            app:srcCompat="@drawable/ic_settings_black_24dp" />
-
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@+id/blum_bar_added"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView16">
@@ -270,8 +258,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:fontFamily="@font/avenir"
                     android:background="@drawable/pink_shape_button"
+                    android:fontFamily="@font/avenir"
                     android:text="Agendar"
                     android:textColor="#FFFFFF"
                     android:textStyle="bold"
@@ -283,11 +271,5 @@
 
         </androidx.core.widget.NestedScrollView>
 
-        <include
-            android:id="@+id/blum_bar_added"
-            layout="@layout/blum_bar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

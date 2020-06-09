@@ -2,33 +2,33 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item android:id="@+id/agenda"
-        android:title=""
+    <item android:id="@+id/agendarSesionFragment"
+        android:title="Agenda"
         app:showAsAction="always"
         android:orderInCategory="1"
         android:icon="@drawable/purple_calendar_icon"/>
 
-    <item android:id="@+id/nestChat"
-        android:title=""
+    <item android:id="@+id/chatWithCoachFragment2"
+        android:title="Nido"
         app:showAsAction="always"
         android:orderInCategory="2"
         android:icon="@drawable/purple_nest_icon"/>
 
 
-    <item android:id="@+id/singleChat"
-        android:title=""
+    <item android:id="@+id/chatWithCoachFragment"
+        android:title="Chat"
         app:showAsAction="always"
         android:orderInCategory="3"
         android:icon="@drawable/purple_chat_coach_icon"/>
 
-    <item android:id="@+id/notifications"
-        android:title=""
+    <item android:id="@+id/notificacionesCoachFragment"
+        android:title="Notificaciones"
         app:showAsAction="always"
         android:orderInCategory="4"
         android:icon="@drawable/purple_bell_icon"/>
 
-    <item android:id="@+id/chest"
-        android:title=""
+    <item android:id="@+id/recursosCoachFragment"
+        android:title="Recursos"
         app:showAsAction="always"
         android:orderInCategory="5"
         android:icon="@drawable/purple_chest_icon"/>

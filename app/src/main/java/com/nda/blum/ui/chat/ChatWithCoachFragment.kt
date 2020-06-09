@@ -39,10 +39,18 @@ class ChatWithCoachFragment : Fragment() {
 
         chatWithCoachViewmodel.getMessagesFromServer()
 
+        chatWithCoachViewmodel.chatType.value =  ChatWithCoachFragmentArgs.fromBundle(arguments!!).chatType
+
+        println("ChatType: ${chatWithCoachViewmodel.chatType.value}")
+
+        chatWithCoachViewmodel.coachName.observe(viewLifecycleOwner, Observer {
+            bindingChatWithCoach.textView39.text = it
+        })
+
         chatWithCoachViewmodel.filledMessageList.observe(viewLifecycleOwner, Observer {
             if(it){
                 bindingChatWithCoach.rvChat.layoutManager = LinearLayoutManager(this.context)
-                bindingChatWithCoach.rvChat.adapter = ChatIndividualAdapter(this.context!!, chatWithCoachViewmodel.messages.value!!, "44")
+                bindingChatWithCoach.rvChat.adapter = ChatIndividualAdapter(this.context!!, chatWithCoachViewmodel.messages.value!!, chatWithCoachViewmodel.userID.value!!)
             }
         })
 

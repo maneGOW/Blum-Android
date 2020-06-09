@@ -1,7 +1,6 @@
 package com.nda.blum.ui.findingcoach
 
 import android.os.Bundle
-import android.os.Handler
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -15,8 +14,11 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.nda.blum.R
 import com.nda.blum.databinding.FindingCoachFragmentBinding
 import com.nda.blum.db.BlumDatabase
+import com.nda.blum.db.entity.User
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.InternalCoroutinesApi
-
+import kotlinx.coroutines.withContext
+import kotlin.random.Random
 
 @InternalCoroutinesApi
 class FindingCoachFragment : Fragment() {
@@ -42,6 +44,10 @@ class FindingCoachFragment : Fragment() {
         val hubViewModel =
             ViewModelProviders.of(this, viewModelFactory).get(FindingCoachViewModel::class.java)
 
+        hubViewModel.nRespuesta.value = (1..3).random().toString()
+
+        hubViewModel.sendUserToAsignarCoachService()
+
         hubViewModel.onCoachFinded.observe(viewLifecycleOwner, Observer {
             if(it){
                 this.findNavController().navigate(FindingCoachFragmentDirections.actionFindingCoachFragmentToCoachResultFragment())
@@ -49,17 +55,5 @@ class FindingCoachFragment : Fragment() {
         })
         return bindingCoachFragment.root
     }
-
-    /*
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        Handler().postDelayed({
-            context?.let{
-                this.findNavController().navigate(FindingCoachFragmentDirections.actionFindingCoachFragmentToCoachResultFragment())
-            }
-        }, 10000)
-    }
-
-     */
 
 }

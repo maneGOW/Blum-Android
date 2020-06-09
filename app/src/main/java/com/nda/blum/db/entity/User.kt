@@ -8,6 +8,8 @@ data class User (
     @PrimaryKey(autoGenerate = true)
     var userId: Long = 0L,
     var userServerId: String?,
+    var coachId: String?,
+    var idNido: String?,
     var userNombreUsuario: String?,
     var userCorreoElectronico: String?,
     var userRol: String?,

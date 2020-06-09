@@ -7,6 +7,7 @@ import com.google.gson.Gson
 import com.nda.blum.BaseViewModel
 import com.nda.blum.DAO.BuscarCitasResponse
 import com.nda.blum.db.dao.UserDao
+import com.nda.blum.db.entity.User
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -40,7 +41,7 @@ class SesionersCoachViewModel(private val database: UserDao, application: Applic
                     _filledCitasDelServer.value = true
                 }
             } else {
-                println("SIN CHATS")
+                println("sin citas")
                 _filledCitasDelServer.value = false
             }
         }
@@ -49,11 +50,13 @@ class SesionersCoachViewModel(private val database: UserDao, application: Applic
     private suspend fun susGetCitas(): BuscarCitasResponse? {
         var buscarCitasResult: BuscarCitasResponse? = null
         withContext(Dispatchers.IO) {
+            val userData = susGetUserData()
             val client = OkHttpClient().newBuilder().build()
             val mediaType = "text/plain".toMediaTypeOrNull()
             val body: RequestBody = RequestBody.create(mediaType, "")
+            println("ID COACH: ${userData!!.userServerId} diaCita ${diaCita.value}")
             val request = Request.Builder()
-                .url("https://retosalvatucasa.com/ws_app_nda/buscarcitas.php?idcoach=${idCoach.value}&diacita=${diaCita.value}")
+                .url("https://retosalvatucasa.com/ws_app_nda/buscarcitas.php?idcoach=${userData!!.userServerId}&diacita=${diaCita.value}")
                 .method("POST", body)
                 .build()
 
@@ -70,6 +73,12 @@ class SesionersCoachViewModel(private val database: UserDao, application: Applic
             }
         }
         return buscarCitasResult
+    }
+
+    private suspend fun susGetUserData(): User? {
+        return withContext(Dispatchers.IO) {
+            database.getAllUserData()
+        }
     }
 
 }

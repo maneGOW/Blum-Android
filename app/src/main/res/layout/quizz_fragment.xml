@@ -69,11 +69,31 @@
         app:layout_constraintTop_toBottomOf="@+id/customProgress">
 
         <TextView
-            android:id="@+id/txtQuestionFour"
+            android:id="@+id/txtQuestion5"
+            android:layout_width="0dp"
+            android:layout_height="70dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="32dp"
+            android:background="@drawable/white_rounded_shape"
+            android:gravity="center_vertical"
+            android:paddingStart="15dp"
+            android:paddingLeft="15dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:text="¿Para ti es importante ser atendido \n por una persona que profese la misma religión que tú?"
+            android:textSize="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/spinnerQuestion4" />
+
+        <TextView
+            android:id="@+id/txtQuestion4"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="32dp"
             android:background="@drawable/white_rounded_shape"
             android:paddingStart="15dp"
@@ -85,87 +105,14 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtQuestion3Answer2" />
+            app:layout_constraintTop_toBottomOf="@+id/spinnerQuestion3" />
 
         <TextView
-            android:id="@+id/txtQuestion4Answer2"
-            android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="8dp"
-            android:background="@drawable/white_rounded_shape_purple_stroke"
-            android:gravity="center"
-            android:text="Católica"
-            android:textSize="16dp"
-            app:layout_constraintEnd_toStartOf="@+id/txtQuestion4Answer3"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/txtQuestion4Answer1"
-            app:layout_constraintTop_toTopOf="@+id/txtQuestion4Answer1" />
-
-        <TextView
-            android:id="@+id/txtQuestion4Answer3"
-            android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="8dp"
-            android:background="@drawable/white_rounded_shape_purple_stroke"
-            android:gravity="center"
-            android:text="Judía"
-            android:textSize="16dp"
-            android:visibility="visible"
-            app:layout_constraintEnd_toEndOf="@+id/txtQuestionFour"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/txtQuestion4Answer2"
-            app:layout_constraintTop_toTopOf="@+id/txtQuestion4Answer2" />
-
-        <TextView
-            android:id="@+id/txtQuestion4Answer1"
-            android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/white_rounded_shape_purple_stroke"
-            android:gravity="center"
-            android:text="Cristiana"
-            android:textSize="16dp"
-            app:layout_constraintEnd_toStartOf="@+id/txtQuestion4Answer2"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="@+id/txtQuestionFour"
-            app:layout_constraintTop_toBottomOf="@+id/txtQuestionFour" />
-
-        <TextView
-            android:id="@+id/txtQuestion4Answer5"
-            android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="32dp"
-            android:background="@drawable/white_rounded_shape_purple_stroke"
-            android:gravity="center"
-            android:text="Prefiero no decirlo"
-            android:textSize="16dp"
-            app:layout_constraintEnd_toEndOf="@+id/txtQuestion4Answer3"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/txtQuestion4Answer4"
-            app:layout_constraintStart_toStartOf="@+id/txtQuestion4Answer2"
-            app:layout_constraintTop_toTopOf="@+id/txtQuestion4Answer4" />
-
-        <TextView
-            android:id="@+id/txtQuestion4Answer4"
-            android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:background="@drawable/white_rounded_shape_purple_stroke"
-            android:gravity="center"
-            android:text="Otra"
-            android:textSize="16dp"
-            app:layout_constraintEnd_toStartOf="@+id/txtQuestion4Answer5"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="@+id/txtQuestion4Answer1"
-            app:layout_constraintTop_toBottomOf="@+id/txtQuestion4Answer1" />
-
-        <TextView
-            android:id="@+id/txtQuestionOne"
+            android:id="@+id/txtQuestion1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="32dp"
             android:background="@drawable/white_rounded_shape"
             android:paddingStart="15dp"
@@ -179,39 +126,11 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/txtQuestion1Answer1"
-            android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:background="@drawable/white_rounded_shape_purple_stroke"
-            android:gravity="center"
-            android:text="hombre"
-            android:textSize="16dp"
-            app:layout_constraintEnd_toStartOf="@+id/txtQuestion1Answer2"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="@+id/txtQuestionOne"
-            app:layout_constraintTop_toTopOf="@+id/txtQuestion1Answer2" />
-
-        <TextView
-            android:id="@+id/txtQuestion1Answer2"
-            android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/white_rounded_shape_purple_stroke"
-            android:gravity="center"
-            android:text="mujer"
-            android:textSize="16dp"
-            app:layout_constraintEnd_toEndOf="@+id/txtQuestionOne"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/txtQuestion1Answer1"
-            app:layout_constraintTop_toBottomOf="@+id/txtQuestionOne" />
-
-        <TextView
-            android:id="@+id/txtQuestionThree"
+            android:id="@+id/txtQuestion7"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="32dp"
             android:background="@drawable/white_rounded_shape"
             android:paddingStart="15dp"
@@ -221,45 +140,16 @@
             android:text="¿Te consideras una persona religiosa?"
             android:textSize="16dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtQuestion2Answer4" />
+            app:layout_constraintTop_toBottomOf="@+id/spinnerQuestion2" />
 
         <TextView
-            android:id="@+id/txtQuestion3Answer2"
-            android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="8dp"
-            android:background="@drawable/white_rounded_shape_purple_stroke"
-            android:gravity="center"
-            android:text="No"
-            android:textSize="16dp"
-            app:layout_constraintEnd_toEndOf="@+id/txtQuestionThree"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/txtQuestion3Answer1"
-            app:layout_constraintTop_toTopOf="@+id/txtQuestion3Answer1" />
-
-        <TextView
-            android:id="@+id/txtQuestion3Answer1"
-            android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:background="@drawable/white_rounded_shape_purple_stroke"
-            android:gravity="center"
-            android:text="Si"
-            android:textSize="16dp"
-            app:layout_constraintEnd_toStartOf="@+id/txtQuestion3Answer2"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="@+id/txtQuestionThree"
-            app:layout_constraintTop_toBottomOf="@+id/txtQuestionThree" />
-
-        <TextView
-            android:id="@+id/txtQuestionTwo"
+            android:id="@+id/txtQuestion2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="32dp"
             android:background="@drawable/white_rounded_shape"
             android:paddingStart="15dp"
@@ -271,78 +161,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtQuestion1Answer2" />
-
-        <TextView
-            android:id="@+id/txtQuestion2Answer2"
-            android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="8dp"
-            android:background="@drawable/white_rounded_shape_purple_stroke"
-            android:gravity="center"
-            android:text="20-30 años"
-            android:textSize="16dp"
-            app:layout_constraintEnd_toStartOf="@+id/txtQuestion2Answer3"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/txtQuestion2Answer1"
-            app:layout_constraintTop_toTopOf="@+id/txtQuestion2Answer1" />
-
-        <TextView
-            android:id="@+id/txtQuestion2Answer3"
-            android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="8dp"
-            android:background="@drawable/white_rounded_shape_purple_stroke"
-            android:gravity="center"
-            android:text="30-60 años"
-            android:textSize="16dp"
-            app:layout_constraintEnd_toEndOf="@+id/txtQuestionTwo"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/txtQuestion2Answer2"
-            app:layout_constraintTop_toTopOf="@+id/txtQuestion2Answer2" />
-
-        <TextView
-            android:id="@+id/txtQuestion2Answer1"
-            android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/white_rounded_shape_purple_stroke"
-            android:gravity="center"
-            android:text="10-20 años"
-            android:textSize="16dp"
-            app:layout_constraintEnd_toStartOf="@+id/txtQuestion2Answer2"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="@+id/txtQuestionTwo"
-            app:layout_constraintTop_toBottomOf="@+id/txtQuestionTwo" />
-
-        <TextView
-            android:id="@+id/txtQuestion2Answer4"
-            android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/white_rounded_shape_purple_stroke"
-            android:gravity="center"
-            android:text="10-20 años"
-            android:textSize="16dp"
-            app:layout_constraintEnd_toEndOf="@+id/txtQuestion2Answer3"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/txtQuestion2Answer5"
-            app:layout_constraintTop_toBottomOf="@+id/txtQuestion2Answer2" />
-
-        <TextView
-            android:id="@+id/txtQuestion2Answer5"
-            android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/white_rounded_shape_purple_stroke"
-            android:gravity="center"
-            android:text="10-20 años"
-            android:textSize="16dp"
-            app:layout_constraintEnd_toStartOf="@+id/txtQuestion2Answer4"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="@+id/txtQuestion2Answer1"
-            app:layout_constraintTop_toBottomOf="@+id/txtQuestion2Answer1" />
+            app:layout_constraintTop_toBottomOf="@+id/spinnerQuestion1" />
 
         <Button
             android:id="@+id/button8"
@@ -353,8 +172,54 @@
             android:text="siguiente"
             android:textColor="#FFFFFF"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/txtQuestion4Answer3"
-            app:layout_constraintStart_toStartOf="@+id/txtQuestion4Answer4" />
+            app:layout_constraintEnd_toEndOf="@+id/spinnerQuestion5"
+            app:layout_constraintStart_toStartOf="@+id/spinnerQuestion5" />
+
+        <Spinner
+            android:id="@+id/spinnerQuestion1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="@+id/txtQuestion1"
+            app:layout_constraintStart_toStartOf="@+id/txtQuestion1"
+            app:layout_constraintTop_toBottomOf="@+id/txtQuestion1" />
+
+        <Spinner
+            android:id="@+id/spinnerQuestion4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="@+id/txtQuestion4"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/txtQuestion4"
+            app:layout_constraintTop_toBottomOf="@+id/txtQuestion4" />
+
+        <Spinner
+            android:id="@+id/spinnerQuestion3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="@+id/txtQuestion7"
+            app:layout_constraintStart_toStartOf="@+id/txtQuestion7"
+            app:layout_constraintTop_toBottomOf="@+id/txtQuestion7" />
+
+        <Spinner
+            android:id="@+id/spinnerQuestion2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="@+id/txtQuestion2"
+            app:layout_constraintStart_toStartOf="@+id/txtQuestion2"
+            app:layout_constraintTop_toBottomOf="@+id/txtQuestion2" />
+
+        <Spinner
+            android:id="@+id/spinnerQuestion5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="@+id/txtQuestion5"
+            app:layout_constraintStart_toStartOf="@+id/txtQuestion5"
+            app:layout_constraintTop_toBottomOf="@+id/txtQuestion5" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

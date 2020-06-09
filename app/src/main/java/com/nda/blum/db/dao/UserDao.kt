@@ -28,6 +28,12 @@ interface UserDao {
     @Query("UPDATE user_table SET rememberme = :value1 WHERE userId = 1")
     fun updateRemembermeValue(value1:Boolean)
 
+    @Query("UPDATE user_table SET coachId = :value1, idNido =:value2 WHERE userId = 1")
+    fun updatecoachIdAndNest(value1:String, value2: String)
+
+    @Query("UPDATE user_table SET userServerId = :value1, userNombreUsuario =:value2, userCorreoElectronico = :value3, userRol =:value4, userTelefonoUsuario = :value5 WHERE userId = 1")
+    fun loginUpdate(value1: String, value2: String, value3: String, value4: String, value5: String)
+
     @Insert
     fun insertFirstLaunch (launch:FirstLaunch)
 

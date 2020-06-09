@@ -1,7 +1,7 @@
-package com.nda.blum
+package com.nda.blum.ui.quizz2
 
 import androidx.lifecycle.ViewModel
 
-class Quizz3ViewModel : ViewModel() {
+class Quizz2ViewModel : ViewModel() {
     // TODO: Implement the ViewModel
 }

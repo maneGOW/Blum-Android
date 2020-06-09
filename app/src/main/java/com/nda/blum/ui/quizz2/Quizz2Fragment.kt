@@ -1,6 +1,5 @@
-package com.nda.blum
+package com.nda.blum.ui.quizz2
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,16 +9,38 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.nda.blum.R
 import com.nda.blum.databinding.Quizz2FragmentBinding
-
 
 class Quizz2Fragment : Fragment() {
 
-    companion object {
-        fun newInstance() = Quizz2Fragment()
-    }
+    private val pregunta6 =
+        arrayOf(
+            "Sí",
+            "No"
+        )
 
-    private lateinit var viewModel: Quizz2ViewModel
+    private val pregunta7 =
+        arrayOf(
+            "Muy buena",
+            "Buena",
+            "Regular",
+            "Mala"
+        )
+
+    private val pregunta8 =
+        arrayOf(
+            "Muy buena",
+            "Buena",
+            "Regular",
+            "Mala"
+        )
+
+    private val pregunta9 =
+        arrayOf(
+            "Sí",
+            "No"
+        )
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,16 +59,11 @@ class Quizz2Fragment : Fragment() {
             .into(bindingQuizz2.userProfilePic)
 
         bindingQuizz2.button8.setOnClickListener {
-            this.findNavController().navigate(Quizz2FragmentDirections.actionQuizz2FragmentToQuizz3Fragment())
+            this.findNavController()
+                .navigate(Quizz2FragmentDirections.actionQuizz2FragmentToQuizz3Fragment())
         }
 
         return bindingQuizz2.root
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(Quizz2ViewModel::class.java)
-        // TODO: Use the ViewModel
     }
 
 }

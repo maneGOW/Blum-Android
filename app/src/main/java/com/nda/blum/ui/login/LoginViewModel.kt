@@ -82,6 +82,8 @@ class LoginViewModel(private val database: UserDao, application: Application) :
                         val userData = User(
                             1,
                             parsedResponse.result.idUsuario,
+                            "",
+                            "",
                             parsedResponse.result.nombreUsuario,
                             parsedResponse.result.correoUsuario,
                             parsedResponse.result.rollUsuario,
@@ -106,7 +108,7 @@ class LoginViewModel(private val database: UserDao, application: Application) :
     private fun saveUser(user: User) {
         try {
             coroutineScope.launch {
-                saveUserData(user)
+                updateUserdata(user)
             }
         } catch (e: Exception) {
             e.printStackTrace()
@@ -178,17 +180,17 @@ class LoginViewModel(private val database: UserDao, application: Application) :
         }
     }
 
-    private suspend fun saveUserData(user: User) {
+    private suspend fun updateUserdata(user: User) {
         withContext(Dispatchers.IO) {
             try {
                 val userRegistered = database.getAllUserData()
                 if (userRegistered == null) {
-                    val newUser = User(1, "", "", "", "", "", "",false, "")
+                    val newUser = User(1, "", "", "", "", "", "", "", "",false, "")
                     database.insertUser(newUser)
-                    database.updateUser(user)
+                    database.loginUpdate(user.userServerId!!, user.userNombreUsuario!!, user.userCorreoElectronico!!, user.userRol!!, user.userTelefonoUsuario!!)
                     println("Datos de usuario de login agregados y actualizado")
                 } else {
-                    database.updateUser(user)
+                    database.loginUpdate(user.userServerId!!, user.userNombreUsuario!!, user.userCorreoElectronico!!, user.userRol!!, user.userTelefonoUsuario!!)
                     println("Datos de usuario de login actualzados")
                 }
             } catch (e: Exception) {

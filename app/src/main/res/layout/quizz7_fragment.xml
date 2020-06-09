@@ -67,7 +67,7 @@
         app:layout_constraintTop_toBottomOf="@+id/customProgress">
 
         <TextView
-            android:id="@+id/txtQuestionOne"
+            android:id="@+id/txtQuestion1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
@@ -114,7 +114,7 @@
             app:layout_constraintTop_toTopOf="@+id/txtQuestion1Answer1" />
 
         <TextView
-            android:id="@+id/txtQuestionTwo"
+            android:id="@+id/txtQuestion2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
