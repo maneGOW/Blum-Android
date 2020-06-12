@@ -1,34 +1,34 @@
 {
   "project_info": {
-    "project_number": "853898831911",
-    "firebase_url": "https://blum-messenger.firebaseio.com",
-    "project_id": "blum-messenger",
-    "storage_bucket": "blum-messenger.appspot.com"
+    "project_number": "127290382991",
+    "firebase_url": "https://blumapp-2e704.firebaseio.com",
+    "project_id": "blumapp-2e704",
+    "storage_bucket": "blumapp-2e704.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:853898831911:android:ca89cc2fb668dc99ef0602",
+        "mobilesdk_app_id": "1:127290382991:android:232cb593246a1469006efa",
         "android_client_info": {
           "package_name": "com.nda.blum"
         }
       },
       "oauth_client": [
         {
-          "client_id": "853898831911-unclr8hcnu4cmn98g7n7a0jpi5s9vfi5.apps.googleusercontent.com",
+          "client_id": "127290382991-28spe9ofrqj1g5k1nesqoav2978ga2lq.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBff5xECSnX-k0YM1u3E87KFv6yPs1udLA"
+          "current_key": "AIzaSyD9uz80ziFUxRVn7DjBxj6c2tpi_3u6d-U"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "853898831911-unclr8hcnu4cmn98g7n7a0jpi5s9vfi5.apps.googleusercontent.com",
+              "client_id": "127290382991-28spe9ofrqj1g5k1nesqoav2978ga2lq.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
