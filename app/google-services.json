@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "127290382991-dq3vb1gkpu47sde8k2hhl9acsmn1rk87.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.nda.blum",
+            "certificate_hash": "d5d413ca3f0f09174ba6b20fdfd776e048858dcc"
+          }
+        },
+        {
           "client_id": "127290382991-28spe9ofrqj1g5k1nesqoav2978ga2lq.apps.googleusercontent.com",
           "client_type": 3
         }
