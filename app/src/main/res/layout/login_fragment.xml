@@ -17,14 +17,15 @@
 
     <TextView
         android:id="@+id/txtTitle1"
+        style="@style/title_style"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:text="TU NIDO,"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgTitle"
-        style="@style/title_style" />
+        app:layout_constraintTop_toBottomOf="@+id/imgTitle" />
 
     <TextView
         android:id="@+id/txtTitle2"
@@ -111,9 +112,9 @@
             android:layout_marginRight="16dp"
             android:background="@android:color/transparent"
             android:ems="10"
+            android:fontFamily="@font/avenir"
             android:hint="Contraseña"
             android:inputType="textPassword"
-            android:fontFamily="@font/avenir"
             android:text="@={loginViewModel.password}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -137,11 +138,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:layout_marginBottom="29dp"
         android:buttonTint="#FFFFFF"
         android:fontFamily="@font/avenir"
         android:shadowColor="#FFFFFF"
         android:text="Recuérdame"
         android:textColor="#FFFFFF"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/btnLogin"
         app:layout_constraintStart_toStartOf="@+id/layoutPassword"
         app:layout_constraintTop_toBottomOf="@+id/layoutPassword" />
 
@@ -149,11 +153,16 @@
         android:id="@+id/txtRecoverPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="22dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="29dp"
+        android:autoText="true"
+        android:elegantTextHeight="true"
         android:fontFamily="@font/avenir"
+        android:freezesText="true"
         android:text="Olvidé mi contraseña"
         android:textColor="@color/highLightColor"
         android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/btnLogin"
         app:layout_constraintEnd_toEndOf="@+id/layoutPassword"
         app:layout_constraintTop_toBottomOf="@+id/layoutPassword" />
 
@@ -161,42 +170,50 @@
         android:id="@+id/btnLogin"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="24dp"
         android:background="@drawable/pink_shape_button"
-        android:text="Entrar"
         android:fontFamily="@font/avenir"
+        android:text="Entrar"
         android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/layoutPassword"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/layoutPassword"
-        app:layout_constraintTop_toBottomOf="@+id/cbRememberMe" />
+        app:layout_constraintTop_toBottomOf="@+id/layoutPassword"
+        app:layout_constraintVertical_bias="0.315" />
 
     <TextView
         android:id="@+id/txtAccountQuestion"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="¿No tienes cuenta?"
+        android:layout_marginTop="8dp"
         android:fontFamily="@font/avenir"
+        android:text="¿No tienes cuenta?"
         android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/cbRememberMe"
-        app:layout_constraintTop_toBottomOf="@+id/btnLogin" />
+        app:layout_constraintTop_toBottomOf="@+id/btnLogin"
+        app:layout_constraintVertical_bias="0.251" />
 
     <TextView
         android:id="@+id/txtCrearCuenta"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Crear una cuenta"
+        android:layout_marginTop="8dp"
         android:fontFamily="@font/avenir"
+        android:text="Crear una cuenta"
         android:textColor="@color/highLightColor"
         android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/txtRecoverPassword"
-        app:layout_constraintTop_toTopOf="@+id/txtAccountQuestion" />
+        app:layout_constraintTop_toBottomOf="@+id/btnLogin"
+        app:layout_constraintVertical_bias="0.257" />
 
     <ImageView
         android:id="@+id/imgTitle"
-        android:layout_width="201dp"
-        android:layout_height="246dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="238dp"
+        android:layout_height="184dp"
+        android:layout_marginTop="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/cbRememberMe"

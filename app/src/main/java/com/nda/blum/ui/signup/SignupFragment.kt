@@ -101,7 +101,7 @@ class SignupFragment : Fragment() {
         val animationLeftToRight: Animation =
             AnimationUtils.loadAnimation(this.context, R.anim.blum_animation_lefttoright)
 
-        binding.imgLoginBack.animation = animationRightToLeft
+        //binding.imgLoginBack.animation = animationRightToLeft
         binding.imgSignupTitle.animation = animationLeftToRight
         binding.txtSignupTitle.animation = animationRightToLeft
         binding.layoutSignupName.animation = animationLeftToRight

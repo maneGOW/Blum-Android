@@ -1,6 +1,15 @@
 package com.nda.blum.DAO
 import com.google.gson.annotations.SerializedName
 
+data class FindUser(
+    @SerializedName("Code")
+    val code: String,
+    @SerializedName("Message")
+    val message: String,
+    @SerializedName("Result")
+    val result: FindUserResponse
+)
+
 data class FindUserResponse (
     @SerializedName("Id_Usuario")
     val Id_Usuario: String,
