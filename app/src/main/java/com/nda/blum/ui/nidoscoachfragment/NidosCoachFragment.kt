@@ -65,6 +65,10 @@ class NidosCoachFragment : Fragment() {
             }
         })
 
+        nidosCoachBinding.imgBackNidos.setOnClickListener {
+            this.findNavController().popBackStack()
+        }
+
         return nidosCoachBinding.root
     }
 }

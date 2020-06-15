@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -57,6 +58,10 @@ class BlummersCoachFragment : Fragment() {
                 }
             }
         })
+
+        blummersCoachBinding.imgBlummersBack.setOnClickListener {
+            this.findNavController().popBackStack()
+        }
         return blummersCoachBinding.root
     }
 
