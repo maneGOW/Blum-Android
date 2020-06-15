@@ -28,11 +28,13 @@ class FindingCoachViewModel(application: Application) :
     get() = _onCoachFinded
 
     init {
+        _showProgressDialog.value = false
         _onCoachFinded.value = false
     }
 
     fun sendUserToAsignarCoachService(){
         coroutineScope.launch {
+            _showProgressDialog.value = true
             val resultAsignarCoach = asignarCoachServive()
             if(resultAsignarCoach!!.code == "0"){
                 println("el usuario se asignó al coach ${resultAsignarCoach.result.idCoach} y al nido ${resultAsignarCoach.result.idNido}")
@@ -40,8 +42,11 @@ class FindingCoachViewModel(application: Application) :
                 secureStorage.storeObject("idNido", resultAsignarCoach.result.idNido)
                 createChatRoom()
                 _onCoachFinded.value = true
+                _showProgressDialog.value = false
             }else{
                 _onCoachFinded.value = false
+                _showProgressDialog.value = false
+
             }
         }
     }
@@ -69,6 +74,7 @@ class FindingCoachViewModel(application: Application) :
                 }
             } catch (e: Exception) {
                 e.printStackTrace()
+
             }
         }
         return createChatRoomResult

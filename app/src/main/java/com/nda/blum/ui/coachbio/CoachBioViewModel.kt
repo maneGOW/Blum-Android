@@ -27,11 +27,13 @@ class CoachBioViewModel(application: Application) : BaseViewModel(application) {
     val coachResume = MutableLiveData<String>()
 
     init {
+        _showProgressDialog.value = false
         getCoachData()
     }
 
     private fun getCoachData() {
         coroutineScope.launch {
+            _showProgressDialog.value = true
             val coachdata = susGetCoachData()
             println("COACH NAME ${coachdata!!.result.Nombre_Coach}")
             coachName.value = coachdata.result.Nombre_Coach
@@ -41,6 +43,7 @@ class CoachBioViewModel(application: Application) : BaseViewModel(application) {
             coachLocation.value = coachdata.result.Nacionalidad_Coach
             coachLanguages.value = "Español"
             coachResume.value = coachdata.result.Resena_Coach
+            _showProgressDialog.value = false
         }
     }
 

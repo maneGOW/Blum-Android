@@ -40,21 +40,29 @@ class AgendarSesionViewModel( application: Application) : BaseViewModel(applicat
     fun citasDisponibles() {
         coroutineScope.launch {
             try{
+                _showProgressDialog.value = true
                 val citasDisponiblesResult: CitasDisponiblesResponse? = getCitasDisponibles()
                 if (citasDisponiblesResult != null) {
                     if (citasDisponiblesResult.code == "0") {
                         fechasDisponibles.value = citasDisponiblesResult
                         _citasDisponibles.value = true
+                        _showProgressDialog.value = false
+
                     } else {
                         print(citasDisponiblesResult.message)
                         _citasDisponibles.value = false
+                        _showProgressDialog.value = false
+
                     }
                 } else {
                     println("Ocurrio un erro al obtener las citas")
                     _citasDisponibles.value = false
+                    _showProgressDialog.value = false
+
                 }
             }catch (e:Exception){
                 e.printStackTrace()
+                _showProgressDialog.value = false
             }
 
         }
@@ -62,19 +70,23 @@ class AgendarSesionViewModel( application: Application) : BaseViewModel(applicat
 
     fun agendarSesion(){
         coroutineScope.launch {
+            _showProgressDialog.value = true
             try{
                 val guardarCitaResult = susAgendarSesion()
                 if(guardarCitaResult.code == "0"){
                     println("Se agendó la sesión")
                     _sesionAgendadaSuccess.value = true
+                    _showProgressDialog.value = false
                     citasDisponibles()
                 }else{
                     println("Ocurrió un error al agendar la sesión")
                     _sesionAgendadaSuccess.value = false
+                    _showProgressDialog.value = false
                 }
             }
             catch (e:Exception){
                 e.printStackTrace()
+                _showProgressDialog.value = false
             }
         }
     }

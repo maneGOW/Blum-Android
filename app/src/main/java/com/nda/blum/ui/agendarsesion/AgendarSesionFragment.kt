@@ -1,5 +1,6 @@
 package com.nda.blum.ui.agendarsesion
 
+import android.app.ProgressDialog
 import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -30,6 +31,8 @@ class AgendarSesionFragment : Fragment() {
             inflater, R.layout.agendar_sesion_fragment, container, false
         )
 
+        val progressDialog = ProgressDialog.show(this.requireContext(), "", "Cargando...", true)
+
         val navView: BottomNavigationView = this.activity!!.findViewById(R.id.bttm_nav)
         navView.visibility = View.VISIBLE
 
@@ -39,6 +42,14 @@ class AgendarSesionFragment : Fragment() {
             ViewModelProviders.of(this, viewModelFactory).get(AgendarSesionViewModel::class.java)
 
         val sdf = SimpleDateFormat("dd/MM/yyyy")
+
+        agendarSesionViewModel!!.showProgressDialog.observe(viewLifecycleOwner, Observer {
+            if (it) {
+                progressDialog.show()
+            } else {
+                progressDialog.dismiss()
+            }
+        })
 
         agendarSesionViewModel!!.currentDate.value =
             sdf.format(bindingAgendarSesion.calendarView.date)

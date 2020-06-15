@@ -15,7 +15,11 @@ import kotlinx.android.synthetic.main.other_message.view.*
 private const val VIEW_TYPE_MY_MESSAGE = 1
 private const val VIEW_TYPE_OTHER_MESSAGE = 2
 
-class ChatIndividualAdapter (val context: Context, val recuperarChatResponse: RecuperarChatResponse, val userId: String) : RecyclerView.Adapter<MessageViewHolder>() {
+class ChatIndividualAdapter(
+    val context: Context,
+    val recuperarChatResponse: RecuperarChatResponse,
+    val userId: String
+) : RecyclerView.Adapter<MessageViewHolder>() {
 
     override fun getItemCount(): Int {
         return recuperarChatResponse.result.size
@@ -24,19 +28,23 @@ class ChatIndividualAdapter (val context: Context, val recuperarChatResponse: Re
     override fun getItemViewType(position: Int): Int {
         val message = recuperarChatResponse.result.get(position)
 
-        return if(userId == message.IdUsuarioEmisor_Chat) {
+        println("user ID del fragment $userId --- userID del array ${message.IdUsuarioEmisor_Chat}")
+        return if (userId == message.IdUsuarioEmisor_Chat) {
             VIEW_TYPE_MY_MESSAGE
-        }
-        else {
+        } else {
             VIEW_TYPE_OTHER_MESSAGE
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MessageViewHolder {
-        return if(viewType == VIEW_TYPE_MY_MESSAGE) {
-            MyMessageViewHolder(LayoutInflater.from(context).inflate(R.layout.my_message, parent, false))
+        return if (viewType == VIEW_TYPE_MY_MESSAGE) {
+            MyMessageViewHolder(
+                LayoutInflater.from(context).inflate(R.layout.my_message, parent, false)
+            )
         } else {
-            OtherMessageViewHolder(LayoutInflater.from(context).inflate(R.layout.other_message, parent, false))
+            OtherMessageViewHolder(
+                LayoutInflater.from(context).inflate(R.layout.other_message, parent, false)
+            )
         }
     }
 
@@ -46,7 +54,7 @@ class ChatIndividualAdapter (val context: Context, val recuperarChatResponse: Re
         holder.bind(message)
     }
 
-    inner class MyMessageViewHolder (view: View) : MessageViewHolder(view) {
+    inner class MyMessageViewHolder(view: View) : MessageViewHolder(view) {
         private var messageText: TextView = view.txtMyMessage
 
         override fun bind(message: RestultChatMessage) {
@@ -54,7 +62,7 @@ class ChatIndividualAdapter (val context: Context, val recuperarChatResponse: Re
         }
     }
 
-    inner class OtherMessageViewHolder (view: View) : MessageViewHolder(view) {
+    inner class OtherMessageViewHolder(view: View) : MessageViewHolder(view) {
         private var messageText: TextView = view.txtOtherMessage
 
         override fun bind(message: RestultChatMessage) {
@@ -63,6 +71,6 @@ class ChatIndividualAdapter (val context: Context, val recuperarChatResponse: Re
     }
 }
 
-open class MessageViewHolder (view: View) : RecyclerView.ViewHolder(view) {
-    open fun bind(message:RestultChatMessage) {}
+open class MessageViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    open fun bind(message: RestultChatMessage) {}
 }

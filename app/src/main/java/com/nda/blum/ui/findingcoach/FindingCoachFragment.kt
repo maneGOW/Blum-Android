@@ -1,5 +1,6 @@
 package com.nda.blum.ui.findingcoach
 
+import android.app.ProgressDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -26,6 +27,8 @@ class FindingCoachFragment : Fragment() {
             inflater,
             R.layout.finding_coach_fragment, container, false)
 
+        val progressDialog = ProgressDialog.show(this.requireContext(), "", "Cargando...", true)
+
         val imageViewTarget = bindingCoachFragment.imgLoadingGif
         val navView: BottomNavigationView = this.activity!!.findViewById(R.id.bttm_nav)
         navView.visibility = View.GONE
@@ -38,7 +41,13 @@ class FindingCoachFragment : Fragment() {
         val hubViewModel =
             ViewModelProviders.of(this, viewModelFactory).get(FindingCoachViewModel::class.java)
 
-        hubViewModel.nRespuesta.value = (1..3).random().toString()
+        hubViewModel.showProgressDialog.observe(viewLifecycleOwner, Observer {
+            if (it) {
+                progressDialog.show()
+            } else {
+                progressDialog.dismiss()
+            }
+        })
 
         hubViewModel.sendUserToAsignarCoachService()
 

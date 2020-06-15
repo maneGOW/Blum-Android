@@ -1,5 +1,6 @@
 package com.nda.blum.ui.coachresult
 
+import android.app.ProgressDialog
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -23,22 +24,33 @@ class CoachResultFragment : Fragment() {
     ): View? {
         val bindingCoachResult: CoachResultFragmentBinding = DataBindingUtil.inflate(
             inflater,
-            R.layout.coach_result_fragment, container, false)
+            R.layout.coach_result_fragment, container, false
+        )
 
         val application = requireNotNull(this.activity).application
+
+        val progressDialog = ProgressDialog.show(this.requireContext(), "", "Cargando...", true)
 
         val viewModelFactory = CoachResultViewModelFactory(application)
         val chatWithCoachViewmodel =
             ViewModelProviders.of(this, viewModelFactory).get(CoachResultViewModel::class.java)
 
         chatWithCoachViewmodel.coachName.observe(viewLifecycleOwner, Observer {
-            if(it.isNotBlank() && it.isNotEmpty()){
+            if (it.isNotBlank() && it.isNotEmpty()) {
                 bindingCoachResult.textView28.text = it
             }
         })
 
+        chatWithCoachViewmodel.showProgressDialog.observe(viewLifecycleOwner, Observer {
+            if (it) {
+                progressDialog.show()
+            } else {
+                progressDialog.dismiss()
+            }
+        })
+
         chatWithCoachViewmodel.coachProfilePicture.observe(viewLifecycleOwner, Observer {
-            if(it.isNotBlank() && it.isNotEmpty()){
+            if (it.isNotBlank() && it.isNotEmpty()) {
                 val imageViewTarget = bindingCoachResult.profilePic
                 Glide.with(this)
                     .load(it)
@@ -51,7 +63,8 @@ class CoachResultFragment : Fragment() {
         navView.visibility = View.GONE
 
         bindingCoachResult.button7.setOnClickListener {
-            this.findNavController().navigate(CoachResultFragmentDirections.actionCoachResultFragmentToCoachProfileFragment())
+            this.findNavController()
+                .navigate(CoachResultFragmentDirections.actionCoachResultFragmentToCoachProfileFragment())
         }
         return bindingCoachResult.root
     }

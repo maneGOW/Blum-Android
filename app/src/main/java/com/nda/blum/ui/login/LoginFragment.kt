@@ -92,7 +92,7 @@ class LoginFragment : Fragment() {
                     this.findNavController()
                         .navigate(LoginFragmentDirections.actionMainFragmentToSliderHostFragment("loginFragment"))
                 } else {
-                    this.findNavController()
+                this.findNavController()
                         .navigate(LoginFragmentDirections.actionMainFragmentToHubAlumnoFragment())
                 }
             }

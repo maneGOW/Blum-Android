@@ -79,7 +79,7 @@ class HubAlumnoFragment : Fragment() {
                 }
 
                 binding.btnChatCoach.setOnClickListener{
-                    this.findNavController().navigate(HubAlumnoFragmentDirections.actionHubAlumnoFragmentToChatWithCoachFragment("userCoach"))
+                    this.findNavController().navigate(HubAlumnoFragmentDirections.actionHubAlumnoFragmentToChatWithCoachFragment("userCoach", ""))
                 }
 
                 binding.btnNotificaciones.setOnClickListener {
@@ -87,7 +87,7 @@ class HubAlumnoFragment : Fragment() {
                 }
 
                 binding.btnChatNido.setOnClickListener {
-                    this.findNavController().navigate(HubAlumnoFragmentDirections.actionHubAlumnoFragmentToChatWithCoachFragment("userNest"))
+                    this.findNavController().navigate(HubAlumnoFragmentDirections.actionHubAlumnoFragmentToChatWithCoachFragment("userNest", ""))
                 }
             }
         })

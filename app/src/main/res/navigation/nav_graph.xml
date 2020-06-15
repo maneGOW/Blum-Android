@@ -133,7 +133,7 @@
         tools:layout="@layout/recursos_coach_fragment" />
     <fragment
         android:id="@+id/blummersCoachFragment"
-        android:name="com.nda.blum.BlummersCoachFragment"
+        android:name="com.nda.blum.ui.bluumerscoach.BlummersCoachFragment"
         android:label="blummers_coach_fragment"
         tools:layout="@layout/blummers_coach_fragment" >
         <action
@@ -194,10 +194,12 @@
         android:label="ChatWithCoachFragment" >
         <argument android:name="chatType"
             app:argType="string" />
+        <argument android:name="idRequerido"
+            app:argType="string" />
     </fragment>
   <fragment
         android:id="@+id/nidosCoachFragment"
-        android:name="com.nda.blum.NidosCoachFragment"
+        android:name="com.nda.blum.ui.nidoscoachfragment.NidosCoachFragment"
         android:label="nidos_coach_fragment"
         tools:layout="@layout/nidos_coach_fragment" >
       <action

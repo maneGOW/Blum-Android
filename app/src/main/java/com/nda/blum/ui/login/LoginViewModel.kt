@@ -46,11 +46,13 @@ class LoginViewModel(application: Application) :
         coroutineScope.launch {
             _showProgressDialog.value = true
             userRol.value = secureStorage.getObject("rolUSuario", String::class.java)
-            _showProgressDialog.value = false
             if (login()) {
+                _showProgressDialog.value = false
                 checkFristLaunch()
             } else {
                 _showErrorMessage.value = true
+                _showProgressDialog.value = false
+
             }
         }
     }

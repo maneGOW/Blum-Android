@@ -1,5 +1,6 @@
 package com.nda.blum.ui.coachprofile
 
+import android.app.ProgressDialog
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -27,6 +28,8 @@ class CoachProfileFragment : Fragment() {
             inflater,
             R.layout.coach_profile_fragment, container, false)
 
+        val progressDialog = ProgressDialog.show(this.requireContext(), "", "Cargando...", true)
+
         val application = requireNotNull(this.activity).application
 
         val viewModelFactory = CoachProfileViewModelFactory(application)
@@ -39,6 +42,14 @@ class CoachProfileFragment : Fragment() {
         coachProfileViewModel.coachName.observe(viewLifecycleOwner, Observer {
             if(it.isNotEmpty() && it.isNotBlank()){
                 bindingCoachProfile.txtCoachName.text = it
+            }
+        })
+
+        coachProfileViewModel.showProgressDialog.observe(viewLifecycleOwner, Observer {
+            if (it) {
+                progressDialog.show()
+            } else {
+                progressDialog.dismiss()
             }
         })
 

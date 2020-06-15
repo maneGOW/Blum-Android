@@ -1,5 +1,6 @@
 package com.nda.blum.ui.coachbio
 
+import android.app.ProgressDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -26,12 +27,22 @@ class CoachBioFragment : Fragment() {
 
         val application = requireNotNull(this.activity).application
 
+        val progressDialog = ProgressDialog.show(this.requireContext(), "", "Cargando...", true)
+
         val viewModelFactory = CoachBioViewModelFactory(application)
         val coachBioViewModel =
             ViewModelProviders.of(this, viewModelFactory).get(CoachBioViewModel::class.java)
 
         val navView: BottomNavigationView = this.activity!!.findViewById(R.id.bttm_nav)
         navView.visibility = View.GONE
+
+        coachBioViewModel.showProgressDialog.observe(viewLifecycleOwner, Observer {
+            if (it) {
+                progressDialog.show()
+            } else {
+                progressDialog.dismiss()
+            }
+        })
 
         coachBioViewModel.coachCedula.observe(viewLifecycleOwner, Observer {
             if(it.isNotBlank() && it.isNotEmpty()){

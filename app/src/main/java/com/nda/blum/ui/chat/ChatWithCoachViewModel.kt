@@ -6,10 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import com.google.gson.Gson
 import com.jcloquell.androidsecurestorage.SecureStorage
 import com.nda.blum.BaseViewModel
-import com.nda.blum.DAO.FindUser
-import com.nda.blum.DAO.FindUserResponse
-import com.nda.blum.DAO.RecuperarChatResponse
-import com.nda.blum.DAO.SendMensajeResult
+import com.nda.blum.DAO.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -38,6 +35,9 @@ class ChatWithCoachViewModel(application: Application) :
     val coachName = MutableLiveData<String>()
     val coachProfilePic = MutableLiveData<String>()
 
+    val nidoName = MutableLiveData<String>()
+    val nidoProfilePic = MutableLiveData<String>()
+
     val userID = MutableLiveData<String>()
 
     val alumnoID = MutableLiveData<String>()
@@ -55,9 +55,9 @@ class ChatWithCoachViewModel(application: Application) :
     val userMessage = MutableLiveData<String>()
 
     init {
+        _showProgressDialog.value = false
         _filledMessageList.value = false
         userID.value = secureStorage.getObject("idUsuario", String::class.java)
-        getCoachName()
     }
 
     fun getMessagesFromServer() {
@@ -74,6 +74,7 @@ class ChatWithCoachViewModel(application: Application) :
             } else {
                 println("SIN CHATS")
                 _filledMessageList.value = false
+                _showProgressDialog.value = false
             }
         }
     }
@@ -89,18 +90,23 @@ class ChatWithCoachViewModel(application: Application) :
         }
     }
 
-    private fun getCoachName() {
+    fun getCoachName() {
         coroutineScope.launch {
+            _showProgressDialog.value = true
             val coachdata = susGetCoachData()
             println("COACH NAME ${coachdata!!.result.Nombre_Usuario}")
             coachName.value = coachdata.result.Nombre_Usuario
             coachProfilePic.value = coachdata.result.Foto_Usuario
+            _showProgressDialog.value = false
         }
     }
 
     private suspend fun susGetCoachData(): FindUser? {
         var findUserResponse: FindUser? = null
-        val idCoach = secureStorage.getObject("idCoach", String::class.java)
+        var idCoach = secureStorage.getObject("idCoach", String::class.java)
+        if(chatType.value == "coachUser"){
+            idCoach = secureStorage.getObject("idUsuario", String::class.java)
+        }
         println("Id coach $idCoach")
         withContext(Dispatchers.IO) {
             val client = OkHttpClient().newBuilder().build()
@@ -124,6 +130,49 @@ class ChatWithCoachViewModel(application: Application) :
         return findUserResponse
     }
 
+    fun getNidoName(){
+        coroutineScope.launch {
+            _showProgressDialog.value = true
+            val nidoData = susGetNidoName()
+            if(nidoData!!.code == "0"){
+                nidoName.value = nidoData.result.Nombre_Nido
+                nidoProfilePic.value = nidoData.result.Foto_Nido
+                _showProgressDialog.value = false
+            }else{
+                _showProgressDialog.value = false
+            }
+        }
+    }
+
+    private suspend fun susGetNidoName(): BuscarNidoResponse?{
+        var nidoData: BuscarNidoResponse? = null
+        var idNido = secureStorage.getObject("idNido", String::class.java)
+        if(idNido == "0" || idNido.isNullOrEmpty()){
+            idNido = nidoID.value
+        }
+        println("Id nido $idNido")
+        withContext(Dispatchers.IO) {
+            val client = OkHttpClient().newBuilder().build()
+            val mediaType = "text/plain".toMediaTypeOrNull()
+            val body: RequestBody = RequestBody.create(mediaType, "")
+            val request = Request.Builder()
+                .url("https://retosalvatucasa.com/ws_app_nda/buscaimagennido.php?id_nido=$idNido")
+                .method("POST", body)
+                .build()
+            val response: Response = client.newCall(request).execute()
+            try {
+                if (response.code == 200) {
+                    val parsedResponse =
+                        Gson().fromJson(response.body!!.string(), BuscarNidoResponse::class.java)
+                    nidoData = parsedResponse
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+        return nidoData
+    }
+
     fun setChatUrl() {
         val idCoach = secureStorage.getObject("idCoach", String::class.java)
         val idUser = secureStorage.getObject("idUsuario", String::class.java)
@@ -145,16 +194,17 @@ class ChatWithCoachViewModel(application: Application) :
                 "https://retosalvatucasa.com/ws_app_nda/chatindividual.php?nombrechat=$idCoach-$idNido-nido&sender=$idUser&receiver=$idCoach&timestamp=${System.currentTimeMillis()}"
         } else if (chatType.value == "coachUser") {
             chatUrl.value =
-                "https://www.retosalvatucasa.com/ws_app_nda/recuperarchat.php?idchatroom=$idCoach-${alumnoID.value}-individual"
+                "https://www.retosalvatucasa.com/ws_app_nda/recuperarchat.php?idchatroom=$idUser-${nidoID.value}-individual"
             sendMessageUrl.value =
-                "https://retosalvatucasa.com/ws_app_nda/chatindividual.php?nombrechat=$idCoach-${alumnoID.value}-individual&sender=$idUser&receiver=$idCoach&timestamp=${System.currentTimeMillis()}"
+                "https://retosalvatucasa.com/ws_app_nda/chatindividual.php?nombrechat=$idUser-${nidoID.value}-individual&sender=$idUser&receiver=$idCoach&timestamp=${System.currentTimeMillis()}"
 
         } else if (chatType.value == "coachNest") {
             chatUrl.value =
-                "https://www.retosalvatucasa.com/ws_app_nda/recuperarchat.php?idchatroom=$idCoach-${nidoID.value}-nido"
+                "https://www.retosalvatucasa.com/ws_app_nda/recuperarchat.php?idchatroom=$idUser-${nidoID.value}-nido"
+            println(chatUrl.value)
             sendMessageUrl.value =
-                "https://retosalvatucasa.com/ws_app_nda/chatindividual.php?nombrechat=$idCoach-${nidoID.value}-nido&sender=$idUser&receiver=$idCoach&timestamp=${System.currentTimeMillis()}"
-
+                "https://retosalvatucasa.com/ws_app_nda/chatindividual.php?nombrechat=$idUser-${nidoID.value}-nido&sender=$idUser&receiver=$idCoach&timestamp=${System.currentTimeMillis()}"
+            println(sendMessageUrl.value)
         }
     }
 
@@ -182,7 +232,6 @@ class ChatWithCoachViewModel(application: Application) :
         }
         return sendMensajeResult
     }
-
 
     private suspend fun susGetMessages(): RecuperarChatResponse? {
         var recuperarChatResponse: RecuperarChatResponse? = null

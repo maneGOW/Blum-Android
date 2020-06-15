@@ -23,15 +23,18 @@ class CoachResultViewModel(application: Application) : BaseViewModel(application
     var coachProfilePicture = MutableLiveData<String>()
 
     init {
+        _showProgressDialog.value = false
         getCoachName()
     }
 
     private fun getCoachName() {
         coroutineScope.launch {
+            _showProgressDialog.value = true
             val coachdata = susGetCoachData()
             println("COACH NAME ${coachdata!!.result.Nombre_Usuario}")
             coachName.value = coachdata.result.Nombre_Usuario
             coachProfilePicture.value = coachdata.result.Foto_Usuario
+            _showProgressDialog.value = false
         }
     }
 

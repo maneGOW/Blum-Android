@@ -39,11 +39,11 @@
             android:text="@={signupViewModel.celular}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageView33"
+            app:layout_constraintStart_toEndOf="@+id/imgRecurososItem"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/imageView33"
+            android:id="@+id/imgRecurososItem"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_marginStart="8dp"
