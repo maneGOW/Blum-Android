@@ -15,7 +15,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.nda.blum.R
 import com.nda.blum.adapters.SesionesCoachAdapter
 import com.nda.blum.databinding.SesionersCoachFragmentBinding
-import com.nda.blum.db.BlumDatabase
 import kotlinx.coroutines.InternalCoroutinesApi
 import java.text.SimpleDateFormat
 
@@ -38,10 +37,9 @@ class SesionersCoachFragment : Fragment() {
             false
         )
         val application = requireNotNull(this.activity).application
-        val dataSource = BlumDatabase.getInstance(application).userDao()
 
         val viewModelFactory =
-            SesionesCoachViewModelFactory(application,dataSource)
+            SesionesCoachViewModelFactory(application)
         val sesionesCoachViewModel = ViewModelProviders.of(this,viewModelFactory).get(SesionersCoachViewModel::class.java)
 
         bindingSesionesCoach.lifecycleOwner = this

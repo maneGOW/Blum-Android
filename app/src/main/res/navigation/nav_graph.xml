@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/coachBioFragment">
+    app:startDestination="@id/splashScreenFragment">
   
     <fragment
         android:id="@+id/loginFragment"
@@ -70,7 +70,7 @@
     </fragment>
     <fragment
         android:id="@+id/coachResultFragment"
-        android:name="com.nda.blum.CoachResultFragment"
+        android:name="com.nda.blum.ui.coachresult.CoachResultFragment"
         tools:layout="@layout/coach_result_fragment"
         android:label="CoachResultFragment" >
         <action
@@ -88,7 +88,7 @@
     </fragment>
     <fragment
         android:id="@+id/coachBioFragment"
-        android:name="com.nda.blum.CoachBioFragment"
+        android:name="com.nda.blum.ui.coachbio.CoachBioFragment"
         android:label="coach_bio_fragment"
         tools:layout="@layout/coach_bio_fragment" >
         <action
@@ -97,7 +97,7 @@
     </fragment>
     <fragment
         android:id="@+id/coachProfileFragment"
-        android:name="com.nda.blum.CoachProfileFragment"
+        android:name="com.nda.blum.ui.coachprofile.CoachProfileFragment"
         android:label="coach_profile_fragment"
         tools:layout="@layout/coach_profile_fragment" >
         <action
@@ -212,7 +212,7 @@
     <fragment
         android:id="@+id/quizz2Fragment"
         android:name="com.nda.blum.ui.quizz2.Quizz2Fragment"
-        tools:layout="@layout/quizz2__fragment"
+        tools:layout="@layout/quizz2_fragment"
         android:label="Quizz2Fragment" >
         <action
             android:id="@+id/action_quizz2Fragment_to_quizz3Fragment"
@@ -229,7 +229,7 @@
     </fragment>
     <fragment
         android:id="@+id/quizz4Fragment"
-        android:name="com.nda.blum.Quizz4Fragment"
+        android:name="com.nda.blum.ui.quizz4.Quizz4Fragment"
         tools:layout="@layout/quizz4_fragment"
         android:label="Quizz4Fragment" >
         <action
@@ -238,29 +238,11 @@
     </fragment>
     <fragment
         android:id="@+id/quizz5Fragment"
-        android:name="com.nda.blum.Quizz5Fragment"
+        android:name="com.nda.blum.ui.quizz5.Quizz5Fragment"
         tools:layout="@layout/quizz5_fragment"
         android:label="Quizz5Fragment" >
         <action
-            android:id="@+id/action_quizz5Fragment_to_quizz6Fragment"
-            app:destination="@id/quizz6Fragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/quizz6Fragment"
-        android:name="com.nda.blum.Quizz6Fragment"
-        tools:layout="@layout/quizz6_fragment"
-        android:label="Quizz6Fragment" >
-        <action
-            android:id="@+id/action_quizz6Fragment_to_quizz7Fragment"
-            app:destination="@id/quizz7Fragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/quizz7Fragment"
-        android:name="com.nda.blum.Quizz7Fragment"
-        tools:layout="@layout/quizz7_fragment"
-        android:label="Quizz7Fragment" >
-        <action
-            android:id="@+id/action_quizz7Fragment_to_findingCoachFragment"
+            android:id="@+id/action_quizz5Fragment_to_findingCoachFragment"
             app:destination="@id/findingCoachFragment" />
     </fragment>
 </navigation>

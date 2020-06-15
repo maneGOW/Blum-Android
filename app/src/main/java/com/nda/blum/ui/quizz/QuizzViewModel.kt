@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import com.google.gson.Gson
 import com.nda.blum.BaseViewModel
 import com.nda.blum.DAO.GetPreguntasResponse
-import com.nda.blum.db.dao.UserDao
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -15,7 +14,7 @@ import okhttp3.Request
 import okhttp3.RequestBody
 import okhttp3.Response
 
-class QuizzViewModel(private val dataSource: UserDao, application: Application) : BaseViewModel(application) {
+class QuizzViewModel(application: Application) : BaseViewModel(application) {
 
     val percentage = MutableLiveData<Int>()
 

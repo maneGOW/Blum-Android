@@ -4,10 +4,9 @@ import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.google.gson.Gson
+import com.jcloquell.androidsecurestorage.SecureStorage
 import com.nda.blum.BaseViewModel
 import com.nda.blum.DAO.BuscarCitasResponse
-import com.nda.blum.db.dao.UserDao
-import com.nda.blum.db.entity.User
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -17,11 +16,13 @@ import okhttp3.Request
 import okhttp3.RequestBody
 import okhttp3.Response
 
-class SesionersCoachViewModel(private val database: UserDao, application: Application) :
+class SesionersCoachViewModel( application: Application) :
     BaseViewModel(application) {
     val idCoach = MutableLiveData<String>()
-    val diaCita = MutableLiveData<String>() //dd/mm/aaaa
+    val diaCita = MutableLiveData<String>()
     val citasDelServer = MutableLiveData<BuscarCitasResponse>()
+
+    val secureStorage = SecureStorage(getApplication())
 
     private val _filledCitasDelServer = MutableLiveData<Boolean>()
     val filledCitasDelServer: LiveData<Boolean>
@@ -50,13 +51,13 @@ class SesionersCoachViewModel(private val database: UserDao, application: Applic
     private suspend fun susGetCitas(): BuscarCitasResponse? {
         var buscarCitasResult: BuscarCitasResponse? = null
         withContext(Dispatchers.IO) {
-            val userData = susGetUserData()
+            val idUsuario = secureStorage.getObject("idUsuario", String::class.java)
             val client = OkHttpClient().newBuilder().build()
             val mediaType = "text/plain".toMediaTypeOrNull()
             val body: RequestBody = RequestBody.create(mediaType, "")
-            println("ID COACH: ${userData!!.userServerId} diaCita ${diaCita.value}")
+            println("ID COACH: $idUsuario diaCita ${diaCita.value}")
             val request = Request.Builder()
-                .url("https://retosalvatucasa.com/ws_app_nda/buscarcitas.php?idcoach=${userData!!.userServerId}&diacita=${diaCita.value}")
+                .url("https://retosalvatucasa.com/ws_app_nda/buscarcitas.php?idcoach=$idUsuario&diacita=${diaCita.value}")
                 .method("POST", body)
                 .build()
 
@@ -73,12 +74,6 @@ class SesionersCoachViewModel(private val database: UserDao, application: Applic
             }
         }
         return buscarCitasResult
-    }
-
-    private suspend fun susGetUserData(): User? {
-        return withContext(Dispatchers.IO) {
-            database.getAllUserData()
-        }
     }
 
 }

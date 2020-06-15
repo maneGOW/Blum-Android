@@ -1,7 +1,7 @@
-package com.nda.blum
+package com.nda.blum.ui.quizz4
 
 import androidx.lifecycle.ViewModel
 
-class CoachBioViewModel : ViewModel() {
+class Quizz4ViewModel : ViewModel() {
     // TODO: Implement the ViewModel
 }

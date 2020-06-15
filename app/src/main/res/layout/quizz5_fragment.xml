@@ -6,7 +6,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".Quizz5Fragment">
+        tools:context=".ui.quizz5.Quizz5Fragment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout"
@@ -52,214 +52,144 @@
             android:layout_width="match_parent"
             android:layout_height="15dp"
             android:layout_marginStart="32dp"
-            android:layout_marginLeft="32dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="24dp"
             android:layout_marginEnd="32dp"
-            android:layout_marginRight="32dp"
             android:max="100"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
 
-        <androidx.core.widget.NestedScrollView
-            android:layout_width="0dp"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/customProgress">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
+            <TextView
+                android:id="@+id/txtQuestion16"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="32dp"
+                android:background="@drawable/white_rounded_shape"
+                android:paddingStart="15dp"
+                android:paddingLeft="15dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:text="¿Tienes un empleo actualmente?"
+                android:textSize="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/txtQuestion17"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="32dp"
+                android:background="@drawable/white_rounded_shape"
+                android:paddingStart="15dp"
+                android:paddingLeft="15dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:text="¿Estás tomando algún medicamento?"
+                android:textSize="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/spinner6" />
+
+            <TextView
+                android:id="@+id/txtQuestion18"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="32dp"
+                android:background="@drawable/white_rounded_shape"
+                android:paddingStart="15dp"
+                android:paddingLeft="15dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:text="¿Qué día de la semana preferirías tener tu sesión individual?"
+                android:textSize="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/spinner7" />
+
+            <TextView
+                android:id="@+id/txtQuestion19"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="32dp"
+                android:background="@drawable/white_rounded_shape"
+                android:paddingStart="15dp"
+                android:paddingLeft="15dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:text="¿En qué horario preferirías tener tu sesión individual?"
+                android:textSize="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/spinner8" />
+
+            <Button
+                android:id="@+id/button8"
+                android:layout_width="200dp"
+                android:layout_height="30dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/pink_shape_button"
+                android:text="siguiente"
+                android:textColor="#FFFFFF"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/customProgress">
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
-                <TextView
-                    android:id="@+id/txtQuestion1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="32dp"
-                    android:background="@drawable/white_rounded_shape"
-                    android:gravity="center_vertical"
-                    android:paddingStart="15dp"
-                    android:paddingLeft="15dp"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
-                    android:text="Cuando tu hijo no hace lo que necesitas o quieres que haga, ¿qué haces?"
-                    android:textSize="16dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+            <Spinner
+                android:id="@+id/spinner6"
+                android:layout_width="358dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtQuestion16" />
 
-                <TextView
-                    android:id="@+id/txtQuestion1Answer1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:background="@drawable/white_rounded_shape_purple_stroke"
-                    android:gravity="center"
-                    android:text="Exploto, le grito, lo amenazo y \n luego le pido perdón."
-                    android:textSize="16dp"
-                    app:layout_constraintEnd_toEndOf="@+id/txtQuestionOne"
-                    app:layout_constraintStart_toStartOf="@+id/txtQuestionOne"
-                    app:layout_constraintTop_toBottomOf="@+id/txtQuestionOne" />
+            <Spinner
+                android:id="@+id/spinner7"
+                android:layout_width="358dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtQuestion17" />
 
-                <TextView
-                    android:id="@+id/txtQuestion1Answer2"
-                    android:layout_width="0dp"
-                    android:layout_height="30dp"
-                    android:layout_marginTop="8dp"
-                    android:background="@drawable/white_rounded_shape_purple_stroke"
-                    android:gravity="center"
-                    android:text="Me salgo de la casa."
-                    android:textSize="16dp"
-                    app:layout_constraintEnd_toEndOf="@+id/txtQuestion1Answer"
-                    app:layout_constraintStart_toStartOf="@+id/txtQuestion1Answer"
-                    app:layout_constraintTop_toBottomOf="@+id/txtQuestion1Answer" />
+            <Spinner
+                android:id="@+id/spinner8"
+                android:layout_width="358dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtQuestion18" />
 
-                <TextView
-                    android:id="@+id/txtQuestion1Answer3"
-                    android:layout_width="0dp"
-                    android:layout_height="30dp"
-                    android:layout_marginTop="8dp"
-                    android:background="@drawable/white_rounded_shape_purple_stroke"
-                    android:gravity="center"
-                    android:text="Le echo la culpa y lo sermoneo."
-                    android:textSize="16dp"
-                    app:layout_constraintEnd_toEndOf="@+id/txtQuestion1Answer2"
-                    app:layout_constraintStart_toStartOf="@+id/txtQuestion1Answer2"
-                    app:layout_constraintTop_toBottomOf="@+id/txtQuestion1Answer2" />
+            <Spinner
+                android:id="@+id/spinner9"
+                android:layout_width="358dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtQuestion19" />
 
-                <TextView
-                    android:id="@+id/txtQuestion1Answer4"
-                    android:layout_width="0dp"
-                    android:layout_height="30dp"
-                    android:layout_marginTop="8dp"
-                    android:background="@drawable/white_rounded_shape_purple_stroke"
-                    android:gravity="center"
-                    android:text="Todas las anteriores."
-                    android:textSize="16dp"
-                    app:layout_constraintEnd_toEndOf="@+id/txtQuestion1Answer3"
-                    app:layout_constraintStart_toStartOf="@+id/txtQuestion1Answer3"
-                    app:layout_constraintTop_toBottomOf="@+id/txtQuestion1Answer3" />
-
-                <TextView
-                    android:id="@+id/txtQuestion1Answer"
-                    android:layout_width="0dp"
-                    android:layout_height="30dp"
-                    android:layout_marginTop="8dp"
-                    android:background="@drawable/white_rounded_shape_purple_stroke"
-                    android:gravity="center"
-                    android:text="Me quedo callada, prefiero eso a pelear."
-                    android:textSize="16dp"
-                    app:layout_constraintEnd_toEndOf="@+id/txtQuestion1Answer1"
-                    app:layout_constraintStart_toStartOf="@+id/txtQuestion1Answer1"
-                    app:layout_constraintTop_toBottomOf="@+id/txtQuestion1Answer1" />
-
-                <TextView
-                    android:id="@+id/txtQuestion2"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="32dp"
-                    android:background="@drawable/white_rounded_shape"
-                    android:paddingStart="15dp"
-                    android:paddingLeft="15dp"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
-                    android:text="¿Con cuál de las siguientes afirmaciones te identificas más?"
-                    android:textSize="16dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/txtQuestion1Answer4" />
-
-                <TextView
-                    android:id="@+id/txtQuestion2Answer2"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:background="@drawable/white_rounded_shape_purple_stroke"
-                    android:gravity="center"
-                    android:text="Amo lo que hago, me siento como \n pez en el agua en mi trabajo."
-                    android:textSize="16dp"
-                    app:layout_constraintEnd_toEndOf="@+id/txtQuestion2Answer1"
-                    app:layout_constraintStart_toStartOf="@+id/txtQuestion2Answer1"
-                    app:layout_constraintTop_toBottomOf="@+id/txtQuestion2Answer1" />
-
-                <TextView
-                    android:id="@+id/txtQuestion2Answer13"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:background="@drawable/white_rounded_shape_purple_stroke"
-                    android:gravity="center"
-                    android:text="Me gusta mucho ser yo, me amo y soy capaz \n de amar así a los demás."
-                    android:textSize="16dp"
-                    app:layout_constraintEnd_toEndOf="@+id/txtQuestion2Answer1"
-                    app:layout_constraintStart_toStartOf="@+id/txtQuestion2Answer1"
-                    app:layout_constraintTop_toBottomOf="@+id/txtQuestion2Answer2" />
-
-                <TextView
-                    android:id="@+id/txtQuestion2Answer14"
-                    android:layout_width="0dp"
-                    android:layout_height="30dp"
-                    android:layout_marginTop="8dp"
-                    android:background="@drawable/white_rounded_shape_purple_stroke"
-                    android:gravity="center"
-                    android:text="Ninguna de las anteriores."
-                    android:textSize="16dp"
-                    app:layout_constraintEnd_toEndOf="@+id/txtQuestion2Answer1"
-                    app:layout_constraintStart_toStartOf="@+id/txtQuestion2Answer15"
-                    app:layout_constraintTop_toBottomOf="@+id/txtQuestion2Answer15" />
-
-                <TextView
-                    android:id="@+id/txtQuestion2Answer15"
-                    android:layout_width="0dp"
-                    android:layout_height="30dp"
-                    android:layout_marginTop="8dp"
-                    android:background="@drawable/white_rounded_shape_purple_stroke"
-                    android:gravity="center"
-                    android:text="Todas las anteriores."
-                    android:textSize="16dp"
-                    app:layout_constraintEnd_toEndOf="@+id/txtQuestion2Answer1"
-                    app:layout_constraintStart_toStartOf="@+id/txtQuestion2Answer1"
-                    app:layout_constraintTop_toBottomOf="@+id/txtQuestion2Answer13" />
-
-                <TextView
-                    android:id="@+id/txtQuestion2Answer1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:background="@drawable/white_rounded_shape_purple_stroke"
-                    android:gravity="center"
-                    android:text="Siento que soy una parte importantísima \n en mi familia."
-                    android:textSize="16dp"
-                    app:layout_constraintEnd_toEndOf="@+id/txtQuestionTwo"
-                    app:layout_constraintStart_toStartOf="@+id/txtQuestionTwo"
-                    app:layout_constraintTop_toBottomOf="@+id/txtQuestionTwo" />
-
-                <Button
-                    android:id="@+id/button8"
-                    android:layout_width="200dp"
-                    android:layout_height="30dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:background="@drawable/pink_shape_button"
-                    android:text="siguiente"
-                    android:textColor="#FFFFFF"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/txtQuestion2Answer14" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </androidx.core.widget.NestedScrollView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

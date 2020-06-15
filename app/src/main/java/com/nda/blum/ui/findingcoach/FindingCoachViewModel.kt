@@ -4,11 +4,10 @@ import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.google.gson.Gson
+import com.jcloquell.androidsecurestorage.SecureStorage
 import com.nda.blum.BaseViewModel
 import com.nda.blum.DAO.AsignarCoachResponse
 import com.nda.blum.DAO.CreateaChatRoomResponse
-import com.nda.blum.db.dao.UserDao
-import com.nda.blum.db.entity.User
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -18,10 +17,11 @@ import okhttp3.Request
 import okhttp3.RequestBody
 import okhttp3.Response
 
-class FindingCoachViewModel(private val dataSource: UserDao, application: Application) :
+class FindingCoachViewModel(application: Application) :
     BaseViewModel(application) {
     val nRespuesta = MutableLiveData<String>()
     val idUsuario = MutableLiveData<String>()
+    val secureStorage = SecureStorage(getApplication())
 
     private val _onCoachFinded = MutableLiveData<Boolean>()
     val onCoachFinded : LiveData<Boolean>
@@ -36,7 +36,8 @@ class FindingCoachViewModel(private val dataSource: UserDao, application: Applic
             val resultAsignarCoach = asignarCoachServive()
             if(resultAsignarCoach!!.code == "0"){
                 println("el usuario se asignó al coach ${resultAsignarCoach.result.idCoach} y al nido ${resultAsignarCoach.result.idNido}")
-                susUpdateCoachAndNido(resultAsignarCoach.result.idCoach,resultAsignarCoach.result.idNido)
+                secureStorage.storeObject("idCoach", resultAsignarCoach.result.idCoach)
+                secureStorage.storeObject("idNido", resultAsignarCoach.result.idNido)
                 createChatRoom()
                 _onCoachFinded.value = true
             }else{
@@ -48,12 +49,13 @@ class FindingCoachViewModel(private val dataSource: UserDao, application: Applic
     private suspend fun createChatRoom(): CreateaChatRoomResponse? {
         var createChatRoomResult: CreateaChatRoomResponse? = null
         withContext(Dispatchers.IO) {
-            val userData = susGetUserData()
+            val coachId = secureStorage.getObject("idCoach", String::class.java)
+            val userId = secureStorage.getObject("idUsuario", String::class.java)
             val client = OkHttpClient().newBuilder().build()
             val mediaType = "text/plain".toMediaTypeOrNull()
             val body: RequestBody = RequestBody.create(mediaType, "")
             val request = Request.Builder()
-                .url("https://retosalvatucasa.com/ws_app_nda/createChatChannel.php?nombrechatroom=${userData!!.coachId}-${userData.userServerId}-individual")
+                .url("https://retosalvatucasa.com/ws_app_nda/createChatChannel.php?nombrechatroom=$coachId-$userId-individual")
                 .method("POST", body)
                 .build()
 
@@ -75,12 +77,13 @@ class FindingCoachViewModel(private val dataSource: UserDao, application: Applic
     private suspend fun asignarCoachServive(): AsignarCoachResponse? {
         var asignarCoachResponse: AsignarCoachResponse? = null
         withContext(Dispatchers.IO) {
-            val userData = susGetUserData()
+            val nRespuesta = secureStorage.getObject("nRespuesta", String::class.java)
+            val userId = secureStorage.getObject("idUsuario", String::class.java)
             val client = OkHttpClient().newBuilder().build()
             val mediaType = "text/plain".toMediaTypeOrNull()
             val body: RequestBody = RequestBody.create(mediaType, "")
             val request = Request.Builder()
-                .url("https://retosalvatucasa.com/ws_app_nda/asignacoach.php?idusuario=${userData!!.userServerId}&respuesta=${nRespuesta.value}")
+                .url("https://retosalvatucasa.com/ws_app_nda/asignacoach.php?idusuario=$userId&respuesta=$nRespuesta")
                 .method("POST", body)
                 .build()
 
@@ -98,19 +101,6 @@ class FindingCoachViewModel(private val dataSource: UserDao, application: Applic
         }
         return asignarCoachResponse
     }
-
-    private suspend fun susGetUserData(): User? {
-        return withContext(Dispatchers.IO) {
-            dataSource.getAllUserData()
-        }
-    }
-
-    private suspend fun susUpdateCoachAndNido(coachId: String, idNido:String){
-        withContext(Dispatchers.IO){
-            dataSource.updatecoachIdAndNest(coachId, idNido)
-        }
-    }
-
 }
 
 

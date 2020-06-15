@@ -18,5 +18,7 @@ data class FindUserResponse (
     @SerializedName("Correo_Usuario")
     val Correo_Usuario: String,
     @SerializedName("Telefono_Usuario")
-    val Telefono_Usuario: String
+    val Telefono_Usuario: String,
+    @SerializedName("Foto_Usuario")
+    var Foto_Usuario: String
 )

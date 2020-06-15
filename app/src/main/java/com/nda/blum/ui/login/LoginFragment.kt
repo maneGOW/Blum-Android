@@ -16,7 +16,6 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.nda.blum.R
 import com.nda.blum.databinding.LoginFragmentBinding
-import com.nda.blum.db.BlumDatabase
 import kotlinx.coroutines.InternalCoroutinesApi
 
 @InternalCoroutinesApi
@@ -38,8 +37,7 @@ class LoginFragment : Fragment() {
 
         val application = requireNotNull(this.activity).application
 
-        val dataSource = BlumDatabase.getInstance(application).userDao()
-        val viewModelFactory = LoginViewModelFactory(dataSource, application)
+        val viewModelFactory = LoginViewModelFactory(application)
         val loginViewModel =
             ViewModelProviders.of(this, viewModelFactory).get(LoginViewModel::class.java)
 
@@ -69,16 +67,18 @@ class LoginFragment : Fragment() {
         binding.cbRememberMe.setOnCheckedChangeListener { _, isChecked ->
             if(isChecked){
                 loginViewModel.rememberMe.value = true
-                loginViewModel.updateRememberme(isChecked)
+                //loginViewModel.updateRememberme(isChecked)
                 println("checked")
             }else{
                 loginViewModel.rememberMe.value = false
-                loginViewModel.updateRememberme(isChecked)
+               // loginViewModel.updateRememberme(isChecked)
                 println("NOT CHECKED")
             }
         }
 
         loginViewModel.userRol.observe(viewLifecycleOwner, Observer {
+            println("User ROl $it")
+            println("Value ${loginViewModel.firstLaunch.value}")
             if (it == "Coach") {
                 if (loginViewModel.firstLaunch.value == true) {
                     this.findNavController()
@@ -87,7 +87,7 @@ class LoginFragment : Fragment() {
                     this.findNavController()
                         .navigate(LoginFragmentDirections.actionMainFragmentToHubAlumnoFragment())
                 }
-            } else {
+            } else if(it == "Alumno") {
                 if (loginViewModel.firstLaunch.value == true) {
                     this.findNavController()
                         .navigate(LoginFragmentDirections.actionMainFragmentToSliderHostFragment("loginFragment"))
@@ -95,7 +95,6 @@ class LoginFragment : Fragment() {
                     this.findNavController()
                         .navigate(LoginFragmentDirections.actionMainFragmentToHubAlumnoFragment())
                 }
-
             }
         })
 

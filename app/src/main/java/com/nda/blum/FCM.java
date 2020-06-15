@@ -23,9 +23,13 @@ public class FCM extends FirebaseMessagingService {
     }
 
     private void guardartoken(String s) {
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("token");
-        ref.child("Leono").setValue(s);
-
+        try{
+            DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("token");
+            ref.child("Leono").setValue(s);
+        }
+        catch (Exception ex){
+            ex.printStackTrace();
+        }
     }
 
     @Override

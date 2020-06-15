@@ -1,50 +1,45 @@
 package com.nda.blum.ui.quizz3
 
 import android.app.AlertDialog
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.jcloquell.androidsecurestorage.SecureStorage
 import com.nda.blum.R
 import com.nda.blum.databinding.Quizz3FragmentBinding
 
 class Quizz3Fragment : Fragment() {
 
-    companion object {
-        fun newInstance() = Quizz3Fragment()
-    }
-
-    private lateinit var viewModel: Quizz3ViewModel
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         val bindingQuizz3: Quizz3FragmentBinding = DataBindingUtil.inflate(
             inflater, R.layout.quizz3_fragment, container, false
         )
 
-        bindingQuizz3.customProgress.progress = 34
+        bindingQuizz3.customProgress.progress = 50
+
+        val secureStorage = SecureStorage(this.activity!!.applicationContext)
+        val urlProfilePic = secureStorage.getObject("userProfilePicture", String::class.java)
 
         Glide.with(this)
-            .load(R.drawable.user_picture)
+            .load(urlProfilePic)
             .apply(RequestOptions.circleCropTransform())
             .into(bindingQuizz3.userProfilePic)
 
-        bindingQuizz3.button8.setOnClickListener {
+        bindingQuizz3.btnStartQuizz.setOnClickListener {
+            showDialog(12)
             this.findNavController()
-               .navigate(Quizz3FragmentDirections.actionQuizz3FragmentToQuizz4Fragment())
-            //showDialog(16)
+                .navigate(Quizz3FragmentDirections.actionQuizz3FragmentToQuizz4Fragment())
         }
-
         return bindingQuizz3.root
     }
 
@@ -108,8 +103,6 @@ class Quizz3Fragment : Fragment() {
             arrayChecked = booleanArrayOf(false, false, false, false, false, false, false, false, false)
         }
 
-        //val arrayColors = arrayOf("RED", "GREEN", "YELLOW", "BLACK", "MAGENTA", "PINK")
-
         val builder = AlertDialog.Builder(this.context)
 
         builder.setTitle("Selecciona las respuestas")
@@ -128,7 +121,24 @@ class Quizz3Fragment : Fragment() {
             for (i in 0 until arrayQuestions!!.size) {
                 val checked = arrayChecked!![i]
                 if (checked) {
+                    val secureStorage = SecureStorage(this.activity!!.applicationContext)
                     println("${arrayQuestions[i]} \n")
+                    if(arrayQuestions[i] == "0 - 7 años"){
+                        secureStorage.storeObject("nRespuesta", 1)
+                        showDialog(13)
+                    }
+                    if(arrayQuestions[i] == "8 - 14 años"){
+                        secureStorage.storeObject("nRespuesta", 2)
+                        showDialog(14)
+                    }
+                    if(arrayQuestions[i] == "15 - 21 años"){
+                        secureStorage.storeObject("nRespuesta", 3)
+                        showDialog(15)
+                    }
+                    if(arrayQuestions[i] == "más de 21 años"){
+                        secureStorage.storeObject("nRespuesta", 4)
+                        showDialog(16)
+                    }
                 }
             }
         }

@@ -17,7 +17,6 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.nda.blum.R
 import com.nda.blum.databinding.SignupFragmentBinding
-import com.nda.blum.db.BlumDatabase
 import kotlinx.coroutines.InternalCoroutinesApi
 
 @InternalCoroutinesApi
@@ -37,10 +36,9 @@ class SignupFragment : Fragment() {
             false
         )
         val application = requireNotNull(this.activity).application
-        val dataSource = BlumDatabase.getInstance(application).userDao()
 
         val viewModelFactory =
-            SignupViewModelFactory(application,dataSource)
+            SignupViewModelFactory(application)
         val signupViewModel = ViewModelProviders.of(this,viewModelFactory).get(SignupViewModel::class.java)
 
         bindingLogin.lifecycleOwner = this

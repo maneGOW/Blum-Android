@@ -65,4 +65,6 @@ class RecuperarPasswordFragment : Fragment() {
 
         return bindingRecoverPassword.root
     }
+
+
 }

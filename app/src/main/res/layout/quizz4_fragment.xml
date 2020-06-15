@@ -6,7 +6,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".Quizz4Fragment">
+        tools:context=".ui.quizz4.Quizz4Fragment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout"
@@ -52,10 +52,8 @@
             android:layout_width="match_parent"
             android:layout_height="15dp"
             android:layout_marginStart="32dp"
-            android:layout_marginLeft="32dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="24dp"
             android:layout_marginEnd="32dp"
-            android:layout_marginRight="32dp"
             android:max="100"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -65,10 +63,12 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/customProgress">
+            app:layout_constraintTop_toBottomOf="@+id/customProgress"
+            app:layout_constraintVertical_bias="0.0"
+            tools:layout_editor_absoluteX="0dp">
 
             <TextView
-                android:id="@+id/txtQuestion2"
+                android:id="@+id/txtQuestion12"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
@@ -79,135 +79,88 @@
                 android:paddingLeft="15dp"
                 android:paddingTop="5dp"
                 android:paddingBottom="5dp"
-                android:text="¿Cuáles son los retos que tienes frente a ti en este momento?  (Selecciona todas las que apliquen) "
+                android:text="¿Con cuál de las siguientes afirmaciones te identificas más?"
                 android:textSize="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/spinnerQuestion11" />
 
             <TextView
-                android:id="@+id/txtQuestion2Answer2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/white_rounded_shape_purple_stroke"
-                android:gravity="center"
-                android:text="Mi hijo tiene pesadillas."
-                android:textSize="16dp"
-                app:layout_constraintEnd_toEndOf="@+id/txtQuestion2Answer"
-                app:layout_constraintStart_toStartOf="@+id/txtQuestion2Answer"
-                app:layout_constraintTop_toBottomOf="@+id/txtQuestion2Answer" />
-
-            <TextView
-                android:id="@+id/txtQuestion2Answer"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/white_rounded_shape_purple_stroke"
-                android:gravity="center"
-                android:text="Mi hijo hace berrinche por todo."
-                android:textSize="16dp"
-                app:layout_constraintEnd_toEndOf="@+id/txtQuestion2Answer6"
-                app:layout_constraintStart_toStartOf="@+id/txtQuestion2Answer6"
-                app:layout_constraintTop_toBottomOf="@+id/txtQuestion2Answer6" />
-
-            <TextView
-                android:id="@+id/txtQuestion2Answer9"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/white_rounded_shape_purple_stroke"
-                android:gravity="center"
-                android:text="Mi hijo se hace pipi/popo."
-                android:textSize="16dp"
-                app:layout_constraintEnd_toEndOf="@+id/txtQuestion2Answer2"
-                app:layout_constraintStart_toStartOf="@+id/txtQuestion2Answer2"
-                app:layout_constraintTop_toBottomOf="@+id/txtQuestion2Answer2" />
-
-            <TextView
-                android:id="@+id/txtQuestion2Answer7"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/white_rounded_shape_purple_stroke"
-                android:gravity="center"
-                android:text="Mi hijo no quiere dejar de dormir conmigo."
-                android:textSize="16dp"
-                app:layout_constraintEnd_toEndOf="@+id/txtQuestion2Answer2"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/txtQuestion2Answer2"
-                app:layout_constraintTop_toBottomOf="@+id/txtQuestion2Answer9" />
-
-            <TextView
-                android:id="@+id/txtQuestion2Answer8"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/white_rounded_shape_purple_stroke"
-                android:gravity="center"
-                android:text="Mi hijo no quiere hacer tareas."
-                android:textSize="16dp"
-                app:layout_constraintEnd_toEndOf="@+id/txtQuestion2Answer2"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/txtQuestion2Answer2"
-                app:layout_constraintTop_toBottomOf="@+id/txtQuestion2Answer7" />
-
-            <TextView
-                android:id="@+id/txtQuestion2Answer10"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/white_rounded_shape_purple_stroke"
-                android:gravity="center"
-                android:text="Mi esposo y yo implementamos diferentes tipo de crianza."
-                android:textSize="16dp"
-                app:layout_constraintEnd_toEndOf="@+id/txtQuestion2Answer2"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/txtQuestion2Answer2"
-                app:layout_constraintTop_toBottomOf="@+id/txtQuestion2Answer8" />
-
-            <TextView
-                android:id="@+id/txtQuestion2Answer11"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/white_rounded_shape_purple_stroke"
-                android:gravity="center"
-                android:text="Mi esposo y yo implementamos diferentes tipo de crianza."
-                android:textSize="16dp"
-                app:layout_constraintEnd_toEndOf="@+id/txtQuestion2Answer2"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/txtQuestion2Answer2"
-                app:layout_constraintTop_toBottomOf="@+id/txtQuestion2Answer10" />
-
-            <TextView
-                android:id="@+id/txtQuestion2Answer12"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/white_rounded_shape_purple_stroke"
-                android:gravity="center"
-                android:text="Mi esposo y yo implementamos diferentes tipo de crianza."
-                android:textSize="16dp"
-                app:layout_constraintEnd_toEndOf="@+id/txtQuestion2Answer2"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/txtQuestion2Answer2"
-                app:layout_constraintTop_toBottomOf="@+id/txtQuestion2Answer11" />
-
-            <TextView
-                android:id="@+id/txtQuestion2Answer6"
+                android:id="@+id/txtQuestion13"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="8dp"
-                android:background="@drawable/white_rounded_shape_purple_stroke"
-                android:gravity="center"
-                android:text="Mi hijo no duerme."
+                android:layout_marginEnd="32dp"
+                android:background="@drawable/white_rounded_shape"
+                android:paddingStart="15dp"
+                android:paddingLeft="15dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:text="¿Cómo fluyen tus días?"
                 android:textSize="16dp"
-                app:layout_constraintEnd_toEndOf="@+id/txtQuestionTwo"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtQuestionTwo" />
+                app:layout_constraintTop_toBottomOf="@+id/spinnerQuestion12" />
+
+            <TextView
+                android:id="@+id/txtQuestion14"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="32dp"
+                android:background="@drawable/white_rounded_shape"
+                android:paddingStart="15dp"
+                android:paddingLeft="15dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:text="Durante las dos semanas anteriores, ¿qué tan seguido te sentiste triste, deprimido o sin esperanza?"
+                android:textSize="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/spinnerQuestion13" />
+
+            <TextView
+                android:id="@+id/txtQuestion15"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="32dp"
+                android:background="@drawable/white_rounded_shape"
+                android:paddingStart="15dp"
+                android:paddingLeft="15dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:text="Durante las dos semanas anteriores, ¿qué tan seguido te sentiste cansado o con muy poca energía?"
+                android:textSize="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/spinnerQuestion14" />
+
+            <TextView
+                android:id="@+id/txtQuestion11"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="32dp"
+                android:background="@drawable/white_rounded_shape"
+                android:gravity="center_vertical"
+                android:paddingStart="15dp"
+                android:paddingLeft="15dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:text="Cuando tu hijo no hace lo que necesitas o quieres que haga, ¿qué haces?"
+                android:textSize="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <Button
                 android:id="@+id/button8"
@@ -220,6 +173,52 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
+
+            <Spinner
+                android:id="@+id/spinnerQuestion11"
+                android:layout_width="358dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtQuestion11" />
+
+            <Spinner
+                android:id="@+id/spinnerQuestion12"
+                android:layout_width="358dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtQuestion12" />
+
+            <Spinner
+                android:id="@+id/spinnerQuestion13"
+                android:layout_width="358dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtQuestion13" />
+
+            <Spinner
+                android:id="@+id/spinnerQuestion14"
+                android:layout_width="358dp"
+                android:layout_height="24dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtQuestion14" />
+
+            <Spinner
+                android:id="@+id/spinnerQuestion15"
+                android:layout_width="358dp"
+                android:layout_height="24dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtQuestion15" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

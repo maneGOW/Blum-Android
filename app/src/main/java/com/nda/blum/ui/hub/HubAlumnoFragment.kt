@@ -9,12 +9,9 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
-import androidx.transition.Visibility
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.nda.blum.R
 import com.nda.blum.databinding.HubAlumnoFragmentBinding
-import com.nda.blum.db.BlumDatabase
-import kotlinx.android.synthetic.main.hub_alumno_fragment.view.*
 import kotlinx.coroutines.InternalCoroutinesApi
 
 @InternalCoroutinesApi
@@ -29,8 +26,7 @@ class HubAlumnoFragment : Fragment() {
         )
 
         val application = requireNotNull(this.activity).application
-        val dataSource = BlumDatabase.getInstance(application).userDao()
-        val viewModelFactory = HubAlumnoViewModelFactory(dataSource, application)
+        val viewModelFactory = HubAlumnoViewModelFactory(application)
         val hubViewModel =
             ViewModelProviders.of(this, viewModelFactory).get(HubAlumnoViewModel::class.java)
 
@@ -46,6 +42,7 @@ class HubAlumnoFragment : Fragment() {
         })
 
         hubViewModel.userRol.observe(viewLifecycleOwner, Observer {
+
             if (it == "Coach") {
                 binding.txtSesion.text = "MIS SESIONES"
                 binding.txtTitleCoach.text = "MIS BLUMMERS"

@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/purpleColor"
-    tools:context=".CoachProfileFragment">
+    tools:context=".ui.coachprofile.CoachProfileFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout5"
@@ -23,7 +23,6 @@
             android:id="@+id/imgCoachPic"
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:src="@drawable/profilepic_sample"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -36,7 +35,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Claudia Bernal"
         android:textSize="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -44,11 +42,12 @@
 
     <TextView
         android:id="@+id/txtCoachProfile"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
         android:gravity="center"
-        android:text="Psicóloga y Coach"
         android:textColor="#FFFFFF"
         android:textSize="18dp"
         android:textStyle="bold"
@@ -60,9 +59,10 @@
         android:id="@+id/imageView7"
         android:layout_width="30dp"
         android:layout_height="30dp"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
         android:src="@drawable/white_heart"
-        app:layout_constraintStart_toStartOf="@+id/txtCoachName"
+        app:layout_constraintStart_toStartOf="@+id/constraintLayout5"
         app:layout_constraintTop_toBottomOf="@+id/txtCoachProfile" />
 
     <ImageView
@@ -113,98 +113,20 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView9"
         app:layout_constraintVertical_bias="1.0">
 
-        <ProgressBar
-            android:id="@+id/StatOne"
-            style="@style/CustomProgressBarBlue"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="32dp"
-            android:max="100"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ProgressBar
-            android:id="@+id/StatTwo"
-            style="@style/CustomProgressBarBlue"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginLeft="32dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginRight="32dp"
-            android:max="100"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/StatOne" />
-
-        <ProgressBar
-            android:id="@+id/StatThree"
-            style="@style/CustomProgressBarBlue"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginLeft="32dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginRight="32dp"
-            android:max="100"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/StatTwo" />
-
-        <ProgressBar
-            android:id="@+id/StatFour"
-            style="@style/CustomProgressBarBlue"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginLeft="32dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginRight="32dp"
-            android:max="100"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/StatThree" />
-
-        <ProgressBar
-            android:id="@+id/StatFive"
-            style="@style/CustomProgressBarBlue"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginLeft="32dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginRight="32dp"
-            android:max="100"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/StatFour" />
-
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnShowCoachData"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
             android:background="@drawable/pink_shape_button"
             android:paddingStart="20dp"
             android:paddingEnd="20dp"
             android:text="Conóce más sobre tu coach"
             android:textColor="#FFFFFF"
             android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/layoutGetSession"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/StatFive" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layoutGetSession"
@@ -241,116 +163,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <TextView
-            android:id="@+id/txtStatNameOne"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginLeft="32dp"
-            android:text="Familia"
-            app:layout_constraintBottom_toBottomOf="@+id/StatOne"
-            app:layout_constraintStart_toStartOf="@+id/StatOne"
-            app:layout_constraintTop_toTopOf="@+id/StatOne" />
-
-        <TextView
-            android:id="@+id/txtStatNameTwo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginLeft="32dp"
-            android:text="Autoestima"
-            app:layout_constraintBottom_toBottomOf="@+id/StatTwo"
-            app:layout_constraintStart_toStartOf="@+id/StatTwo"
-            app:layout_constraintTop_toTopOf="@+id/StatTwo" />
-
-        <TextView
-            android:id="@+id/txtStatNameThree"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginLeft="32dp"
-            android:text="Soledad"
-            app:layout_constraintBottom_toBottomOf="@+id/StatThree"
-            app:layout_constraintStart_toStartOf="@+id/StatThree"
-            app:layout_constraintTop_toTopOf="@+id/StatThree" />
-
-        <TextView
-            android:id="@+id/txtStatNameFour"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginLeft="32dp"
-            android:text="Depresión"
-            app:layout_constraintBottom_toBottomOf="@+id/StatFour"
-            app:layout_constraintStart_toStartOf="@+id/StatFour"
-            app:layout_constraintTop_toTopOf="@+id/StatFour" />
-
-        <TextView
-            android:id="@+id/txtStatNameFive"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginLeft="32dp"
-            android:text="Familia"
-            app:layout_constraintBottom_toBottomOf="@+id/StatFive"
-            app:layout_constraintStart_toStartOf="@+id/StatFive"
-            app:layout_constraintTop_toTopOf="@+id/StatFive" />
-
-        <TextView
-            android:id="@+id/txtStatOnePercent"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="32dp"
-            android:layout_marginRight="32dp"
-            android:text="80%"
-            app:layout_constraintBottom_toBottomOf="@+id/StatOne"
-            app:layout_constraintEnd_toEndOf="@+id/StatOne"
-            app:layout_constraintTop_toTopOf="@+id/StatOne" />
-
-        <TextView
-            android:id="@+id/txtStatTwoPercent"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="32dp"
-            android:layout_marginRight="32dp"
-            android:text="60%"
-            app:layout_constraintBottom_toBottomOf="@+id/StatTwo"
-            app:layout_constraintEnd_toEndOf="@+id/StatTwo"
-            app:layout_constraintTop_toTopOf="@+id/StatTwo" />
-
-        <TextView
-            android:id="@+id/txtStatThreePercent"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="32dp"
-            android:layout_marginRight="32dp"
-            android:text="90%"
-            app:layout_constraintBottom_toBottomOf="@+id/StatThree"
-            app:layout_constraintEnd_toEndOf="@+id/StatThree"
-            app:layout_constraintTop_toTopOf="@+id/StatThree" />
-
-        <TextView
-            android:id="@+id/txtStatFourPercent"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="32dp"
-            android:layout_marginRight="32dp"
-            android:text="40%"
-            app:layout_constraintBottom_toBottomOf="@+id/StatFour"
-            app:layout_constraintEnd_toEndOf="@+id/StatFour"
-            app:layout_constraintTop_toTopOf="@+id/StatFour" />
-
-        <TextView
-            android:id="@+id/txtStatFivePercent"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="32dp"
-            android:layout_marginRight="32dp"
-            android:text="90%"
-            app:layout_constraintBottom_toBottomOf="@+id/StatFive"
-            app:layout_constraintEnd_toEndOf="@+id/StatFive"
-            app:layout_constraintTop_toTopOf="@+id/StatFive" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -5,7 +5,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CoachBioFragment">
+    tools:context=".ui.coachbio.CoachBioFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout6"
@@ -30,7 +30,6 @@
             android:id="@+id/imgCoachPic"
             android:layout_width="200dp"
             android:layout_height="200dp"
-            android:src="@drawable/profilepic_sample"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -43,7 +42,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Claudia Bernal"
         app:layout_constraintBottom_toTopOf="@+id/textView27"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -51,9 +49,10 @@
 
     <TextView
         android:id="@+id/textView27"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Psicóloga y Coach"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         app:layout_constraintBottom_toTopOf="@+id/textView29"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -63,10 +62,7 @@
         android:id="@+id/textView29"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:text="Cédula 9389797"
         android:textColor="#8A93AD"
-        app:layout_constraintBottom_toTopOf="@+id/imageView16"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView27" />
@@ -85,11 +81,10 @@
         android:id="@+id/imageView16"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
         android:src="@drawable/languajes_icon"
-        app:layout_constraintBottom_toTopOf="@+id/btnSetDate"
-        app:layout_constraintStart_toEndOf="@+id/textView30"
+        app:layout_constraintEnd_toStartOf="@+id/textView31"
         app:layout_constraintTop_toBottomOf="@+id/textView29" />
 
     <TextView
@@ -97,9 +92,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="México"
-        app:layout_constraintBottom_toTopOf="@+id/btnSetDate"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView15"
         app:layout_constraintStart_toEndOf="@+id/imageView15"
         app:layout_constraintTop_toTopOf="@+id/imageView15" />
 
@@ -107,11 +100,9 @@
         android:id="@+id/textView31"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="Español-Inglés"
-        app:layout_constraintBottom_toTopOf="@+id/btnSetDate"
-        app:layout_constraintStart_toEndOf="@+id/imageView16"
+        android:layout_marginEnd="32dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView16"
+        app:layout_constraintEnd_toEndOf="@+id/constraintLayout7"
         app:layout_constraintTop_toTopOf="@+id/imageView16" />
 
     <androidx.appcompat.widget.AppCompatButton
@@ -119,7 +110,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:layout_marginBottom="8dp"
         android:background="@drawable/pink_shape_button"
         android:paddingStart="20dp"
         android:paddingEnd="20dp"
@@ -127,7 +117,6 @@
         android:textColor="#FFFFFF
 "
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/textView32"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView15" />
@@ -135,23 +124,12 @@
     <TextView
         android:id="@+id/textView32"
         android:layout_width="0dp"
-        android:layout_height="170dp"
+        android:layout_height="0dp"
         android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="44dp"
         android:gravity="center"
-        android:text="Lorem ipsum dolor sit amet, consectetur
-adipiscing elit. Pellentesque eu mauris ut nibh
-mollis pharetra in nec urna. Ut eget malesuada
-ipsum, ut aliquam odio. Ut cursus non massa
-sit amet laoreet. Fusce leo augue, tincidunt vel
-gravida eu, consectetur sit amet ipsum. Nunc
-eleifend volutpat ipsum vel pretium. Curabitur
-in ipsum dui. In blandit maximus est, ut
-hendrerit elit varius at. Vestibulum volutpat at
-diam id posuere. Vestibulum ante ipsum
-primis in faucibus orci luctus et ultrices
-posuere cubilia curae."
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

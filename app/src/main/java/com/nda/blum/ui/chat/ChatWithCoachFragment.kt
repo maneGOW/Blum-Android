@@ -10,13 +10,13 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.jcloquell.androidsecurestorage.SecureStorage
 import com.nda.blum.R
 import com.nda.blum.adapters.ChatIndividualAdapter
 import com.nda.blum.databinding.ChatWithCoachFragmentBinding
-import com.nda.blum.db.BlumDatabase
-import com.nda.blum.ui.login.LoginViewModel
-import com.nda.blum.ui.login.LoginViewModelFactory
 import kotlinx.coroutines.InternalCoroutinesApi
 
 @InternalCoroutinesApi
@@ -32,14 +32,19 @@ class ChatWithCoachFragment : Fragment() {
 
         val application = requireNotNull(this.activity).application
 
-        val dataSource = BlumDatabase.getInstance(application).userDao()
-        val viewModelFactory = ChatWithCoachViewModelFactory(dataSource, application)
+        val viewModelFactory = ChatWithCoachViewModelFactory(application)
         val chatWithCoachViewmodel =
             ViewModelProviders.of(this, viewModelFactory).get(ChatWithCoachViewModel::class.java)
 
+        chatWithCoachViewmodel.chatType.value =
+            ChatWithCoachFragmentArgs.fromBundle(arguments!!).chatType
+
+        chatWithCoachViewmodel.setChatUrl()
+
         chatWithCoachViewmodel.getMessagesFromServer()
 
-        chatWithCoachViewmodel.chatType.value =  ChatWithCoachFragmentArgs.fromBundle(arguments!!).chatType
+        val secureStorage = SecureStorage(this.activity!!.applicationContext)
+        val urlProfilePic = secureStorage.getObject("userProfilePicture", String::class.java)
 
         println("ChatType: ${chatWithCoachViewmodel.chatType.value}")
 
@@ -47,16 +52,30 @@ class ChatWithCoachFragment : Fragment() {
             bindingChatWithCoach.textView39.text = it
         })
 
+        chatWithCoachViewmodel.coachProfilePic.observe(viewLifecycleOwner, Observer {
+            Glide.with(this)
+                .load(it)
+                .apply(RequestOptions.circleCropTransform())
+                .into(bindingChatWithCoach.imageView34)
+        })
+
         chatWithCoachViewmodel.filledMessageList.observe(viewLifecycleOwner, Observer {
-            if(it){
-                bindingChatWithCoach.rvChat.layoutManager = LinearLayoutManager(this.context)
-                bindingChatWithCoach.rvChat.adapter = ChatIndividualAdapter(this.context!!, chatWithCoachViewmodel.messages.value!!, chatWithCoachViewmodel.userID.value!!)
+            if (it) {
+                if (chatWithCoachViewmodel.messages.value != null) {
+                    bindingChatWithCoach.rvChat.layoutManager = LinearLayoutManager(this.context)
+                    bindingChatWithCoach.rvChat.adapter = ChatIndividualAdapter(
+                        this.context!!,
+                        chatWithCoachViewmodel.messages.value!!,
+                        chatWithCoachViewmodel.userID.value!!
+                    )
+                }
             }
         })
 
         bindingChatWithCoach.imgSendIcon.setOnClickListener {
-            if(bindingChatWithCoach.txtUserMessage.text.isNotEmpty() && bindingChatWithCoach.txtUserMessage.text.isNotBlank() ){
-                chatWithCoachViewmodel.userMessage.value = bindingChatWithCoach.txtUserMessage.text.toString()
+            if (bindingChatWithCoach.txtUserMessage.text.isNotEmpty() && bindingChatWithCoach.txtUserMessage.text.isNotBlank()) {
+                chatWithCoachViewmodel.userMessage.value =
+                    bindingChatWithCoach.txtUserMessage.text.toString()
                 chatWithCoachViewmodel.sendMessageToServer()
                 bindingChatWithCoach.txtUserMessage.setText("")
             }

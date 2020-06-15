@@ -1,16 +1,12 @@
 package com.nda.blum.ui.signup
 
 import android.app.Application
-import android.widget.ProgressBar
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.google.gson.Gson
+import com.jcloquell.androidsecurestorage.SecureStorage
 import com.nda.blum.BaseViewModel
 import com.nda.blum.DAO.GuardarUsuarioResponse
-import com.nda.blum.db.dao.UserDao
-import com.nda.blum.db.entity.FirstLaunch
-import com.nda.blum.db.entity.User
 import kotlinx.coroutines.*
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.OkHttpClient
@@ -18,8 +14,7 @@ import okhttp3.Request
 import okhttp3.RequestBody
 import okhttp3.Response
 
-
-class SignupViewModel(private val database: UserDao, application: Application) : BaseViewModel(application) {
+class SignupViewModel(application: Application) : BaseViewModel(application) {
 
     val nombre = MutableLiveData<String>()
     val email = MutableLiveData<String>()
@@ -27,8 +22,8 @@ class SignupViewModel(private val database: UserDao, application: Application) :
     val celular = MutableLiveData<String>()
 
     private val _navigateToLogin = MutableLiveData<Boolean>()
-    val navigateToLogin : LiveData<Boolean>
-            get() = _navigateToLogin
+    val navigateToLogin: LiveData<Boolean>
+        get() = _navigateToLogin
 
     init {
         _navigateToLogin.value = false
@@ -36,33 +31,32 @@ class SignupViewModel(private val database: UserDao, application: Application) :
 
     fun saveUserData() {
         coroutineScope.launch {
-            try{
+            try {
                 _showProgressDialog.value = true
                 val result = registrarUsuario()
-                if(result.code == "0"){
+                if (result.code == "0") {
                     println("RESPONSE: $result")
                     println("Usuario registrado en blum")
                     _showProgressDialog.value = false
                     _navigateToLogin.value = true
-                }else{
+                } else {
                     println("error al almacenar el usuario")
                     _showProgressDialog.value = false
-
                 }
-            }catch (e:Exception){
+            } catch (e: Exception) {
                 e.printStackTrace()
                 _showProgressDialog.value = false
             }
         }
     }
 
-    fun onNavigated(){
+    fun onNavigated() {
         _navigateToLogin.value = false
     }
 
-    suspend fun registrarUsuario(): GuardarUsuarioResponse{
-        var parsedResponse : GuardarUsuarioResponse? = null
-        withContext(Dispatchers.IO){
+    suspend fun registrarUsuario(): GuardarUsuarioResponse {
+        var parsedResponse: GuardarUsuarioResponse? = null
+        withContext(Dispatchers.IO) {
             val client = OkHttpClient().newBuilder().build()
             val mediaType = "text/plain".toMediaTypeOrNull()
             val body: RequestBody = RequestBody.create(mediaType, "")
@@ -70,41 +64,24 @@ class SignupViewModel(private val database: UserDao, application: Application) :
                 .url("https://retosalvatucasa.com/ws_app_nda/guardarusuario.php?nombre=${nombre.value}&email=${email.value}&password=${password.value}&telefono=${celular.value}")
                 .method("POST", body)
                 .build()
-            try{
+            try {
                 val response: Response = client.newCall(request).execute()
-                if(response.code == 200){
-                    parsedResponse = Gson().fromJson(response.body!!.string(), GuardarUsuarioResponse::class.java)
-                    insertFirtsLaunch()
+                if (response.code == 200) {
+                    parsedResponse = Gson().fromJson(
+                        response.body!!.string(),
+                        GuardarUsuarioResponse::class.java
+                    )
+                    val secureStorage = SecureStorage(getApplication())
+                    secureStorage.storeObject("firstLaunch", true)
+                    secureStorage.storeObject("rememberMe", true)
+                    secureStorage.storeObject("passwordUsuario", password.value!!)
+                    secureStorage.storeObject("correoUsuario", email.value!!)
                 }
-            }catch (e:Exception){
+            } catch (e: Exception) {
                 e.printStackTrace()
             }
         }
         return parsedResponse!!
-    }
-
-    private fun insertFirtsLaunch(){
-        coroutineScope.launch {
-            susInsertFirstLaunch()
-        }
-    }
-
-    private suspend fun susInsertFirstLaunch(){
-         withContext(Dispatchers.IO) {
-             try{
-                 val getFirstLaunch = database.getFristLaunchValue()
-                 val insertFirstLaunch = FirstLaunch(1,true)
-                 if (getFirstLaunch == null) {
-                     database.insertFirstLaunch(insertFirstLaunch)
-                     println("first launch insertado")
-                 } else {
-                     database.updateFirstLaunch(insertFirstLaunch)
-                     println("first launch actualizado")
-                 }
-             }catch (e:Exception){
-                 e.printStackTrace()
-             }
-        }
     }
 
     override fun onCleared() {

@@ -13,12 +13,7 @@ import com.bumptech.glide.Glide
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.nda.blum.R
 import com.nda.blum.databinding.FindingCoachFragmentBinding
-import com.nda.blum.db.BlumDatabase
-import com.nda.blum.db.entity.User
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.InternalCoroutinesApi
-import kotlinx.coroutines.withContext
-import kotlin.random.Random
 
 @InternalCoroutinesApi
 class FindingCoachFragment : Fragment() {
@@ -39,8 +34,7 @@ class FindingCoachFragment : Fragment() {
             .into(imageViewTarget)
 
         val application = requireNotNull(this.activity).application
-        val dataSource = BlumDatabase.getInstance(application).userDao()
-        val viewModelFactory = FindingCoachViewModelFactory(dataSource, application)
+        val viewModelFactory = FindingCoachViewModelFactory(application)
         val hubViewModel =
             ViewModelProviders.of(this, viewModelFactory).get(FindingCoachViewModel::class.java)
 

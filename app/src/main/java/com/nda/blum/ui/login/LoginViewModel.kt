@@ -1,15 +1,12 @@
 package com.nda.blum.ui.login
 
 import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.google.gson.Gson
+import com.jcloquell.androidsecurestorage.SecureStorage
 import com.nda.blum.BaseViewModel
 import com.nda.blum.DAO.LoginResponse
-import com.nda.blum.db.dao.UserDao
-import com.nda.blum.db.entity.FirstLaunch
-import com.nda.blum.db.entity.User
 import kotlinx.coroutines.*
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.OkHttpClient
@@ -17,7 +14,7 @@ import okhttp3.Request
 import okhttp3.RequestBody
 import okhttp3.Response
 
-class LoginViewModel(private val database: UserDao, application: Application) :
+class LoginViewModel(application: Application) :
     BaseViewModel(application) {
 
     val email = MutableLiveData<String>()
@@ -28,6 +25,8 @@ class LoginViewModel(private val database: UserDao, application: Application) :
     val firstLaunch = MutableLiveData<Boolean>()
     val userRol = MutableLiveData<String>()
 
+    val secureStorage = SecureStorage(getApplication())
+
     private val _showErrorMessage = MutableLiveData<Boolean>()
     val showErrorMessage: LiveData<Boolean>
         get() = _showErrorMessage
@@ -35,8 +34,8 @@ class LoginViewModel(private val database: UserDao, application: Application) :
     init {
         _showErrorMessage.value = false
         _showProgressDialog.value = false
-        if(rememberMe.value != null){
-            if(rememberMe.value!!){
+        if (rememberMe.value != null) {
+            if (rememberMe.value!!) {
                 getRememberme()
             }
         }
@@ -46,11 +45,12 @@ class LoginViewModel(private val database: UserDao, application: Application) :
     fun callLoginService() {
         coroutineScope.launch {
             _showProgressDialog.value = true
+            userRol.value = secureStorage.getObject("rolUSuario", String::class.java)
+            _showProgressDialog.value = false
             if (login()) {
-                _showProgressDialog.value = false
+                checkFristLaunch()
             } else {
                 _showErrorMessage.value = true
-                _showProgressDialog.value = false
             }
         }
     }
@@ -79,21 +79,25 @@ class LoginViewModel(private val database: UserDao, application: Application) :
                     println("RESPONSE: $parsedResponse")
                     if (parsedResponse.code == "0") {
                         success = true
-                        val userData = User(
-                            1,
-                            parsedResponse.result.idUsuario,
-                            "",
-                            "",
-                            parsedResponse.result.nombreUsuario,
-                            parsedResponse.result.correoUsuario,
-                            parsedResponse.result.rollUsuario,
-                            parsedResponse.result.telefonoUsuario,
-                            "",
-                            false,
-                            password.value
+                        secureStorage.storeObject("idUsuario", parsedResponse.result.idUsuario)
+                        secureStorage.storeObject(
+                            "nombreUsuario",
+                            parsedResponse.result.nombreUsuario
                         )
-                        saveUser(userData)
-                        checkFristLaunch()
+                        secureStorage.storeObject(
+                            "correoUsuario",
+                            parsedResponse.result.correoUsuario
+                        )
+                        secureStorage.storeObject("rolUsuario", parsedResponse.result.rollUsuario)
+                        secureStorage.storeObject(
+                            "telefonoUsuario",
+                            parsedResponse.result.telefonoUsuario
+                        )
+                        secureStorage.storeObject("userProfilePicture", parsedResponse.result.Foto_Usuario)
+                        secureStorage.storeObject("passwordUsuario", password.value!!)
+                        secureStorage.storeObject("idCoach", parsedResponse.result.idCoach)
+                        secureStorage.storeObject("idNido", parsedResponse.result.idNido)
+
                     } else {
                         success = false
                     }
@@ -105,97 +109,21 @@ class LoginViewModel(private val database: UserDao, application: Application) :
         return success
     }
 
-    private fun saveUser(user: User) {
-        try {
-            coroutineScope.launch {
-                updateUserdata(user)
-            }
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-    }
-
-    fun updateRememberme(bandera: Boolean){
-        coroutineScope.launch {
-            updateRemembermeVal(bandera)
-        }
-    }
-
-    private suspend fun updateRemembermeVal(bandera: Boolean){
-        withContext(Dispatchers.IO) {
-            database.updateRemembermeValue(bandera)
-            println("DATOS DE REMEMBERME ACTUALIZADOS")
-        }
-    }
-
-    fun getRememberme(){
-        coroutineScope.launch {
-            val getuserData = susGetUserData()
-            if(getuserData != null){
-                if(getuserData.rememberme!!){
-                    email.value = getuserData.userCorreoElectronico
-                    password.value = getuserData.password
-                }
-            }else{
-                println("no hay usuario")
-            }
-        }
-    }
-
-
     private fun checkFristLaunch() {
-        coroutineScope.launch {
-            val getFirstLaunchValue = susFirstLaunch()
-            if (getFirstLaunchValue != null) {
-                val getUserData = susGetUserData()
-                if (getUserData != null) {
-                    firstLaunch.value = getFirstLaunchValue.firstLaunch
-                    userRol.value = getUserData.userRol
-                } else {
-                    println("DATOS NULOS DEL USUARIO")
-                }
-            } else {
-                println("DATOS NULOS DEL FIRST LAUNCH")
-                val getUserData = susGetUserData()
-                if (getUserData != null) {
-                    firstLaunch.value = false
-                    userRol.value = getUserData.userRol
-                } else {
-                    println("DATOS NULOS DEL USUARIO")
-                }
-
-            }
-        }
+        val getFirstLaunchValue = secureStorage.getObject("firstLaunch", Boolean::class.java)
+        val getUserRol = secureStorage.getObject("rolUsuario", String::class.java)
+        println("LOGIN VIEW MODEL: $getFirstLaunchValue ---- $getUserRol")
+        firstLaunch.value = getFirstLaunchValue
+        userRol.value = getUserRol
     }
 
-    private suspend fun susGetUserData(): User? {
-        return withContext(Dispatchers.IO) {
-            database.getAllUserData()
-        }
-    }
-
-    private suspend fun susFirstLaunch(): FirstLaunch? {
-        return withContext(Dispatchers.IO) {
-            database.getFristLaunchValue()
-        }
-    }
-
-    private suspend fun updateUserdata(user: User) {
-        withContext(Dispatchers.IO) {
-            try {
-                val userRegistered = database.getAllUserData()
-                if (userRegistered == null) {
-                    val newUser = User(1, "", "", "", "", "", "", "", "",false, "")
-                    database.insertUser(newUser)
-                    database.loginUpdate(user.userServerId!!, user.userNombreUsuario!!, user.userCorreoElectronico!!, user.userRol!!, user.userTelefonoUsuario!!)
-                    println("Datos de usuario de login agregados y actualizado")
-                } else {
-                    database.loginUpdate(user.userServerId!!, user.userNombreUsuario!!, user.userCorreoElectronico!!, user.userRol!!, user.userTelefonoUsuario!!)
-                    println("Datos de usuario de login actualzados")
-                }
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
+    fun getRememberme() {
+        val rememberMe = secureStorage.getObject("rememberMe", Boolean::class.java)
+        if (rememberMe!!) {
+            val userEmail = secureStorage.getObject("correoUsuario", String::class.java)
+            val userPassword = secureStorage.getObject("passwordUsuario", String::class.java)
+            email.value = userEmail
+            password.value = userPassword
         }
     }
 

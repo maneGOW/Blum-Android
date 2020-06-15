@@ -1,16 +1,13 @@
 package com.nda.blum.ui.agendarsesion
 
 import android.app.Application
-import android.widget.Toast
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.google.gson.Gson
+import com.jcloquell.androidsecurestorage.SecureStorage
 import com.nda.blum.BaseViewModel
 import com.nda.blum.DAO.CitasDisponiblesResponse
 import com.nda.blum.DAO.GuardarCitaResponse
-import com.nda.blum.db.dao.UserDao
-import com.nda.blum.db.entity.User
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -20,8 +17,7 @@ import okhttp3.Request
 import okhttp3.RequestBody
 import okhttp3.Response
 
-// https://retosalvatucasa.com/ws_app_nda/guardarcita.php?idcoach=23&idusuario=35&fecha=12/12/2020&hora=12hr&idfecha=1
-class AgendarSesionViewModel(val database: UserDao, application: Application) : BaseViewModel(application) {
+class AgendarSesionViewModel( application: Application) : BaseViewModel(application) {
 
     val idCoach = MutableLiveData<String>()
     val fecha = MutableLiveData<String>()
@@ -29,6 +25,9 @@ class AgendarSesionViewModel(val database: UserDao, application: Application) : 
     val currentDate = MutableLiveData<String>()
     val fechasDisponibles = MutableLiveData<CitasDisponiblesResponse?>()
     val idFecha = MutableLiveData<String>()
+
+    val secureStorage = SecureStorage(getApplication())
+
 
     private val _citasDisponibles = MutableLiveData<Boolean>()
     val citasDisponibles : LiveData<Boolean>
@@ -86,9 +85,10 @@ class AgendarSesionViewModel(val database: UserDao, application: Application) : 
             val client = OkHttpClient().newBuilder().build()
             val mediaType = "text/plain".toMediaTypeOrNull()
             val body: RequestBody = RequestBody.create(mediaType, "")
-            val userData = susGetUserData()
+            val idCoach = secureStorage.getObject("idCoach", String::class.java)
+            val idUsaurio = secureStorage.getObject("idUsuario", String::class.java)
             val request = Request.Builder()
-                .url("https://retosalvatucasa.com/ws_app_nda/guardarcita.php?idcoach=${userData!!.coachId}&idusuario=${userData.userServerId}&fecha=${fecha.value}&hora=${hora.value}&idfecha=${idFecha.value}")
+                .url("https://retosalvatucasa.com/ws_app_nda/guardarcita.php?idcoach=$idCoach&idusuario=$idUsaurio&fecha=${fecha.value}&hora=${hora.value}&idfecha=${idFecha.value}")
                 .method("POST", body)
                 .build()
 
@@ -110,21 +110,15 @@ class AgendarSesionViewModel(val database: UserDao, application: Application) : 
         return responseGuardarCita!!
     }
 
-    private suspend fun susGetUserData(): User? {
-        return withContext(Dispatchers.IO) {
-            database.getAllUserData()
-        }
-    }
-
     private suspend fun getCitasDisponibles(): CitasDisponiblesResponse {
         var responseCitas: CitasDisponiblesResponse? = null
         withContext(Dispatchers.IO) {
             val client = OkHttpClient().newBuilder().build()
             val mediaType = "text/plain".toMediaTypeOrNull()
             val body: RequestBody = RequestBody.create(mediaType, "")
-            val userData = susGetUserData()
+            val idCoach = secureStorage.getObject("idCoach", String::class.java)
             val request = Request.Builder()
-                .url("https://retosalvatucasa.com/ws_app_nda/buscardisponibles.php?idcoach=${userData!!.coachId}&fecha=${fecha.value}")
+                .url("https://retosalvatucasa.com/ws_app_nda/buscardisponibles.php?idcoach=$idCoach&fecha=${fecha.value}")
                 .method("POST", body)
                 .build()
 
