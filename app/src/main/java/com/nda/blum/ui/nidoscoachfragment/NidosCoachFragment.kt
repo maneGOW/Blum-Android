@@ -39,7 +39,7 @@ class NidosCoachFragment : Fragment() {
             nido?.let {
                 this.findNavController().navigate(
                     NidosCoachFragmentDirections.actionNidosCoachFragmentToChatWithCoachFragment(
-                        "", nido
+                        "", nido, "Prueba de titulo", ""
                     )
                 )
                 nidosCoachViewModel.onNidoNavigated()

@@ -57,6 +57,9 @@ class Quizz2Fragment : Fragment() {
 
         val secureStorage = SecureStorage(this.activity!!.applicationContext)
         val urlProfilePic = secureStorage.getObject("userProfilePicture", String::class.java)
+        val userName = secureStorage.getObject("nombreUsuario", String::class.java)
+
+        bindingQuizz2.textView7.text = userName
 
         Glide.with(this)
             .load(urlProfilePic)

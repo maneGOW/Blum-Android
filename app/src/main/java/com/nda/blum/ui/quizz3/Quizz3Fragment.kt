@@ -30,6 +30,10 @@ class Quizz3Fragment : Fragment() {
         val secureStorage = SecureStorage(this.activity!!.applicationContext)
         val urlProfilePic = secureStorage.getObject("userProfilePicture", String::class.java)
 
+        val userName = secureStorage.getObject("nombreUsuario", String::class.java)
+
+        bindingQuizz3.textView7.text = userName
+
         Glide.with(this)
             .load(urlProfilePic)
             .apply(RequestOptions.circleCropTransform())
@@ -106,6 +110,8 @@ class Quizz3Fragment : Fragment() {
         val builder = AlertDialog.Builder(this.context)
 
         builder.setTitle("Selecciona las respuestas")
+
+        builder.setCancelable(false)
 
         builder.setMultiChoiceItems(arrayQuestions, arrayChecked) { _, which, isChecked ->
             arrayChecked!![which] = isChecked

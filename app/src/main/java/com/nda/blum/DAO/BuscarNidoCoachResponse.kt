@@ -15,5 +15,7 @@ data class BuscarNidoCoachResult(
     @SerializedName("Nombre_Nido")
     val Nombre_Nido: String,
     @SerializedName("id_Nido")
-    val id_Nido: String
+    val id_Nido: String,
+    @SerializedName("Foto_Nido")
+    val fotoNido: String
 )

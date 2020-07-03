@@ -1,4 +1,4 @@
-package com.nda.blum
+package com.nda.blum.ui.notifications
 
 import androidx.lifecycle.ViewModel
 

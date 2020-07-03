@@ -20,9 +20,9 @@ import okhttp3.Response
 class ChatWithCoachViewModel(application: Application) :
     BaseViewModel(application) {
 
-    val idRoom = MutableLiveData<String>()
-    val idSent = MutableLiveData<String>()
-    val idRecibe = MutableLiveData<String>()
+    private val _showDialog = MutableLiveData<Boolean>()
+    val showDialog : LiveData<Boolean>
+    get() = _showDialog
 
     val secureStorage = SecureStorage(getApplication())
 
@@ -40,8 +40,6 @@ class ChatWithCoachViewModel(application: Application) :
 
     val userID = MutableLiveData<String>()
 
-    val alumnoID = MutableLiveData<String>()
-
     val nidoID = MutableLiveData<String>()
 
     private var chatRoomId: String? = null
@@ -55,6 +53,7 @@ class ChatWithCoachViewModel(application: Application) :
     val userMessage = MutableLiveData<String>()
 
     init {
+        _showDialog.value = false
         _showProgressDialog.value = false
         _filledMessageList.value = false
         userID.value = secureStorage.getObject("idUsuario", String::class.java)
@@ -73,6 +72,7 @@ class ChatWithCoachViewModel(application: Application) :
                 }
             } else {
                 println("SIN CHATS")
+                _showDialog.value = true
                 _filledMessageList.value = false
                 _showProgressDialog.value = false
             }
@@ -83,7 +83,7 @@ class ChatWithCoachViewModel(application: Application) :
         coroutineScope.launch {
             val sendMessage = susSendMessage()
             if (sendMessage!!.code == "0") {
-                getMessagesFromServer()
+                //getMessagesFromServer()
             } else {
                 println("error al mandar el mensaje")
             }
@@ -239,6 +239,7 @@ class ChatWithCoachViewModel(application: Application) :
             val client = OkHttpClient().newBuilder().build()
             val mediaType = "text/plain".toMediaTypeOrNull()
             val body: RequestBody = RequestBody.create(mediaType, "")
+            println("URL CHAT: ${chatUrl.value!!}")
             val request = Request.Builder()
                 .url(chatUrl.value!!)
                 .method("POST", body)
@@ -257,4 +258,8 @@ class ChatWithCoachViewModel(application: Application) :
         return recuperarChatResponse
     }
 
+    override fun onCleared() {
+        super.onCleared()
+
+    }
 }

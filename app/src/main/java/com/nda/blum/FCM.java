@@ -1,7 +1,5 @@
 package com.nda.blum;
 
-import android.media.audiofx.DynamicsProcessing;
-import android.media.session.MediaSession;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -16,10 +14,12 @@ public class FCM extends FirebaseMessagingService {
     @Override
     public void onNewToken(@NonNull String s) {
         super.onNewToken(s);
-
         Log.e("token", "Mi token es:"+s);
-        guardartoken(s);
-
+        try{
+            guardartoken(s);
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
     }
 
     private void guardartoken(String s) {

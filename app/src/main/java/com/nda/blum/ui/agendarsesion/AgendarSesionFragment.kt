@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -15,6 +16,7 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.nda.blum.R
 import com.nda.blum.databinding.AgendarSesionFragmentBinding
+import com.nda.blum.interfaces.IBackToHub
 import kotlinx.coroutines.InternalCoroutinesApi
 import java.text.SimpleDateFormat
 
@@ -63,7 +65,7 @@ class AgendarSesionFragment : Fragment() {
             if (it!!.code == "0") {
                 it.result.forEach {
                     when (it.horaDisponible) {
-                        "09" -> {
+                        "9" -> {
                             if (it.disponible == "1") {
                                 bindingAgendarSesion.txt9.background =
                                     resources.getDrawable(R.drawable.hinglight_rounded_shape)
@@ -151,6 +153,7 @@ class AgendarSesionFragment : Fragment() {
         agendarSesionViewModel!!.sesionAgendadaSuccess.observe(viewLifecycleOwner, Observer {
             if (it) {
                 Toast.makeText(this.context, "Sesión agendada con éxito", Toast.LENGTH_LONG).show()
+                (activity as IBackToHub?)!!.backToHubFragment()
             } else {
                 Toast.makeText(
                     this.context,
@@ -242,7 +245,7 @@ class AgendarSesionFragment : Fragment() {
         setTextClickable(bindingAgendarSesion)
 
         bindingAgendarSesion.imgAgendarSesionBack.setOnClickListener {
-            this.findNavController().popBackStack()
+            (activity as IBackToHub?)!!.backToHubFragment()
         }
 
         agendarSesionViewModel!!.citasDisponibles.observe(viewLifecycleOwner, Observer {
@@ -309,7 +312,7 @@ class AgendarSesionFragment : Fragment() {
             } else {
                 it.background = resources.getDrawable(R.drawable.purple_rounded_shape)
                 binding.txt9.setTextColor(Color.parseColor("#FFFFFF"))
-                agendarSesionViewModel!!.hora.value = "09"
+                agendarSesionViewModel!!.hora.value = "9"
                 if (binding.txt10.isEnabled) {
                     binding.txt10.setTextColor(Color.parseColor("#000000"))
                     binding.txt10.background =
@@ -819,5 +822,16 @@ class AgendarSesionFragment : Fragment() {
             }
         }
         return monthData
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        val callback: OnBackPressedCallback =
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    (activity as IBackToHub?)!!.backToHubFragment()
+                }
+            }
+        requireActivity().onBackPressedDispatcher.addCallback(this, callback)
     }
 }

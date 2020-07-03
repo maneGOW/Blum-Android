@@ -64,8 +64,10 @@ class ChatIndividualAdapter(
 
     inner class OtherMessageViewHolder(view: View) : MessageViewHolder(view) {
         private var messageText: TextView = view.txtOtherMessage
+        private var titleNameText: TextView = view.txtMessageName
 
         override fun bind(message: RestultChatMessage) {
+            titleNameText.text = message.nombre
             messageText.text = message.Mensaje_Chat
         }
     }

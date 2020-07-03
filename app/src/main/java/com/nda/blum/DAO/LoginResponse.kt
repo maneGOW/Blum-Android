@@ -22,8 +22,6 @@ data class Result(
     val rollUsuario: String,
     @SerializedName("Foto_Usuario")
     val Foto_Usuario: String,
-    @SerializedName("Telefono_Usuario")
-    val telefonoUsuario: String,
     @SerializedName("Id_Coach")
     val idCoach: String,
     @SerializedName("Id_Nido")

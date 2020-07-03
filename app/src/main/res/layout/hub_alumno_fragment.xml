@@ -15,12 +15,10 @@
             style="@style/title_style"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
             android:text="Bienvenido(a), MARISOL"
             android:textColor="@android:color/white"
             android:textSize="20dp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/constraintLayout18"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView44" />
@@ -29,22 +27,54 @@
             android:id="@+id/constraintLayout18"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtWelcomeText">
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/btnEditProfile"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:background="@drawable/clear_white_complete_shape_inverted"
+                app:layout_constraintEnd_toEndOf="@+id/btnChatNido"
+                app:layout_constraintTop_toTopOf="@+id/btnRecursos">
+
+                <ImageView
+                    android:id="@+id/imgProfile"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/profile_imagen"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.35" />
+
+                <TextView
+                    android:id="@+id/txtProfile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/avenir"
+                    android:text="MI PERFIL"
+                    android:textColor="@android:color/black"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/imgProfile" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/btnChatCoach"
                 android:layout_width="110dp"
                 android:layout_height="110dp"
-                android:layout_marginStart="40dp"
                 android:layout_marginTop="16dp"
                 android:background="@drawable/clear_white_complete_shape_inverted"
                 app:layout_constraintBottom_toTopOf="@+id/btnRecursos"
-                app:layout_constraintEnd_toStartOf="@+id/btnChatNido"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/btnAgendarSesion"
                 app:layout_constraintTop_toBottomOf="@+id/btnAgendarSesion">
 
                 <ImageView
@@ -78,11 +108,10 @@
                 android:layout_height="110dp"
                 android:layout_marginEnd="40dp"
                 android:background="@drawable/clear_white_complete_shape_inverted"
-                app:layout_constraintBottom_toTopOf="@+id/btnChatNido"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/btnAgendarSesion"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="@+id/btnAgendarSesion">
 
                 <ImageView
                     android:id="@+id/imgFlecha1"
@@ -135,7 +164,6 @@
                 android:layout_height="110dp"
                 android:layout_marginStart="40dp"
                 android:background="@drawable/clear_white_complete_shape_inverted"
-                app:layout_constraintBottom_toTopOf="@+id/btnChatCoach"
                 app:layout_constraintEnd_toStartOf="@+id/btnNotificaciones"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
@@ -176,15 +204,9 @@
                 android:id="@+id/btnChatNido"
                 android:layout_width="110dp"
                 android:layout_height="110dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="40dp"
-                android:layout_marginBottom="16dp"
                 android:background="@drawable/clear_white_complete_shape_inverted"
-                app:layout_constraintBottom_toTopOf="@+id/btnRecursos"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/btnChatCoach"
-                app:layout_constraintTop_toBottomOf="@+id/btnNotificaciones">
+                app:layout_constraintEnd_toEndOf="@+id/btnNotificaciones"
+                app:layout_constraintTop_toTopOf="@+id/btnChatCoach">
 
                 <ImageView
                     android:id="@+id/imageView26"
@@ -216,11 +238,8 @@
                 android:layout_width="110dp"
                 android:layout_height="110dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginBottom="64dp"
                 android:background="@drawable/clear_white_complete_shape_inverted"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/btnChatCoach"
                 app:layout_constraintTop_toBottomOf="@+id/btnChatCoach">
 
                 <ImageView
@@ -254,9 +273,7 @@
             android:id="@+id/imageView44"
             android:layout_width="180dp"
             android:layout_height="180dp"
-            android:layout_marginTop="46dp"
-            android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toTopOf="@+id/txtWelcomeText"
+            android:layout_marginTop="24dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"

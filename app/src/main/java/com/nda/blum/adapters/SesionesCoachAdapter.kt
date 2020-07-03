@@ -26,8 +26,13 @@ class SesionesCoachAdapter (val context: Context, val citasResponse: BuscarCitas
         private var userHour: TextView = view.txtHorarios
 
         override fun bind(citas: CitasEncontradas) {
-            userHour.text = "${citas.horaCita}:00 HRS "
-            userNombre.text = citas.nombreAlumno
+            if(itemCount == 0){
+                userHour.text = ""
+                userNombre.text = "No tienes citas"
+            }else{
+                userHour.text = "${citas.horaCita}:00 HRS "
+                userNombre.text = citas.nombreAlumno
+            }
         }
     }
 

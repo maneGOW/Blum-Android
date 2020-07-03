@@ -48,7 +48,7 @@ class LoginFragment : Fragment() {
 
         binding.btnLogin.setOnClickListener {
             if (!binding.txtEmail.text.isNullOrEmpty() && !binding.editText6.text.isNullOrEmpty()) {
-                loginViewModel.callLoginService()
+                loginViewModel.userLogin(binding.txtEmail.text.toString(), binding.editText6.text.toString())
             } else {
                 Toast.makeText(this.context, "No debe haber campos vacios", Toast.LENGTH_LONG)
                     .show()
@@ -66,19 +66,17 @@ class LoginFragment : Fragment() {
 
         binding.cbRememberMe.setOnCheckedChangeListener { _, isChecked ->
             if(isChecked){
-                loginViewModel.rememberMe.value = true
-                //loginViewModel.updateRememberme(isChecked)
+                loginViewModel.storeRememberme(isChecked)
+                loginViewModel.rememberMe.value = isChecked
                 println("checked")
             }else{
-                loginViewModel.rememberMe.value = false
-               // loginViewModel.updateRememberme(isChecked)
+                loginViewModel.storeRememberme(isChecked)
+                loginViewModel.rememberMe.value = isChecked
                 println("NOT CHECKED")
             }
         }
 
         loginViewModel.userRol.observe(viewLifecycleOwner, Observer {
-            println("User ROl $it")
-            println("Value ${loginViewModel.firstLaunch.value}")
             if (it == "Coach") {
                 if (loginViewModel.firstLaunch.value == true) {
                     this.findNavController()

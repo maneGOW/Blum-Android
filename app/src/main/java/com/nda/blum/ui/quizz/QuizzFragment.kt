@@ -79,11 +79,14 @@ class QuizzFragment : Fragment() {
 
         val secureStorage = SecureStorage(this.activity!!.applicationContext)
         val urlProfilePic = secureStorage.getObject("userProfilePicture", String::class.java)
+        val userName = secureStorage.getObject("nombreUsuario", String::class.java)
 
         Glide.with(this)
             .load(urlProfilePic)
             .apply(RequestOptions.circleCropTransform())
             .into(bindingQuizz.userProfilePic)
+
+        bindingQuizz.textView7.text = userName
 
         val question1Adapter = ArrayAdapter(this.requireContext(), android.R.layout.simple_spinner_item, pregunta1)
         question1Adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line)

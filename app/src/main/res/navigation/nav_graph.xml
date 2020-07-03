@@ -181,6 +181,9 @@
         <action
             android:id="@+id/action_hubAlumnoFragment_to_blummersCoachFragment"
             app:destination="@id/blummersCoachFragment" />
+        <action
+            android:id="@+id/action_hubAlumnoFragment_to_userProfile"
+            app:destination="@id/userProfile" />
     </fragment>
     <fragment
         android:id="@+id/recuperarPasswordFragment"
@@ -196,6 +199,12 @@
             app:argType="string" />
         <argument android:name="idRequerido"
             app:argType="string" />
+        <argument
+            android:name="tituloChat"
+            app:argType="string" />
+        <argument
+            android:name="urlImagenTitulo"
+            app:argType="string" />
     </fragment>
   <fragment
         android:id="@+id/nidosCoachFragment"
@@ -205,10 +214,13 @@
       <action
           android:id="@+id/action_nidosCoachFragment_to_chatWithCoachFragment"
           app:destination="@id/chatWithCoachFragment" />
+      <action
+          android:id="@+id/action_nidosCoachFragment_to_nidosDataFragment"
+          app:destination="@id/nidosDataFragment" />
   </fragment>
     <fragment
         android:id="@+id/notificacionesCoachFragment"
-        android:name="com.nda.blum.NotificacionesCoachFragment"
+        android:name="com.nda.blum.ui.notifications.NotificacionesCoachFragment"
         android:label="notificaciones_coach_fragment"
         tools:layout="@layout/notificaciones_coach_fragment" />
     <fragment
@@ -246,5 +258,24 @@
         <action
             android:id="@+id/action_quizz5Fragment_to_findingCoachFragment"
             app:destination="@id/findingCoachFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/userProfile"
+        android:name="com.nda.blum.ui.userprofile.UserProfileFragment"
+        tools:layout="@layout/user_profile_fragment"
+        android:label="UserProfile" />
+    <fragment
+        android:id="@+id/nidosDataFragment"
+        android:name="com.nda.blum.ui.nidosdata.NidosDataFragment"
+        android:label="nidos_data_fragment"
+        tools:layout="@layout/nidos_data_fragment" >
+        <argument
+            android:name="IdNido"
+            app:argType="string" />
+        <argument
+            android:name="nombreNido"
+            app:argType="string" />
+        <argument android:name="fotoNido"
+            app:argType="string" />
     </fragment>
 </navigation>

@@ -67,6 +67,10 @@ class Quizz4Fragment : Fragment() {
             .apply(RequestOptions.circleCropTransform())
             .into(bindingQuizz4.userProfilePic)
 
+        val userName = secureStorage.getObject("nombreUsuario", String::class.java)
+
+        bindingQuizz4.textView7.text = userName
+
         val question11Adapter = ArrayAdapter(this.requireContext(), android.R.layout.simple_spinner_item, arrayQuestions11)
         question11Adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line)
         bindingQuizz4.spinnerQuestion11.adapter = question11Adapter

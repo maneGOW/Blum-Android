@@ -42,4 +42,12 @@ class SplashScreenFragment : Fragment() {
         }, 2500)
     }
 
+    override fun onResume() {
+        super.onResume()
+        Handler().postDelayed({
+            context?.let{
+                this.findNavController().navigate(R.id.action_splashScreenFragment_to_mainFragment)
+            }
+        }, 2500)
+    }
 }

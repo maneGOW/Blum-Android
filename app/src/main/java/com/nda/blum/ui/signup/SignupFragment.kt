@@ -45,6 +45,10 @@ class SignupFragment : Fragment() {
 
         bindingLogin.signupViewModel = signupViewModel
 
+        bindingLogin.btnCreateAccount.isEnabled = false
+        bindingLogin.btnCreateAccount.background = resources.getDrawable(R.drawable.gray_shape_button)
+        bindingLogin.btnCreateAccount.setTextColor(Color.parseColor("#000000"))
+
         val navView: BottomNavigationView = this.activity!!.findViewById(R.id.bttm_nav)
         navView.visibility = View.GONE
 
@@ -57,8 +61,9 @@ class SignupFragment : Fragment() {
                 bindingLogin.btnCreateAccount.background = resources.getDrawable(R.drawable.pink_shape_button)
                 bindingLogin.btnCreateAccount.setTextColor(Color.parseColor("#FFFFFF"))
             }else{
-               bindingLogin.btnCreateAccount.isEnabled = false
-                bindingLogin.btnCreateAccount.background = resources.getDrawable(R.drawable.gray_shape_button)
+                bindingLogin.btnCreateAccount.isEnabled = false
+                bindingLogin.btnCreateAccount.background =
+                    resources.getDrawable(R.drawable.gray_shape_button)
                 bindingLogin.btnCreateAccount.setTextColor(Color.parseColor("#000000"))
             }
         }

@@ -1,5 +1,6 @@
 package com.nda.blum.adapters
 
+import android.app.AlertDialog
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -85,7 +86,21 @@ class AlumnosAdapter(
             binding.clickListener = clickListener
             binding.root.setOnClickListener {
                 fragment.findNavController().navigate(BlummersCoachFragmentDirections.actionBlummersCoachFragmentToChatWithCoachFragment(
-                    "coachUser", item.Id_Usuario))
+                    "coachUser", item.Id_Usuario, item.Nombre_Usuario, item.Foto_Usuario))
+            }
+            binding.root.setOnLongClickListener {
+                val builder = AlertDialog.Builder(fragment.requireContext())
+                builder.setTitle("BLUM")
+                builder.setCancelable(false)
+                builder.setMessage("¿Deseas enviar un archivo al alumno ${item.Nombre_Usuario}?")
+                builder.setPositiveButton("Sí") { _, _ ->
+
+                }
+                builder.setNegativeButton("No"){ dialog, _ ->
+                    dialog.dismiss()
+                }
+                builder.show()
+                true
             }
             binding.executePendingBindings()
         }

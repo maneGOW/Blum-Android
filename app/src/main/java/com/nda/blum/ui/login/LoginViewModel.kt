@@ -1,18 +1,17 @@
 package com.nda.blum.ui.login
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.google.gson.Gson
 import com.jcloquell.androidsecurestorage.SecureStorage
 import com.nda.blum.BaseViewModel
 import com.nda.blum.DAO.LoginResponse
-import kotlinx.coroutines.*
-import okhttp3.MediaType.Companion.toMediaTypeOrNull
-import okhttp3.OkHttpClient
-import okhttp3.Request
-import okhttp3.RequestBody
-import okhttp3.Response
+import com.nda.blum.network.BlumAPI
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import java.net.HttpURLConnection.HTTP_OK
 
 class LoginViewModel(application: Application) :
     BaseViewModel(application) {
@@ -25,13 +24,15 @@ class LoginViewModel(application: Application) :
     val firstLaunch = MutableLiveData<Boolean>()
     val userRol = MutableLiveData<String>()
 
-    val secureStorage = SecureStorage(getApplication())
+    var secureStorage: SecureStorage? = null
 
     private val _showErrorMessage = MutableLiveData<Boolean>()
     val showErrorMessage: LiveData<Boolean>
         get() = _showErrorMessage
 
     init {
+        secureStorage = SecureStorage(getApplication())
+        rememberMe.value = false
         _showErrorMessage.value = false
         _showProgressDialog.value = false
         if (rememberMe.value != null) {
@@ -42,25 +43,47 @@ class LoginViewModel(application: Application) :
 
     }
 
-    fun callLoginService() {
-        coroutineScope.launch {
-            _showProgressDialog.value = true
-            userRol.value = secureStorage.getObject("rolUSuario", String::class.java)
-            if (login()) {
-                _showProgressDialog.value = false
-                checkFristLaunch()
-            } else {
-                _showErrorMessage.value = true
-                _showProgressDialog.value = false
-
-            }
-        }
-    }
-
     fun onMessageShowed() {
         _showErrorMessage.value = false
     }
 
+    fun userLogin(userMail: String, userPassword: String){
+        _showProgressDialog.value = true
+        BlumAPI().getCustomService().login(userMail,userPassword).enqueue(object:
+            Callback<LoginResponse>{
+            override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
+                Log.e("BLUM", "Error en servicio https: " + t.stackTrace)
+                _showProgressDialog.value = false
+            }
+
+            override fun onResponse(
+                call: Call<LoginResponse>,
+                response: Response<LoginResponse>
+            ) {
+                Log.e("BLUM", "login response "+ response.toString())
+                _showProgressDialog.value = false
+                if(response.code() == HTTP_OK){
+                    if(response.body()!!.code == "0"){
+                        println("login correcto")
+                        println("RESPONSE LOGIN " + response.body()!!.result.rollUsuario)
+
+                        secureStorage!!.storeObject("idUsuario", response.body()!!.result.idUsuario)
+                        secureStorage!!.storeObject("nombreUsuario", response.body()!!.result.nombreUsuario)
+                        secureStorage!!.storeObject("correoUsuario", response.body()!!.result.correoUsuario)
+                        secureStorage!!.storeObject("rolUsuario", response.body()!!.result.rollUsuario)
+                        secureStorage!!.storeObject("userProfilePicture", response.body()!!.result.Foto_Usuario)
+                        secureStorage!!.storeObject("passwordUsuario", password.value!!)
+                        secureStorage!!.storeObject("idCoach", response.body()!!.result.idCoach)
+                        secureStorage!!.storeObject("idNido", response.body()!!.result.idNido)
+
+                        checkFristLaunch()
+                    }
+                }
+            }
+        })
+    }
+
+    /*
     private suspend fun login(): Boolean {
         var success = false
         withContext(Dispatchers.IO) {
@@ -91,10 +114,6 @@ class LoginViewModel(application: Application) :
                             parsedResponse.result.correoUsuario
                         )
                         secureStorage.storeObject("rolUsuario", parsedResponse.result.rollUsuario)
-                        secureStorage.storeObject(
-                            "telefonoUsuario",
-                            parsedResponse.result.telefonoUsuario
-                        )
                         secureStorage.storeObject("userProfilePicture", parsedResponse.result.Foto_Usuario)
                         secureStorage.storeObject("passwordUsuario", password.value!!)
                         secureStorage.storeObject("idCoach", parsedResponse.result.idCoach)
@@ -110,20 +129,25 @@ class LoginViewModel(application: Application) :
         }
         return success
     }
+     */
 
     private fun checkFristLaunch() {
-        val getFirstLaunchValue = secureStorage.getObject("firstLaunch", Boolean::class.java)
-        val getUserRol = secureStorage.getObject("rolUsuario", String::class.java)
+        val getFirstLaunchValue = secureStorage!!.getObject("firstLaunch", Boolean::class.java)
+        val getUserRol = secureStorage!!.getObject("rolUsuario", String::class.java)
         println("LOGIN VIEW MODEL: $getFirstLaunchValue ---- $getUserRol")
         firstLaunch.value = getFirstLaunchValue
         userRol.value = getUserRol
     }
 
+    fun storeRememberme(value: Boolean){
+        secureStorage!!.storeObject("rememberMe", value)
+    }
+
     fun getRememberme() {
-        val rememberMe = secureStorage.getObject("rememberMe", Boolean::class.java)
+        val rememberMe = secureStorage!!.getObject("rememberMe", Boolean::class.java)
         if (rememberMe!!) {
-            val userEmail = secureStorage.getObject("correoUsuario", String::class.java)
-            val userPassword = secureStorage.getObject("passwordUsuario", String::class.java)
+            val userEmail = secureStorage!!.getObject("correoUsuario", String::class.java)
+            val userPassword = secureStorage!!.getObject("passwordUsuario", String::class.java)
             email.value = userEmail
             password.value = userPassword
         }

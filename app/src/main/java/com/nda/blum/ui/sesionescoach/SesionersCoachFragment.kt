@@ -56,9 +56,6 @@ class SesionersCoachFragment : Fragment() {
         }
 
         bindingSesionesCoach.calendarView2.setOnDateChangeListener { _, year, month, dayOfMonth ->
-
-
-
             if (year >= sesionesCoachViewModel.diaCita.value!!.substring(6, 10)
                     .toInt()
             ) {

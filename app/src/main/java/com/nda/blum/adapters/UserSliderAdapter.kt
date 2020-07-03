@@ -32,9 +32,10 @@ class UserSliderAdapter(val navController: NavController, val directions:  NavDi
             container.setBackgroundResource(R.color.backgroundColor)
 
             val circle1 = layoutCircle1!!.background
-            circle1.setTint(Color.parseColor("#8a93ad"))
+            circle1.setTint(Color.parseColor("#FFFFFF"))
+
             val circle2 = layoutCircle2!!.background
-            circle2.setTint(Color.parseColor("#FFFFFF"))
+            circle2.setTint(Color.parseColor("#8a93ad"))
         }
         if(position == 1) {
             txtWelcome.visibility = View.INVISIBLE
@@ -51,9 +52,10 @@ class UserSliderAdapter(val navController: NavController, val directions:  NavDi
             container.setBackgroundResource(R.color.backgroundColor)
 
             val circle1 = layoutCircle1!!.background
-            circle1.setTint(Color.parseColor("#FFFFFF"))
+            circle1.setTint(Color.parseColor("#8a93ad"))
+
             val circle2 = layoutCircle2!!.background
-            circle2.setTint(Color.parseColor("#8a93ad"))
+            circle2.setTint(Color.parseColor("#FFFFFF"))
         }
     }
 }

@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
+import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -67,7 +69,10 @@ class HubAlumnoFragment : Fragment() {
                 binding.btnChatNido.setOnClickListener {
                     this.findNavController().navigate(HubAlumnoFragmentDirections.actionHubAlumnoFragmentToNidosCoachFragment())
                 }
-
+                binding.btnEditProfile.setOnClickListener{
+                    println("BOTON presionado")
+                    this.findNavController().navigate(HubAlumnoFragmentDirections.actionHubAlumnoFragmentToUserProfile())
+                }
             } else {
                 binding.btnAgendarSesion.setOnClickListener {
                     this.findNavController()
@@ -79,7 +84,7 @@ class HubAlumnoFragment : Fragment() {
                 }
 
                 binding.btnChatCoach.setOnClickListener{
-                    this.findNavController().navigate(HubAlumnoFragmentDirections.actionHubAlumnoFragmentToChatWithCoachFragment("userCoach", ""))
+                    this.findNavController().navigate(HubAlumnoFragmentDirections.actionHubAlumnoFragmentToChatWithCoachFragment("userCoach", "", "", ""))
                 }
 
                 binding.btnNotificaciones.setOnClickListener {
@@ -87,7 +92,12 @@ class HubAlumnoFragment : Fragment() {
                 }
 
                 binding.btnChatNido.setOnClickListener {
-                    this.findNavController().navigate(HubAlumnoFragmentDirections.actionHubAlumnoFragmentToChatWithCoachFragment("userNest", ""))
+                    this.findNavController().navigate(HubAlumnoFragmentDirections.actionHubAlumnoFragmentToChatWithCoachFragment("userNest", "", "", ""))
+                }
+
+                binding.btnEditProfile.setOnClickListener{
+                    println("BOTON presionado")
+                    this.findNavController().navigate(HubAlumnoFragmentDirections.actionHubAlumnoFragmentToUserProfile())
                 }
             }
         })
@@ -95,4 +105,27 @@ class HubAlumnoFragment : Fragment() {
         return binding.root
     }
 
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        val callback: OnBackPressedCallback =
+            object : OnBackPressedCallback(true){
+                override fun handleOnBackPressed() {
+                    createExitDialog()
+                }
+            }
+        requireActivity().onBackPressedDispatcher.addCallback(this, callback)
+    }
+
+    fun createExitDialog(){
+        val builder = AlertDialog.Builder(this.context!!)
+        builder.setTitle("Alerta")
+        builder.setMessage("¿Deseas salir y cerrar sesión en BLUM?")
+        builder.setPositiveButton("Sí") { _, _ ->
+            this.activity!!.finish()
+        }
+        builder.setNegativeButton("No") { dialog, _ ->
+            dialog.dismiss()
+        }
+        builder.show()
+    }
 }
