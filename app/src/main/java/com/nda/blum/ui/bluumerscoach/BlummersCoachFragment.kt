@@ -28,7 +28,7 @@ class BlummersCoachFragment : Fragment() {
     ): View? {
 
         val navView: BottomNavigationView = this.activity!!.findViewById(R.id.bttm_nav)
-        navView.visibility = View.VISIBLE
+        navView.visibility = View.GONE
         val blummersCoachBinding: BlummersCoachFragmentBinding = DataBindingUtil.inflate(
             inflater, R.layout.blummers_coach_fragment, container, false
         )

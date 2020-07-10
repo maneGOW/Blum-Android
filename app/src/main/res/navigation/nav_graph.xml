@@ -128,9 +128,13 @@
         tools:layout="@layout/sesioners_coach_fragment" />
     <fragment
         android:id="@+id/recursosCoachFragment"
-        android:name="com.nda.blum.RecursosCoachFragment"
+        android:name="com.nda.blum.ui.recursos.RecursosCoachFragment"
         android:label="recursos_coach_fragment"
-        tools:layout="@layout/recursos_coach_fragment" />
+        tools:layout="@layout/recursos_coach_fragment" >
+        <action
+            android:id="@+id/action_recursosCoachFragment_to_listaRecursosFragment"
+            app:destination="@id/listaRecursosFragment" />
+    </fragment>
     <fragment
         android:id="@+id/blummersCoachFragment"
         android:name="com.nda.blum.ui.bluumerscoach.BlummersCoachFragment"
@@ -276,6 +280,15 @@
             android:name="nombreNido"
             app:argType="string" />
         <argument android:name="fotoNido"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/listaRecursosFragment"
+        android:name="com.nda.blum.ui.listarecursos.ListaRecursosFragment"
+        android:label="ListaRecursosFragment"
+        tools:layout="@layout/lista_recursos_fragment">
+        <argument
+            android:name="fileType"
             app:argType="string" />
     </fragment>
 </navigation>

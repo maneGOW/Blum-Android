@@ -5,37 +5,46 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.notifications.NotificacionesCoachFragment">
+        tools:context=".ui.listarecursos.ListaRecursosFragment">
+
 
         <TextView
-            android:id="@+id/textView51"
+            android:id="@+id/textView2"
             android:layout_width="0dp"
             android:layout_height="60dp"
-            android:background="@color/backgroundColor"
+            android:background="@drawable/clear_white_complete_shape_inverted"
             android:gravity="center"
-            android:text="Notificaciones"
-            android:textColor="#FFFFFF"
-            android:textSize="20dp"
+            android:text="Recursos"
+            android:textColor="@android:color/black"
+            android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/imgNotificationBack"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
+            android:id="@+id/userProfilePicResources2"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/profile_imagen"
+            app:layout_constraintBottom_toBottomOf="@+id/textView2"
+            app:layout_constraintEnd_toEndOf="@+id/textView2"
+            app:layout_constraintTop_toTopOf="@+id/textView2" />
+
+        <ImageView
+            android:id="@+id/imgResoursesBack2"
+            android:layout_width="39dp"
+            android:layout_height="42dp"
+            android:layout_marginStart="8dp"
             android:src="@drawable/back_icon"
-            app:layout_constraintBottom_toBottomOf="@+id/textView51"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/textView51"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:tint="#000000"
+            app:layout_constraintBottom_toBottomOf="@+id/textView2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textView2" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvNotifications"
+            android:id="@+id/rvListaDeRecursos"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="8dp"
@@ -43,19 +52,18 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView51" />
+            app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
         <TextView
-            android:id="@+id/txtNoNotificaciones"
+            android:id="@+id/txtNoItems"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="No tienes notificaciones nuevas"
-            android:textSize="18sp"
+            android:text="NO HAY ARCHIVOS"
+            android:textSize="36sp"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView51" />
-
+            app:layout_constraintTop_toBottomOf="@+id/textView2" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

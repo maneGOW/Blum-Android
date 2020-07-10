@@ -10,22 +10,24 @@ import android.net.Uri
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.provider.MediaStore
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.net.toUri
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.nda.blum.R
-import com.nda.blum.databinding.ChatWithCoachFragmentBinding
-import com.nda.blum.databinding.NidosCoachFragmentBinding
+import com.nda.blum.adapters.NidosAlumnosListAdapter
 import com.nda.blum.databinding.NidosDataFragmentBinding
-import com.nda.blum.ui.chat.ChatWithCoachFragmentArgs
+
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -40,6 +42,7 @@ class NidosDataFragment : Fragment() {
     private val CAMERA_REQUEST = 101
     private var viewModelJob = Job()
     private val coroutineScope = CoroutineScope(Dispatchers.Main + viewModelJob)
+    var  nidosDataViewModel: NidosDataViewModel? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -50,17 +53,44 @@ class NidosDataFragment : Fragment() {
         )
 
         bindingNidoData!!.lifecycleOwner = this
+        val application = requireNotNull(this.activity).application
+
+        val viewModelFactory = NidosDataViewModelFactory(application)
+        nidosDataViewModel =
+            ViewModelProviders.of(this, viewModelFactory).get(NidosDataViewModel::class.java)
+
+        nidosDataViewModel!!.nidoIDLiveData.value = NidosDataFragmentArgs.fromBundle(arguments!!).idNido
 
         bindingNidoData!!.tietNidoName.setText(NidosDataFragmentArgs.fromBundle(arguments!!).nombreNido)
+
+        nidosDataViewModel!!.getNidosList()
 
         bindingNidoData!!.imgBackNidoData.setOnClickListener {
             this.findNavController().popBackStack()
         }
 
+        nidosDataViewModel!!.alumnosNido.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
+            if(it.result.isNotEmpty()){
+                bindingNidoData!!.rvNidoIntegrantes.layoutManager =
+                    LinearLayoutManager(this.context)
+                val manager = GridLayoutManager(activity, 1)
+                bindingNidoData!!.rvNidoIntegrantes.layoutManager = manager
+                val adapter = NidosAlumnosListAdapter(
+                    this.requireContext(),
+                    it,
+                    this
+                )
+                adapter.addHeaderAndSubmitList(it.result)
+                bindingNidoData!!.rvNidoIntegrantes.adapter = adapter
+            }
+        })
+
         bindingNidoData!!.btnEditarPerfil.setOnClickListener{
             if(bindingNidoData!!.textInputUserName.isEnabled){
                 bindingNidoData!!.btnEditarPerfil.text = "EDITAR"
                 bindingNidoData!!.textInputUserName.setEnabled(false)
+                nidosDataViewModel!!.updateNidoData("${bindingNidoData!!.tietNidoName.text}")
+                Toast.makeText(this.requireContext(), "Se ha cambiado el nombre del nido", Toast.LENGTH_LONG).show()
             }else{
                 bindingNidoData!!.btnEditarPerfil.text = "GUARDAR"
                 bindingNidoData!!.textInputUserName.setEnabled(true)
@@ -143,6 +173,31 @@ class NidosDataFragment : Fragment() {
                     .into(bindingNidoData!!.nidoPicture)
             }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        nidosDataViewModel!!.getNidosList()
+        nidosDataViewModel!!.alumnosNido.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
+            if(it.result.isNotEmpty()){
+                bindingNidoData!!.rvNidoIntegrantes.layoutManager =
+                    LinearLayoutManager(this.context)
+                val manager = GridLayoutManager(activity, 1)
+                bindingNidoData!!.rvNidoIntegrantes.layoutManager = manager
+                val adapter = NidosAlumnosListAdapter(
+                    this.requireContext(),
+                    it,
+                    this
+                )
+                adapter.addHeaderAndSubmitList(it.result)
+                bindingNidoData!!.rvNidoIntegrantes.adapter = adapter
+            }
+        })
+    }
+
+    override fun onPause() {
+        super.onPause()
+        nidosDataViewModel!!.getNidosList()
     }
 
     private fun bitmapToFile(bitmap: Bitmap): Uri {

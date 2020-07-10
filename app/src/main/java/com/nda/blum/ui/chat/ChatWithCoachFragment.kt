@@ -135,22 +135,54 @@ class ChatWithCoachFragment : Fragment() {
            // }
         })
 
+        var updateCount = 0
+        var currenSize = 0
+
         chatWithCoachViewmodel!!.filledMessageList.observe(viewLifecycleOwner, Observer {
             if (it) {
-                if (chatWithCoachViewmodel!!.messages.value != null) {
-                    println("USER ID COACH FRAGMENT ${chatWithCoachViewmodel!!.userID.value}")
-                    bindingChatWithCoach.rvChat.layoutManager = LinearLayoutManager(this.context)
-                    bindingChatWithCoach.rvChat.adapter = ChatIndividualAdapter(
-                        this.context!!,
-                        chatWithCoachViewmodel!!.messages.value!!,
-                        chatWithCoachViewmodel!!.userID.value!!
-                    )
+                if (updateCount == 0) {
+                    if (chatWithCoachViewmodel!!.messages.value != null) {
+                        println("USER ID COACH FRAGMENT ${chatWithCoachViewmodel!!.userID.value}")
+                        bindingChatWithCoach.rvChat.layoutManager =
+                            LinearLayoutManager(this.context)
 
-                    val positon = bindingChatWithCoach.rvChat.adapter!!.itemCount -1
+                        bindingChatWithCoach.rvChat.adapter = ChatIndividualAdapter(
+                            this.context!!,
+                            chatWithCoachViewmodel!!.messages.value!!,
+                            chatWithCoachViewmodel!!.userID.value!!
+                        )
 
-                    bindingChatWithCoach.rvChat.smoothScrollToPosition(positon)
-                    bindingChatWithCoach.rvChat.adapter!!.notifyDataSetChanged();
+                        bindingChatWithCoach.rvChat.itemAnimator = null;
 
+                        currenSize = bindingChatWithCoach.rvChat.adapter!!.itemCount
+
+                        val positon = bindingChatWithCoach.rvChat.adapter!!.itemCount - 1
+                        bindingChatWithCoach.rvChat.smoothScrollToPosition(positon)
+                        bindingChatWithCoach.rvChat.adapter!!.notifyDataSetChanged()
+                        updateCount = 1
+                    }
+                } else {
+                    if (updateCount >= 1 && chatWithCoachViewmodel!!.messages.value!!.result.size > currenSize ) {
+                        if (chatWithCoachViewmodel!!.messages.value != null) {
+                            println("USER ID COACH FRAGMENT ${chatWithCoachViewmodel!!.userID.value}")
+                            bindingChatWithCoach.rvChat.layoutManager =
+                                LinearLayoutManager(this.context)
+
+                            bindingChatWithCoach.rvChat.adapter = ChatIndividualAdapter(
+                                this.context!!,
+                                chatWithCoachViewmodel!!.messages.value!!,
+                                chatWithCoachViewmodel!!.userID.value!!
+                            )
+
+                            bindingChatWithCoach.rvChat.itemAnimator = null;
+
+                            currenSize = bindingChatWithCoach.rvChat.adapter!!.itemCount
+
+                            val positon = bindingChatWithCoach.rvChat.adapter!!.itemCount - 1
+                            bindingChatWithCoach.rvChat.smoothScrollToPosition(positon)
+                            bindingChatWithCoach.rvChat.adapter!!.notifyDataSetChanged()
+                        }
+                    }
                 }
             }
         })
@@ -165,7 +197,7 @@ class ChatWithCoachFragment : Fragment() {
         }
 
         val navView: BottomNavigationView = this.activity!!.findViewById(R.id.bttm_nav)
-        navView.visibility = View.VISIBLE
+        navView.visibility = View.GONE
 
         bindingChatWithCoach.btnBackCoachChat.setOnClickListener {
             (activity as IBackToHub?)!!.backToHubFragment()

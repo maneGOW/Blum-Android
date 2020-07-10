@@ -11,6 +11,8 @@ import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.nda.blum.R
 import com.nda.blum.databinding.HubAlumnoFragmentBinding
@@ -43,8 +45,34 @@ class HubAlumnoFragment : Fragment() {
             binding.txtWelcomeText.text = "Bienvenido(a) ${hubViewModel.userName.value}"
         })
 
-        hubViewModel.userRol.observe(viewLifecycleOwner, Observer {
+        hubViewModel.userProfilePicture.observe(viewLifecycleOwner, Observer {
+            if (!it.isNullOrBlank()){
+                Glide.with(this.requireContext())
+                    .load(it)
+                    .apply(RequestOptions.circleCropTransform())
+                    .into(binding.imgProfile)
+            }else{
+                Glide.with(this.requireContext())
+                    .load(R.drawable.profile_imagen)
+                    .apply(RequestOptions.circleCropTransform())
+                    .into(binding.imgProfile)
+            }
+        })
 
+        /*    binding.btnCerrarSesion.setOnClickListener {
+                val builder = AlertDialog.Builder(this.context!!)
+                builder.setTitle("Alerta")
+                builder.setMessage("¿Deseas cerrar tu sesión de BLUM?")
+                builder.setPositiveButton("Sí") { _, _ ->
+                    cerrarSesion()
+                }
+                builder.setNegativeButton("No") { dialog, _ ->
+                    dialog.dismiss()
+                }
+                builder.show()
+            }*/
+
+        hubViewModel.userRol.observe(viewLifecycleOwner, Observer { it ->
             if (it == "Coach") {
                 binding.txtSesion.text = "MIS SESIONES"
                 binding.txtTitleCoach.text = "MIS BLUMMERS"
@@ -55,23 +83,28 @@ class HubAlumnoFragment : Fragment() {
                 }
 
                 binding.btnRecursos.setOnClickListener {
-                    this.findNavController().navigate(HubAlumnoFragmentDirections.actionHubAlumnoFragmentToRecursosCoachFragment())
+                    this.findNavController()
+                        .navigate(HubAlumnoFragmentDirections.actionHubAlumnoFragmentToRecursosCoachFragment())
                 }
 
-                binding.btnChatCoach.setOnClickListener{
-                    this.findNavController().navigate(HubAlumnoFragmentDirections.actionHubAlumnoFragmentToBlummersCoachFragment())
+                binding.btnChatCoach.setOnClickListener {
+                    this.findNavController()
+                        .navigate(HubAlumnoFragmentDirections.actionHubAlumnoFragmentToBlummersCoachFragment())
                 }
 
                 binding.btnNotificaciones.setOnClickListener {
-                    this.findNavController().navigate(HubAlumnoFragmentDirections.actionHubAlumnoFragmentToNotificacionesCoachFragment())
+                    this.findNavController()
+                        .navigate(HubAlumnoFragmentDirections.actionHubAlumnoFragmentToNotificacionesCoachFragment())
                 }
 
                 binding.btnChatNido.setOnClickListener {
-                    this.findNavController().navigate(HubAlumnoFragmentDirections.actionHubAlumnoFragmentToNidosCoachFragment())
+                    this.findNavController()
+                        .navigate(HubAlumnoFragmentDirections.actionHubAlumnoFragmentToNidosCoachFragment())
                 }
-                binding.btnEditProfile.setOnClickListener{
+                binding.btnEditProfile.setOnClickListener {
                     println("BOTON presionado")
-                    this.findNavController().navigate(HubAlumnoFragmentDirections.actionHubAlumnoFragmentToUserProfile())
+                    this.findNavController()
+                        .navigate(HubAlumnoFragmentDirections.actionHubAlumnoFragmentToUserProfile())
                 }
             } else {
                 binding.btnAgendarSesion.setOnClickListener {
@@ -80,24 +113,41 @@ class HubAlumnoFragment : Fragment() {
                 }
 
                 binding.btnRecursos.setOnClickListener {
-                    this.findNavController().navigate(HubAlumnoFragmentDirections.actionHubAlumnoFragmentToRecursosCoachFragment())
+                    this.findNavController()
+                        .navigate(HubAlumnoFragmentDirections.actionHubAlumnoFragmentToRecursosCoachFragment())
                 }
 
-                binding.btnChatCoach.setOnClickListener{
-                    this.findNavController().navigate(HubAlumnoFragmentDirections.actionHubAlumnoFragmentToChatWithCoachFragment("userCoach", "", "", ""))
+                binding.btnChatCoach.setOnClickListener {
+                    this.findNavController().navigate(
+                        HubAlumnoFragmentDirections.actionHubAlumnoFragmentToChatWithCoachFragment(
+                            "userCoach",
+                            "",
+                            "",
+                            ""
+                        )
+                    )
                 }
 
                 binding.btnNotificaciones.setOnClickListener {
-                    this.findNavController().navigate(HubAlumnoFragmentDirections.actionHubAlumnoFragmentToNotificacionesCoachFragment())
+                    this.findNavController()
+                        .navigate(HubAlumnoFragmentDirections.actionHubAlumnoFragmentToNotificacionesCoachFragment())
                 }
 
                 binding.btnChatNido.setOnClickListener {
-                    this.findNavController().navigate(HubAlumnoFragmentDirections.actionHubAlumnoFragmentToChatWithCoachFragment("userNest", "", "", ""))
+                    this.findNavController().navigate(
+                        HubAlumnoFragmentDirections.actionHubAlumnoFragmentToChatWithCoachFragment(
+                            "userNest",
+                            "",
+                            "",
+                            ""
+                        )
+                    )
                 }
 
-                binding.btnEditProfile.setOnClickListener{
+                binding.btnEditProfile.setOnClickListener {
                     println("BOTON presionado")
-                    this.findNavController().navigate(HubAlumnoFragmentDirections.actionHubAlumnoFragmentToUserProfile())
+                    this.findNavController()
+                        .navigate(HubAlumnoFragmentDirections.actionHubAlumnoFragmentToUserProfile())
                 }
             }
         })
@@ -105,10 +155,14 @@ class HubAlumnoFragment : Fragment() {
         return binding.root
     }
 
+    private fun cerrarSesion() {
+        println("SE CERRÓ LA SESIÓN")
+    }
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         val callback: OnBackPressedCallback =
-            object : OnBackPressedCallback(true){
+            object : OnBackPressedCallback(true) {
                 override fun handleOnBackPressed() {
                     createExitDialog()
                 }
@@ -116,10 +170,10 @@ class HubAlumnoFragment : Fragment() {
         requireActivity().onBackPressedDispatcher.addCallback(this, callback)
     }
 
-    fun createExitDialog(){
+    fun createExitDialog() {
         val builder = AlertDialog.Builder(this.context!!)
         builder.setTitle("Alerta")
-        builder.setMessage("¿Deseas salir y cerrar sesión en BLUM?")
+        builder.setMessage("¿Deseas salir de BLUM")
         builder.setPositiveButton("Sí") { _, _ ->
             this.activity!!.finish()
         }

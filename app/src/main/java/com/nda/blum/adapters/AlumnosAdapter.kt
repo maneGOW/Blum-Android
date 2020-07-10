@@ -46,7 +46,7 @@ class AlumnosAdapter(
         when (holder) {
             is ViewHolder -> {
                 val alumnos = getItem(position) as AlumnoDataItem.AlumnosItem
-                holder.bind(clickListener, alumnos.alumno , fragment)
+                holder.bind(clickListener, alumnos.alumno, fragment)
             }
         }
     }
@@ -85,10 +85,16 @@ class AlumnosAdapter(
                 .into(binding.imgAlumno)
             binding.clickListener = clickListener
             binding.root.setOnClickListener {
-                fragment.findNavController().navigate(BlummersCoachFragmentDirections.actionBlummersCoachFragmentToChatWithCoachFragment(
-                    "coachUser", item.Id_Usuario, item.Nombre_Usuario, item.Foto_Usuario))
+                fragment.findNavController().navigate(
+                    BlummersCoachFragmentDirections.actionBlummersCoachFragmentToChatWithCoachFragment(
+                        "coachUser", item.Id_Usuario, item.Nombre_Usuario, item.Foto_Usuario
+                    )
+                )
             }
-            binding.root.setOnLongClickListener {
+
+            binding.txtChatOptions.visibility = View.VISIBLE
+
+            binding.txtChatOptions.setOnClickListener {
                 val builder = AlertDialog.Builder(fragment.requireContext())
                 builder.setTitle("BLUM")
                 builder.setCancelable(false)
@@ -96,12 +102,12 @@ class AlumnosAdapter(
                 builder.setPositiveButton("Sí") { _, _ ->
 
                 }
-                builder.setNegativeButton("No"){ dialog, _ ->
+                builder.setNegativeButton("No") { dialog, _ ->
                     dialog.dismiss()
                 }
                 builder.show()
-                true
             }
+
             binding.executePendingBindings()
         }
 

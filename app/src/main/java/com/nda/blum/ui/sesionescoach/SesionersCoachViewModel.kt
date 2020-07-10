@@ -61,6 +61,7 @@ class SesionersCoachViewModel( application: Application) :
                 .method("POST", body)
                 .build()
 
+            println("URL CITAS DE COACH ${request.url}" )
             val response: Response = client.newCall(request).execute()
 
             try {

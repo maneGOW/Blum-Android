@@ -47,7 +47,6 @@ class UserProfileFragment : Fragment() {
 
         val progressDialog = ProgressDialog.show(this.requireContext(), "", "Cargando...", true)
 
-
         bindingProfile = DataBindingUtil.inflate(
             inflater,
             R.layout.user_profile_fragment, container, false
@@ -105,10 +104,12 @@ class UserProfileFragment : Fragment() {
                 bindingProfile!!.btnEditarPerfil.text = "EDITAR"
                 bindingProfile!!.textInputUserName.setEnabled(false)
                 bindingProfile!!.textInputPhoneNumber.setEnabled(false)
+                userProfileViewModel!!.updateUserData("${bindingProfile!!.tietUserName.text}", "${bindingProfile!!.tietPhoneNumber.text}")
             }else{
                 bindingProfile!!.btnEditarPerfil.text = "GUARDAR"
                 bindingProfile!!.textInputUserName.setEnabled(true)
                 bindingProfile!!.textInputPhoneNumber.setEnabled(true)
+
             }
         }
 
@@ -136,6 +137,19 @@ class UserProfileFragment : Fragment() {
             }
 
             builder.setNeutralButton("Cancelar") { dialog, _ ->
+                dialog.dismiss()
+            }
+            builder.show()
+        }
+
+        bindingProfile!!.btnEditarPerfil2.setOnClickListener {
+            val builder = AlertDialog.Builder(this.context!!)
+            builder.setTitle("Alerta")
+            builder.setMessage("¿Deseas cerrar tu sesión de BLUM?")
+            builder.setPositiveButton("Sí") { _, _ ->
+                this.activity!!.finish()
+            }
+            builder.setNegativeButton("No") { dialog, _ ->
                 dialog.dismiss()
             }
             builder.show()
@@ -171,7 +185,7 @@ class UserProfileFragment : Fragment() {
             } else if (requestCode == CAMERA_REQUEST) {
                 val photo = data!!.extras!!["data"] as Bitmap?
                 val stream = ByteArrayOutputStream()
-                photo!!.compress(Bitmap.CompressFormat.PNG, 100, stream)
+                photo!!.compress(Bitmap.CompressFormat.JPEG, 100, stream)
                 coroutineScope.launch {
                     val file = File(bitmapToFile(photo).path!!)
                     try {

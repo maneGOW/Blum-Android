@@ -36,7 +36,7 @@ class AgendarSesionFragment : Fragment() {
         val progressDialog = ProgressDialog.show(this.requireContext(), "", "Cargando...", true)
 
         val navView: BottomNavigationView = this.activity!!.findViewById(R.id.bttm_nav)
-        navView.visibility = View.VISIBLE
+        navView.visibility = View.GONE
 
         val application = requireNotNull(this.activity).application
         val viewModelFactory = AgendarSesionViewModelFactory(application)

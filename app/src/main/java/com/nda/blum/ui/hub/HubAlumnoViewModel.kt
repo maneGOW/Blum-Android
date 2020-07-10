@@ -14,9 +14,11 @@ class HubAlumnoViewModel(application: Application) : AndroidViewModel(applicatio
 
     val userName = MutableLiveData<String?>()
     val userRol = MutableLiveData<String?>()
+    val userProfilePicture = MutableLiveData<String?>()
 
     init {
         userName.value = ""
+        userProfilePicture.value = ""
         updateFirstLaunch()
     }
 
@@ -24,9 +26,12 @@ class HubAlumnoViewModel(application: Application) : AndroidViewModel(applicatio
         try {
             val nombreUsuario = secureStorage.getObject("nombreUsuario", String::class.java)
             val rolUsuario = secureStorage.getObject("rolUsuario", String::class.java)
+            val profilePicture = secureStorage.getObject("userProfilePicture", String::class.java)
             println(nombreUsuario)
+            println("URL PROFILE PICTURE $profilePicture")
             userName.value = nombreUsuario
             userRol.value = rolUsuario
+            userProfilePicture.value = profilePicture
         } catch (e: Exception) {
             e.printStackTrace()
         }

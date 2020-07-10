@@ -1,17 +1,15 @@
-package com.nda.blum.ui.nidosdata
+package com.nda.blum.ui.recursos
 
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.nda.blum.ui.login.LoginViewModel
+import com.nda.blum.ui.recoverpassword.RecuperarPasswordViewModel
 
-class NidosDataViewModelFactory(
-    private val application: Application
-) : ViewModelProvider.Factory {
+class RecursosCoachViewModelFactory(private val application: Application)  : ViewModelProvider.Factory {
     @Suppress("uncheked_cast")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(NidosDataViewModel::class.java)) {
-            return NidosDataViewModel(
+        if (modelClass.isAssignableFrom(RecursosCoachViewModel::class.java)) {
+            return RecursosCoachViewModel(
                 application
             ) as T
         }

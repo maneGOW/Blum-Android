@@ -11,6 +11,7 @@ import android.net.Uri
 import android.provider.MediaStore
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -91,25 +92,24 @@ class NidosAlumnosAdapter(
                 .load(item.fotoNido)
                 .apply(RequestOptions.circleCropTransform())
                 .into(binding.imgAlumno)
-            binding.clickListener = clickListener
-            binding.root.setOnClickListener {
-                fragment.findNavController().navigate(NidosCoachFragmentDirections.actionNidosCoachFragmentToChatWithCoachFragment(
-                    "coachNest", item.id_Nido, item.Nombre_Nido, item.fotoNido))
+            binding.imgEditChat.visibility = View.VISIBLE
+            binding.imgEditChat.setOnClickListener {
+                fragment.findNavController().navigate(
+                    NidosCoachFragmentDirections.actionNidosCoachFragmentToNidosDataFragment(
+                        item.id_Nido,
+                        item.Nombre_Nido,
+                        item.fotoNido
+                    )
+                )
             }
 
-            binding.root.setOnLongClickListener {
-                val builder = AlertDialog.Builder(fragment.requireContext())
-                builder.setTitle("BLUM")
-                builder.setCancelable(false)
-                builder.setMessage("¿Deseas cambiar los datos del nido?")
-                builder.setPositiveButton("Sí") { _, _ ->
-                    fragment.findNavController().navigate(NidosCoachFragmentDirections.actionNidosCoachFragmentToNidosDataFragment(item.id_Nido, item.Nombre_Nido, item.fotoNido))
-                }
-                builder.setNegativeButton("No"){ dialog, _ ->
-                    dialog.dismiss()
-                }
-                builder.show()
-                true
+            binding.clickListener = clickListener
+            binding.root.setOnClickListener {
+                fragment.findNavController().navigate(
+                    NidosCoachFragmentDirections.actionNidosCoachFragmentToChatWithCoachFragment(
+                        "coachNest", item.id_Nido, item.Nombre_Nido, item.fotoNido
+                    )
+                )
             }
 
             binding.executePendingBindings()

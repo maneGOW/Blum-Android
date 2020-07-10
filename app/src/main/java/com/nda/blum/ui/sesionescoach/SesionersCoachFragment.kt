@@ -28,7 +28,7 @@ class SesionersCoachFragment : Fragment() {
     ): View? {
 
         val navView: BottomNavigationView = this.activity!!.findViewById(R.id.bttm_nav)
-        navView.visibility = View.VISIBLE
+        navView.visibility = View.GONE
 
         val bindingSesionesCoach: SesionersCoachFragmentBinding = DataBindingUtil.inflate(
             inflater,
@@ -40,7 +40,8 @@ class SesionersCoachFragment : Fragment() {
 
         val viewModelFactory =
             SesionesCoachViewModelFactory(application)
-        val sesionesCoachViewModel = ViewModelProviders.of(this,viewModelFactory).get(SesionersCoachViewModel::class.java)
+        val sesionesCoachViewModel =
+            ViewModelProviders.of(this, viewModelFactory).get(SesionersCoachViewModel::class.java)
 
         bindingSesionesCoach.lifecycleOwner = this
 
@@ -65,10 +66,11 @@ class SesionersCoachFragment : Fragment() {
                             .toInt()
                     ) {
                         println("FECHA: $dayOfMonth ${validateMonth(month)} $year")
-                        bindingSesionesCoach.txtSesionCoachFecha.text = "$dayOfMonth/${validateMonth(month)}/$year"
+                        bindingSesionesCoach.txtSesionCoachFecha.text =
+                            "$dayOfMonth/${validateMonth(month)}/$year"
                         sesionesCoachViewModel.getCitasFromServer()
-                       // agendarSesionViewModel!!.fecha.value = "$dia/$mes/$anio"
-                       // agendarSesionViewModel!!.citasDisponibles()
+                        // agendarSesionViewModel!!.fecha.value = "$dia/$mes/$anio"
+                        // agendarSesionViewModel!!.citasDisponibles()
 
                     } else {
                         println("el dia es anterior")
@@ -95,14 +97,23 @@ class SesionersCoachFragment : Fragment() {
                     "La fecha no es válida",
                     Toast.LENGTH_LONG
                 ).show()
-              //  resetHoursDefault(bindingAgendarSesion)
+                //  resetHoursDefault(bindingAgendarSesion)
             }
         }
 
         sesionesCoachViewModel.filledCitasDelServer.observe(viewLifecycleOwner, Observer {
-            if(it){
+            if (it) {
                 bindingSesionesCoach.rvCitas.layoutManager = LinearLayoutManager(this.context)
-                bindingSesionesCoach.rvCitas.adapter = SesionesCoachAdapter(this.context!!, sesionesCoachViewModel.citasDelServer.value!!)
+                bindingSesionesCoach.rvCitas.adapter = SesionesCoachAdapter(
+                    this.context!!,
+                    sesionesCoachViewModel.citasDelServer.value!!
+                )
+                bindingSesionesCoach.txtNoCitas.visibility = View.GONE
+                bindingSesionesCoach.rvCitas.visibility = View.VISIBLE
+
+            } else {
+                bindingSesionesCoach.txtNoCitas.visibility = View.VISIBLE
+                bindingSesionesCoach.rvCitas.visibility = View.GONE
             }
         })
 

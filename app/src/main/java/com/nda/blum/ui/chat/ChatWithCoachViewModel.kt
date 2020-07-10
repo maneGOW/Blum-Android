@@ -21,8 +21,8 @@ class ChatWithCoachViewModel(application: Application) :
     BaseViewModel(application) {
 
     private val _showDialog = MutableLiveData<Boolean>()
-    val showDialog : LiveData<Boolean>
-    get() = _showDialog
+    val showDialog: LiveData<Boolean>
+        get() = _showDialog
 
     val secureStorage = SecureStorage(getApplication())
 
@@ -62,14 +62,16 @@ class ChatWithCoachViewModel(application: Application) :
     fun getMessagesFromServer() {
         coroutineScope.launch {
             val getMessages = susGetMessages()
+
             if (getMessages!!.code == "0") {
                 messages.value = getMessages
+
                 getMessages.result.forEach {
-                    println("MENSAJE: ${it.Mensaje_Chat}")
                     chatRoomId = it.Id_chatroom
                     println("CHAT ROOM: $chatRoomId")
                     _filledMessageList.value = true
                 }
+
             } else {
                 println("SIN CHATS")
                 _showDialog.value = true
@@ -104,7 +106,7 @@ class ChatWithCoachViewModel(application: Application) :
     private suspend fun susGetCoachData(): FindUser? {
         var findUserResponse: FindUser? = null
         var idCoach = secureStorage.getObject("idCoach", String::class.java)
-        if(chatType.value == "coachUser"){
+        if (chatType.value == "coachUser") {
             idCoach = secureStorage.getObject("idUsuario", String::class.java)
         }
         println("Id coach $idCoach")
@@ -130,24 +132,24 @@ class ChatWithCoachViewModel(application: Application) :
         return findUserResponse
     }
 
-    fun getNidoName(){
+    fun getNidoName() {
         coroutineScope.launch {
             _showProgressDialog.value = true
             val nidoData = susGetNidoName()
-            if(nidoData!!.code == "0"){
+            if (nidoData!!.code == "0") {
                 nidoName.value = nidoData.result.Nombre_Nido
                 nidoProfilePic.value = nidoData.result.Foto_Nido
                 _showProgressDialog.value = false
-            }else{
+            } else {
                 _showProgressDialog.value = false
             }
         }
     }
 
-    private suspend fun susGetNidoName(): BuscarNidoResponse?{
+    private suspend fun susGetNidoName(): BuscarNidoResponse? {
         var nidoData: BuscarNidoResponse? = null
         var idNido = secureStorage.getObject("idNido", String::class.java)
-        if(idNido == "0" || idNido.isNullOrEmpty()){
+        if (idNido == "0" || idNido.isNullOrEmpty()) {
             idNido = nidoID.value
         }
         println("Id nido $idNido")
@@ -216,9 +218,11 @@ class ChatWithCoachViewModel(application: Application) :
             val mediaType = "text/plain".toMediaTypeOrNull()
             val body: RequestBody = RequestBody.create(mediaType, "")
             val request = Request.Builder()
-                .url(sendMessageUrl.value!!+"&chatmessage=${userMessage.value}")
+                .url(sendMessageUrl.value!! + "&chatmessage=${userMessage.value}")
                 .method("POST", body)
                 .build()
+
+            println("&chatmessage=${userMessage.value}")
             val response: Response = client.newCall(request).execute()
             try {
                 if (response.code == 200) {
